@@ -1,14 +1,32 @@
 ---
 title: "plant systems genetics:"
 subtitle: "from markers to whole genome"
-author: "Brian S. Yandell"
+author: |
+  | Brian S. Yandell
+  | UW-Madison
+  | github.com/byandell/PlantSysGen
 date: "January 2017"
-output: ioslides_presentation
+output: 
+  beamer_presentation:
+    fig_caption: false
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
+
+## Outline
+
+- [Overview](overview.html) (this deck)
+- [Workshop Setup](setup.html)
+- [Experimental Designs](design.html)
+- [Statistical Models](models.html)
+    + [Days to Flowering](osborn_model.html)
+- [Genome-Wide Selection](selection.html)
+    + [rrBLUP](rrBLUP.html)
+- [Multiple Traits & GxE](gxe.html)
+    + [Days to Flowering](osborn_two.html)
+    + [Root Tip Growth](moore_time.html)
 
 ## Overview
 

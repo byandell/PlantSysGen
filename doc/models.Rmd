@@ -1,10 +1,13 @@
 ---
-title: "Models"
-author: "Brian S. Yandell"
+title: "StatisticalModels"
+author: |
+  | Brian S. Yandell
+  | UW-Madison
+  | github.com/byandell/PlantSysGen
 date: "January 2017"
 output:
-  beamer_presentation: default
-  ioslides_presentation: default
+  beamer_presentation:
+    fig_caption: false
 ---
 
 ```{r setup, include=FALSE}

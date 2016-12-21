@@ -1,10 +1,13 @@
 ---
 title: "Genome-Wide Selection"
-author: "Brian S. Yandell"
+author: |
+  | Brian S. Yandell
+  | UW-Madison
+  | github.com/byandell/PlantSysGen
 date: "January 2017"
 output:
-  slidy_presentation: default
-  ioslides_presentation: default
+  beamer_presentation:
+    fig_caption: false
 ---
 
 ```{r setup, include=FALSE}
