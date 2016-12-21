@@ -1,0 +1,97 @@
+---
+title: "Experimental Design"
+author: "Brian S. Yandell"
+date: "January 2017"
+output:
+  ioslides_presentation: default
+  beamer_presentation: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Outline
+
+- common breeding designs
+    + backcross (BC)
+    + intercross (F2)
+    + doubled haploid (DH)
+- advanced intercross lines
+    + recombinant inbred lines (RILs)
+    + near isogenic lines (NILs) & consomics
+    + multi-parent populations
+
+## common breeding designs
+
+<img src="../Fig/backcross_bw.pdf" 
+  alt="Backcross" 
+  style="width: 350px; float:right"/>
+
+- 2 (inbred) founder alleles
+- 2 generations
+- backcross (BC): 1 meiosis
+- doubled haploid (DH): 1 meiosis
+- intercross (F2): 2 meioses
+
+<img src="../Fig/intercross_bw.pdf" 
+  alt="Intercross" 
+  style="width: 350px; float:left"/>
+
+<img src="../Fig/DH_bw.pdf" 
+  alt="Intercross" 
+  style="width: 350px; float:right"/>
+
+## recombinant inbred lines (RIL)
+
+<img src="../Fig/nrg2291-f4.jpeg" 
+  alt="RIL" 
+  style="width: 300px; float:right"/>
+
+- 2 or more inbred founders
+- single F1 self-pollinated
+- generations of random mating
+- generations of selfing
+- aim for homozygosity at all loci
+
+<span style="font-size: 50%">www.nature.com/nrg/journal/v9/n3/images/nrg2291-f4.jpg</span>
+
+## near isogenic lines (NIL)
+
+<img src="../Fig/NIILpanel_Univ-of-Illinois-Chicago_w.jpeg" 
+  alt="RIL" 
+  style="width: 300px; float:left"/>
+
+<img src="../Fig/meddic.jp.png" 
+  alt="RIL" 
+  style="width: 450px; float:right"/>
+
+
+<span style="font-size: 50%">Rebecca Nelson blog.generationcp.org/category/women-in-science-2/</span>
+
+<span style="font-size: 50%">meddic.jp/isogenic_line</span>
+
+## Advanced Intercrosses
+
+<img src="../Fig/physiolgenomics.jpg" 
+  alt="AI_Woods" 
+  style="width: 800px"/>
+
+<span style="font-size: 75%">Leah Solberg Woods doi:10.1152/physiolgenomics.00127.2013</span> 
+
+## multi-parent populations
+
+<img src="../Fig/DO_laura_vanderploeg.jpg" 
+  alt="RIL" 
+  style="width: 300px; float:right"/>
+
+- more than 2 inbred parents (4,8,20)
+- generations of cross-breeding
+- generations of selfing
+    + (sib-mating in animals)
+- possible generations of outcross
+
+<span style="font-size: 75%">Laura Vanderploeg, Jackson Labs</span>
+
+
+

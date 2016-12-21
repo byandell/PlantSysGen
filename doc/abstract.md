@@ -1,0 +1,19 @@
+---
+title: "Plant Systems Genetics: from Markers to Whole Genomes"
+author: |
+  | Brian S. Yandell
+  | University of Wisconsin-Madison
+date: "January 2017"
+output: html_document
+---
+
+Systems genetics is an approach to understand the flow of biological information that underlies complex traits. We give an overview of how gene mapping (QTL or linkage analysis) and genomic selection (MAS) have evolved with changing laboratory, statistical and computational methodology. This is a mix of theory (setting the stage, showing big picture) and applied (using R/qtl, R/rrBLUP, maybe a bit of R/qtl2 concerning kinship) aimed at a plant-based audience.
+
+We begin with genetic markers that were discovered by accident (RFLP) to a point now where whole genomes are routinely sequenced or covered with d ense sets of polymorphic markers (SNP, GBS). Further, other physiological (internal) and environmental (external) measurements, including molecules and images, have become inexpensive enough to generate high volume assays for samples of hundreds or thousands of organisms. [Individual cell technologies are advancing, but that is beyond the scope of this talk.] 
+
+The statistical methods have emerged in an effort to keep up with measurement advances, in the areas of experimental design, model selection, and estimation and prediction. Experimental design methods began with two-founder experiments covering a few generations (backcross, intercross) to advanced crosses (RILs) and, more recently, intense study of multi-parent populations (MPP). MPP, which are developed over generations to increase meiotic events, enable deep dives to the SNP or small genomic region level in one generation. Model selection, concerning how phenotypes (measured traits) are related to genotypes, has moved from single marker regressions to interval mapping to association mapping (including GWAS) to whole genome regression models. Important advances use random effects to adjust for “missing” heritability, and interactions to model epistasis among identified genomic regions. Efforts to understand how multiple phenotypes interrelate, particularly those that seem functionally similar, has led to advances in correlation and causalty models. 
+
+These advances in measurement, design and analysis would be academic were it not for the advances in computational technology. Beyond machines, which enable faster throughput of more stuff, researchers have translated methods into algorithms that are largely open source (freely distributed and easy to study). The algorithms were initially packaged into standalone programs, but many have migrated to language systems such as R or Python or Matlab, with interconnectivity of algorithms and data resources being crucial. Collaboration systems have emerged, such as GitHub to share code and ideas, Box/DropBox and Google Drive to share documents, and iPlant to improve data access and processing efficiency. Newer approaches tailored for systems genetics are being built on a modular philosophy of layers, separating the (back-end) data and compute processing layer from the (middle-ware) analysis methodology layer and the (front-end) human interaction and data visualization layer. These newer technologies will enable different communities to customize their local use; share data, methods and results with other communities; and off-load data handling headaches.
+
+The goal of system genetics studies is often to either predict performance of future offspring (such as genomic selection) or to estimate the genetic architecture of traits (genomic locations and their genetic action on phenotypes). This is a great time to become involved in modern approaches to systems genetics, as there are many challenges and opportunities for substantial contributions to understanding important problems in biological systems.
+

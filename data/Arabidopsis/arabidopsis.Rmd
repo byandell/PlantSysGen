@@ -1,0 +1,24 @@
+---
+title: "Arabidopsis"
+author: "Brian S. Yandell"
+date: "12/16/2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+I have not been able to locate these data yet. There are 19 founders for the MAGIC population. The web sited and key reference are below. There is also reference to related work on the 1001 Genomes Consortium.
+
+Data: <http://gscan.well.ox.ac.uk/arabidopsis/>  
+Germplasm: <http://www.arabidopsis.info/CollectionInfo?id=112>  
+<http://plants.ensembl.org/Arabidopsis_thaliana/Info/Annotation>  
+Reference: Kover PX, Valdar W, Trakalo J, Scarcelli N, Ehrenreich IM, Purugganan MD, Durrant C, Mott R (2009) A Multiparent Advanced Generation Inter-Cross to Fine-Map Quantitative Traits in _Arabidopsis thaliana_. PLOS Genetics 1000551. [doi:10.1371/journal.pgen.1000551](http://dx.doi.org/10.1371/journal.pgen.1000551)
+
+Gan, X. et al. Multiple reference genomes and transcriptomes for
+21 Arabidopsis thaliana. Nature 477, 419–423 (2011).
+
+The 1001 Genomes Consortium (2016) 1,135 Genomes Reveal the Global Pattern of Polymorphism in _Arabidopsis thaliana_. Cell 166: 481–491. [doi:10.1016/j.cell.2016.05.063](http://dx.doi.org/10.1016/j.cell.2016.05.063)
+
+[At MAGIC 19 founder lines sequences](http://gbrowse.cbio.mskcc.org/gb/gbrowse/thaliana-19magic/)

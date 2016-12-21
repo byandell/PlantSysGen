@@ -1,0 +1,66 @@
+---
+title: "Moore Data"
+author: "Brian S. Yandell"
+date: "12/13/2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Data description
+
+See details of data description in `Data_Description_*.xlsx` files and data ready to import to [R\qtl](http://rqtl.org) in `*_GraviInput.csv` files.
+
+* RIL1: 162 F10 RILs derived from a cross of Landsberg erecta (Ler) and Cape Verde Islands (Cvi) accessions of A. thaliana (Alonso-Blanco et al. 1998) donated to us by Patrick Masson, University of Wisconsin
+* RIL2: progeny of RIL1 produced in a random-designed and carefully controlled seed-bulking exercise to duplicate the population in a different maternal environment
+* NIL: 92 near isogenic lines that introgress various short regions of Cvi DNA into the Ler background
+
+RIL = recombinant inbred line; NIL = near isogenic line
+
+Data site: <http://phenome.jax.org/db/q?rtn=projects/projdet&reqprojid=281>  
+Reference: Moore CR, Johnson LS, Kwak IY, Livny M, Broman KW, Spalding EP. High-throughput computer vision introduces the time axis to a quantitative trait map of a plant growth response. Genetics. 2013 Nov;195(3):1077-86. [doi:10.1534/genetics.113.153346](http://dx.doi.org/10.1534/genetics.113.153346). Epub 2013 Aug 26.     
+[PubMed 23979570](http://www.ncbi.nlm.nih.gov/pubmed/23979570?dopt=Abstract) |
+[MGI](http://www.informatics.jax.org/reference/23979570) |
+[FullText](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3813838/?tool=pubmed)
+
+## Read data as cross objects using R/qtl
+
+```{r}
+library(qtl)
+dirpath <- getwd()
+```
+
+```{r}
+nil <- read.cross("csv", dirpath, "NIL_GraviInput.csv",
+                  na.strings = "*",
+                  crosstype = "riself")
+```
+
+```{r}
+summary(nil)
+```
+
+```{r}
+ril1 <- read.cross("csv", dirpath, "RIL1_GraviInput.csv",
+                  na.strings = "*",
+                  crosstype = "riself")
+```
+
+```{r}
+summary(ril1)
+```
+
+
+```{r}
+ril2 <- read.cross("csv", dirpath, "RIL2_GraviInput.csv",
+                  na.strings = "*",
+                  crosstype = "riself")
+```
+
+```{r}
+summary(ril2)
+```
+
+RIL2 seems to have the same setup as RIL1, but values differ.

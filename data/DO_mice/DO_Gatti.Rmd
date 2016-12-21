@@ -1,0 +1,191 @@
+---
+title: "Diversity Outbred Micxe"
+author: "Brian S. Yandell"
+date: "12/16/2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This is a study of Diversity Outbred (DO) mice derived from 8 founder strains.
+
+Data: <https://github.com/rqtl/qtl2data/tree/master/DO_Gatti2014>  
+Reference: Gatti DM, Svenson KL, Shabalin A, Wu L-Y, Valdar W, Simecek P, Goodwin N, Cheng R, Pomp D, Palmer A, Chesler EJ, Broman KW, Churchill GA (2014) Quantitative trait locus mapping methods for Diversity Outbred mice. G3 4:1623-1633 [doi:10.1534/g3.114.013748](http://dx.doi.org/10.1534/g3.114.013748)
+
+Here are some useful links:
+
+- <http://rqtl.org> (lots of useful stuff here)
+    + A brief tour of R/qtl: [[pdf](http://rqtl.org/tutorials/rqtltour.pdf) | [code](http://rqtl.org/tutorials/rqtltour.R)]
+    + A shorter tour of R/qtl: [[pdf](http://rqtl.org/tutorials/rqtltour2.pdf) | [code](http://rqtl.org/tutorials/rqtltour2.R)]
+    + [R/qtl sample data formats](http://rqtl.org/sampledata/)
+    + [A Guide to QTL Mapping with R/qtl by Karl W. Broman & Śaunak Sen](http://www.rqtl.org/book/)
+- <http://kbroman.org/qtl2/>
+    + See Installation Instructions
+    + [R/qtl User Guide](http://kbroman.org/qtl2/assets/vignettes/user_guide.html)
+    + [R/qtl2 input file format](http://kbroman.org/qtl2/assets/vignettes/input_files.html).
+
+Files for DO mice are in the [do](do) folder. These include:
+
+- [kinship.csv](do/kinship.csv): list of kinship matrices by chr (20Mb)
+- [do_covar.csv](do/covar.csv): covariate matrix (11Kb)
+- [probs.csv](do/probs.csv): genotype probabilities object (2.1Gb)
+- `pheno_*.csv`: phenotype data frames for `clin`, `otu`, `otufam` (~1.5Mb)
+- [pmap.csv](do/pmap.csv): list of physical maps by chr (1Mb)
+- [ccfoundersnps.sqlite](do/ccfoundersnps.sqlite): SQLite SNP database (2.9Gb)
+
+## Setup
+
+First we set up needed packages, or libraries.
+
+```{r message=FALSE}
+library(qtl2scan)
+library(qtl2plot)
+library(qtl2geno)
+library(dplyr)
+```
+
+Could read in data over the internet. We do it here with local copy.
+
+```{r eval=FALSE}
+## File address across internet.
+file <- paste0("https://raw.githubusercontent.com/rqtl/",
+               "qtl2data/master/DO_Gatti2014/do.zip")
+```
+
+```{r}
+## Local file (if saved on your machine)
+file <- paste0("do.zip")
+```
+
+Now read the cross data
+
+```{r}
+do <- read_cross2(file)
+```
+
+```{r}
+dimnames(do$pheno)[[2]]
+```
+
+## Genome scan
+
+Calculate genotype probabilities. This takes some time and may create a huge file.
+The original ZIP file with all data was 1.5Mb.
+The calculated genotype probability file is 1.1Gb with all 36 "diplotype" probabilites.
+We reduce to the 8 allele "haplotypes", which is only 246Mb.
+We also put the physical map into the probs object.
+We save both objects, as they took some time to create.
+
+
+```{r}
+if(file.exists("do_probs.rds")) {
+  do_probs <- readRDS("do_probs.rds")
+} else {
+  probs <- calc_genoprob(do, step=1, err=0.002)
+  saveRDS(probs, "do_36_probs.rds")
+  do_probs <- genoprob_to_alleleprob(probs)
+  do_probs$map <- do$pmap
+  saveRDS(do_probs, "do_probs.rds")
+}
+```
+
+Calculate kinship matrices. This takes a short while, and is 78Mb.
+
+```{r}
+if(file.exists("do_kinship.rds")) {
+  do_kinship <- readRDS("do_kinship.rds")
+} else {
+  do_kinship <- calc_kinship(do_probs, "loco")
+  saveRDS(do_kinship, "do_kinship.rds")
+}
+```
+
+```{r}
+pheno_scan <- scan1(do_probs, 
+                   do$pheno[,2],
+                   do_kinship)
+```
+
+```{r}
+plot(pheno_scan)
+```
+
+```{r}
+(peak <- max(pheno_scan))
+```
+
+```{r}
+plot(pheno_scan, chr="1")
+```
+
+```{r}
+pheno_1 <- scan1(subset(do_probs, chr="1"),
+                   do$pheno[,2],
+                   do_kinship[["1"]])
+```
+
+```{r}
+plot(pheno_1)
+```
+
+## Allele Scan
+
+```{r}
+eff_scan <- scan1coef(subset(do_probs, chr = "1"), 
+                      do$pheno[,2],
+                      do_kinship[["1"]])
+```
+
+```{r}
+plot_coefCC(eff_scan)
+abline(v=peak$pos, lty=2, lwd=2)
+```
+
+
+## SNP Scan
+
+In order to reproduce the SNP scan, we need to get the SNP information.
+These are MUGA SNPs, with information at <ftp://ftp.jax.org/MUGA/>.
+You must download <ftp://ftp.jax.org/MUGA/DO_mice/muga_snps.Rdata>
+
+Problem is that the `muga_snps.Rdata` file does not have SDP,
+and that is not easily extracted from genotype probabilities.
+
+```{r}
+load("muga_snps.Rdata")
+window_Mbp <- 3
+```
+
+
+```{r}
+snpinfo <- muga_snps %>%
+  filter(chr == "1",
+         pos >= peak$pos - 3,
+         pos <= peak$pos + 3)
+dim(snpinfo)
+```
+
+
+```{r eval=FALSE}
+snpprobs <- genoprob_to_snpprob(subset(probs, chr = "1"),
+                                snpinfo)
+```
+
+```{r}
+pheno_snpscan_chr <- scan1(snpprobs, 
+                   phe_df[, pheno_names, drop = FALSE],
+                   K[[chr_id]],
+                   covar[, covar_names])
+```
+
+```{r}
+plot(pheno_snpscan_chr, drop.hilit = 1.5)
+```
+
+```{r}
+pheno_topsnps <- top_snps(pheno_snpscan_chr, drop = 1.5)
+pheno_topsnps
+```
+

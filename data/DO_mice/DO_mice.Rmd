@@ -1,0 +1,179 @@
+---
+title: "Diversity Outbred Micxe"
+author: "Brian S. Yandell"
+date: "12/16/2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This is a study of Diversity Outbred (DO) mice derived from 8 founder strains.
+
+Data: <https://github.com/rqtl/qtl2data/>  
+Reference: Recla JM, Robledo RF, Gatti DM, Bult CJ, Churchill GA, Chesler EJ (2014) Precise genetic mapping and integrative bioinformatics in Diversity Outbred mice reveals Hydin as a novel pain gene. Mamm Genome 25:211-222. [doi:10.1007/s00335-014-9508-0](http://dx.doi.org/10.1007/s00335-014-9508-0)
+Here are some useful links:
+
+- <http://rqtl.org> (lots of useful stuff here)
+    + A brief tour of R/qtl: [[pdf](http://rqtl.org/tutorials/rqtltour.pdf) | [code](http://rqtl.org/tutorials/rqtltour.R)]
+    + A shorter tour of R/qtl: [[pdf](http://rqtl.org/tutorials/rqtltour2.pdf) | [code](http://rqtl.org/tutorials/rqtltour2.R)]
+    + [R/qtl sample data formats](http://rqtl.org/sampledata/)
+    + [A Guide to QTL Mapping with R/qtl by Karl W. Broman & Śaunak Sen](http://www.rqtl.org/book/)
+- <http://kbroman.org/qtl2/>
+    + See Installation Instructions
+    + [R/qtl User Guide](http://kbroman.org/qtl2/assets/vignettes/user_guide.html)
+    + [R/qtl2 input file format](http://kbroman.org/qtl2/assets/vignettes/input_files.html)
+    + [R/qtl2ggplot](https://github.com/byandell/qtl2ggplot): Yandell version of qtl2plot with grammar of graphics plots ([ggplot2](http://ggplot2.org))
+
+Files for DO mice are in the <https://github.com/rqtl/qtl2data/tree/master/DOex>.
+You will need [DOex.zip](https://github.com/rqtl/qtl2data/blob/master/DOex/DOex.zip) and [c2_snpinfo.rds](https://github.com/rqtl/qtl2data/blob/master/DOex/c2_snpinfo.rds). This is a small subset for teaching purposes of the larger dataset.
+
+## Setup
+
+First we set up needed packages, or libraries.
+
+```{r message=FALSE}
+library(qtl2geno)
+library(qtl2scan)
+library(qtl2ggplot)
+```
+
+Could read in data over the internet. We do it here with local copy,
+which is downloaded if not found.
+
+```{r}
+do_file <- "DOex.zip"
+snp_file <- "c2_snpinfo.rds"
+```
+
+Get files from internet if they do not exist locally.
+
+```{r}
+web_address <- file.path("https://raw.githubusercontent.com/rqtl/",
+               "qtl2data/master/DOex")
+if(!file.exists(do_file)) {
+  download.file(file.path(web_address, do_file), do_file, quiet=TRUE)
+}
+if(!file.exists(snp_file)) {
+  download.file(file.path(web_address, snp_file), snp_file, quiet=TRUE)
+}
+rm(web_address)
+```
+
+## Read cross object and subset to chr 2.
+
+```{r}
+DOex <- read_cross2(do_file)
+```
+
+```{r}
+summary(DOex)
+```
+
+## Calculate genotype probabilities.
+
+Calculate genotype probabilities. This can take some time and may create a huge file.
+We reduce to the 8 allele probabilities, which is smaller.
+We also put the physical map into the probs object.
+For larger datasets, we save both objects, as they took some time to create.
+
+```{r}
+pr <- calc_genoprob(DOex, error_prob=0.002)
+```
+
+Convert to allele probabilities.
+Switch map to physical map in Mbp.
+
+```{r}
+apr <- genoprob_to_alleleprob(pr)
+apr$map <- DOex$pmap
+```
+
+## QTL Scan on chr 2
+
+```{r}
+pheno_scan <- scan1(apr, DOex$pheno)
+```
+
+```{r message=FALSE}
+plot(pheno_scan)
+```
+
+## QTL scan with kinship adjustment.
+
+Calculate kinship matrices using the `"loco"` option, which calculates kinship for each chromosome using SNPs from all but that chromosome.
+
+```{r}
+kinship <- calc_kinship(apr, "loco")
+```
+
+Create a copy of the phenotype matrix and rename the phenotype to `"OF_kinship"`
+for plotting purposes. Do genome scan.
+
+```{r}
+pheno_2 <- DOex$pheno
+dimnames(pheno_2)[[2]] <- "OF_kinship"
+pheno_scan_2 <- scan1(apr, pheno_2, kinship)
+plot(pheno_scan_2)
+```
+
+Bind the two scans together and plot.
+
+```{r}
+pheno_scan_2 <- cbind(pheno_scan, pheno_scan_2)
+plot(pheno_scan_2, 1:2)
+```
+
+## Subset to chr 2
+
+```{r}
+plot(pheno_scan_2, 1:2, chr="2")
+```
+
+
+# Set up SNP info on chr 2.
+
+Read `snpinfo` from file.
+
+```{r}
+snpinfo <- readRDS(snp_file)
+```
+
+Calculate strain distribution patterns.
+
+```{r}
+snpinfo$sdp <- calc_sdp(snpinfo[,-(1:4)])
+```
+
+Convert to snp probabilities.
+
+```{r}
+snppr <- genoprob_to_snpprob(apr[,"2"], snpinfo)
+```
+
+## SNP association analysis
+
+Perform SNP association analysis.
+
+```{r}
+out_snps <- scan1(snppr, DOex$pheno, kinship[["2"]])
+```
+
+Plot results
+
+```{r}
+plot(out_snps, cex=2, drop.hilit=2.5)
+```
+
+Show strain distribution patterns in SNPs.
+
+```{r}
+plot(out_snps, patterns="all",drop.hilit=2.5,cex=2)
+```
+
+Show only top strain distribution patterns in SNPs.
+
+```{r}
+plot(out_snps, patterns="hilit",drop.hilit=2.5,cex=2, ylim=c(4,8))
+```

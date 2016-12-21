@@ -1,0 +1,253 @@
+---
+title: "Models"
+author: "Brian S. Yandell"
+date: "January 2017"
+output:
+  beamer_presentation: default
+  ioslides_presentation: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Models: relate phenotype to genotype
+
+how does genotype influence phenotype?
+
+Goals for genetic architecture
+
+- Identify quantitative trait loci (QTL)
+    + (and interactions among QTL)
+- Interval estimates of QTL location
+- Estimated QTL effects
+
+Goals for genome-wide selection
+
+- Predict breeding value of individuals
+- Select best individuals
+
+## Evolution of QTL models
+
+- original ideas developed when markers were rare & costly
+- refinements as technology advanced
+
+- single marker regressions
+- single locus models: interval mapping for QTL
+- association mapping (including GWAS)
+- account for non-locus genetic effects
+
+## Phenotype data 
+
+![](../Fig/Bnapus_pheno.pdf)
+
+<span style="font-size: 75%">Satagopan JM, Yandell BS, Newton MA, Osborn TC (1996) Genetics</span>
+
+## Genotype data
+
+Genetic map
+
+![](../Fig/Bnapus_map.pdf)
+
+## Genotypes on chr N2
+
+![](../Fig/Bnapus_genotype.pdf)
+
+## Genotypes reordered by `flower4`
+
+![](../Fig/Bnapus_genotype4.pdf)
+
+## Marker regression (BC or DH)
+
+<img src="../Fig/Bnapus_anova.pdf" 
+  alt="anova" 
+  style="width: 400px; float:right"/>
+
+- Also known as ANOVA
+- Split sample into groups
+    + by genotype at marker
+    + red = missing genotype
+- Do a t-test or ANOVA
+- Repeat for each marker
+
+## Marker regression model
+
+$$ Y = \mu + M\beta + e $$
+
+- $Y$ = phenotypic trait
+- $M$ = marker genotype (0,1)
+- $\mu$ = reference mean (when $M$=0)
+- $\beta$ = marker (allele substition) effect
+- $e$ = error = unexplained variation
+
+Marker regression:
+
+- fit model for each marker across genome
+- pick most significant marker
+
+## Pros & cons of marker regression
+
+Advantages
+
+- Simple
+- Easily incorporates covariates
+- Easily extended to more complex models
+- No need for genetic map
+- ignores marker position on genome
+
+Disadvantages
+
+- Excludse individuals with missing genotype data
+- Imperfect information about QTL location
+- Suffers in low density scans
+- Only considers one QTL at a time
+
+## Interval mapping (IM)
+
+Statistical structure
+
+![](../Fig/structure_bw.pdf)
+
+- missing data problem:  Markers $\longleftrightarrow$ QTL
+- model selection problem: QTL, covariates $\longrightarrow$ phenotype
+
+## IM: Lander & Botstein (1989)
+
+- Assume a single QTL model.
+- posit each genome position $\lambda$, one at a time, as putative QTL
+    + $X$ = genotypes at locus $\lambda$
+
+$$ pr(Y | X): Y = \mu + X\beta + e $$
+
+- mixing proportions over flanking markers
+$$ pr(X | M): \texttt{table of proportions}$$
+
+- model is mixture over possible QTL genotypes $X$
+- mixture of normals
+
+## Genotype probabilities
+
+<img src="../Fig/genoprob1_bw.pdf"/>
+
+Calculate $pr(X|M)$ assuming
+
+- No crossover interference
+- No genotyping errors
+
+Or use the hidden Markov model (HMM)} technology
+
+- To allow for genotyping errors
+- To incorporate dominant markers
+
+## Genotype probabilities
+
+<img src="../Fig/genoprob2_bw.pdf"/>
+
+Calculate $pr(X|M)$ assuming
+
+- No crossover interference
+- No genotyping errors
+
+Or use the hidden Markov model (HMM)} technology
+
+- To allow for genotyping errors
+- To incorporate dominant markers
+
+## Genotype probabilities
+
+<img src="../Fig/genoprob3_bw.pdf"/>
+
+Calculate $pr(X|M)$ assuming
+
+- No crossover interference
+- No genotyping errors
+
+Or use the hidden Markov model (HMM)} technology
+
+- To allow for genotyping errors
+- To incorporate dominant markers
+
+## Genotype probabilities
+
+<img src="../Fig/genoprob4_bw.pdf"/>
+
+Calculate $pr(X|M)$ assuming
+
+- No crossover interference
+- No genotyping errors
+
+Or use the hidden Markov model (HMM)} technology
+
+- To allow for genotyping errors
+- To incorporate dominant markers
+
+## Genotype probabilities
+
+<img src="../Fig/genoprob5_bw.pdf"/>
+
+Calculate $pr(X|M)$ assuming
+
+- No crossover interference
+- No genotyping errors
+
+Or use the hidden Markov model (HMM)} technology
+
+- To allow for genotyping errors
+- To incorporate dominant markers
+
+## Genotype probabilities
+
+<img src="../Fig/genoprob6_bw.pdf"/>
+
+Calculate $pr(X|M)$ assuming
+
+- No crossover interference
+- No genotyping errors
+
+Or use the hidden Markov model (HMM)} technology
+
+- To allow for genotyping errors
+- To incorporate dominant markers
+
+## Normal mixtures
+
+<img src="../Fig/mixtures_bw.pdf" 
+  alt="mix" 
+  style="width: 350px; float:right"/>
+
+<img src="../Fig/mixchr.pdf" style="width: 300px"/>
+
+- 2 markers separated by 20 cM
+    + QTL closer to left marker
+- phenotype distribution
+    + given marker genotypes
+- mixture components
+    + dashed curves
+
+## Pros and Cons of IM
+
+Pros:
+
+- handles missing data
+- locus may be apart from marker
+
+Cons:
+
+- still only one locus affecting trait
+
+## Multiple loci models
+
+$$ X\beta = X_1\beta_1 + X_2\beta_2 + \dots $$
+
+- allows for multiple loci
+- but only include significant loci in practice
+- selection bias: overestimate effects
+- can add epistasis
+
+$$ X\beta = X_1\beta_1 + X_2\beta_2 + (X_1 * X_2)\gamma $$
+
+## Shortcoming of multiple loci models
+
+- only inlcudes significant loci
+- many loci of small effect ignored ...
+

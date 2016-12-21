@@ -1,0 +1,55 @@
+---
+title: "Genome-Wide Selection"
+author: "Brian S. Yandell"
+date: "January 2017"
+output:
+  slidy_presentation: default
+  ioslides_presentation: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Genome-wide selection (GS)
+
+- Use markers to improve selection for complex traits
+    + traits that are highly polygenic (genetically variable)
+    + select candidates based on genotype
+- forms of genome-wide selection
+    + marker-assisted: with phenotypes
+    + marker-based: without phenotypes
+- new paradigm with technology advances
+    + improved statistical methods and software
+    + cheap markers
+
+## Old paradigm: marker prediction
+
+- 1990s & 2000s: markers were expensive
+- economic strategy:
+    + first identify significant markers (QTL analysis)
+    + use these when genotyping selection candidates
+- estimate marker effects by multiple regression
+    + treat as fixed effects in a mixed model
+
+## marker assisted selection (MAS)
+
+![](../Fig/pedigree-versus-marker-assisted-breeding.gif)
+
+
+<span style="font-size: 50%">www.21stcentech.com/heard-marker-assisted-breeding/</span>
+
+## New paradigm: use "all" markers
+
+- using only significant markers to predict trait
+    + good estimates (maybe) of those markers
+    + but does not maximize accuracy
+- many other better statistical methods
+- simple but effective approach
+    + treat marker effects as random in mixed model
+
+## mixed model approach
+
+$$ y = Zu + e $$
+
+

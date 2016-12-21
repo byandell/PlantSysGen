@@ -1,0 +1,129 @@
+---
+title: "Osborn Data"
+author: "Brian S. Yandell"
+date: "12/13/2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Experiment description
+
+See Ferreira et al. (1995).
+A single plant of the _B. napus_ cv Major (a biennial rapeseed cultivar) was crossed as a female to a doubled haploid line derived from cv Stellar (an annual canola cultivar) and a segregating population was obtained by microspore culture of a single F1 hybrid plant (Ferreira et al. 1994). One-hundred-and-four Fl-derived doubled haploid lines (DH), progeny from self-pollination of the parent plants (Major and Stellar), the F1 hybrid, and a backcross population of the F1 to the parent Major (BCM) were evaluated in the field for flower initiation. DH populations have the same recombination frequencies as BC, which is how these data are analyzed using R/qtl.
+
+## Data description
+
+Data provided by Thomas C. Osborn (formerly Professor of Agronomy, UW-Madison; now at Monsanto).
+Please cite Ferreira et al. (1995) and Kole et al. (2002) when publishing analyses based on these data. Data files were saved as CSV files with minor changes to column headers for markers as noted below.
+
+[traits.csv](traits.csv): Traits included are percent winter survival for 1992-3, 1993-4, 1994-5, 1997-8, and 1999-2000 (surv92, surv93, surv94, surv97, surv99, respectively), and days to flowering after no vernalization (flower0), 4 weeks vernalization (flower4) or 8 weeks vernalization (flower8). Percents are of plants alive in the Fall, taken from the middle of rows (totals unavailable). Days to flowering after transplant are averages over four replicates from a RCB design (values by block unavailable). First row has "id", then individual DH line numbers (302-455). First column has the trait name. The remaining columns have trait values individual DH line (302-455).
+
+[markers.csv](markers.csv): Marker genotype data for Major x Stellar double haploid (DH) population. Double haploids have the same relation of recombination to distance as backcrosses as there is just one meiosis tracked (in F1). However, DH are homozygous at every locus (usually mapped as RI0 lines). Marker genotypes are coded as M = Major, S = Stellar, - = missing. [Note change of data column headers from original on web page, to make compatible with R/qtl.] First row has "id", two blanks (for chrom and position), then individual DH line numbers (302-455). Data columns contain
+
+- B. napus chromosome (N1, N2, etc.)
+- position along chromosome in cM
+- marker names coded by beginning characters:
+    + `E` = AFLP marker
+    + `*ec`, `*tg`, `*wg` = RFLP marker
+    + `*xxx` = other markers from Arabidopsis: `Lem`, `eru1`, `eru2`, `fad3`, `isoDia`, `isoIdh`, `isoPgi`, `isoLap`, `pr2`, `slg6`, `Aca1`, `cor15` 
+- Remaining columns have marker values (`M` = Major, `S` = Stellar, `-` = missing) for individual DH lines (numbered 302-455). 
+    
+**Data site:** <http://www.stat.wisc.edu/~yandell/qtl/data/osborn/Bnapus/>  
+**References:** (fair use copies at <http://www.stat.wisc.edu/~yandell/doc>)
+
+* Ferreira ME, Satagopan J, Yandell BS, Williams PH, Osborn TC (1995) Mapping loci controlling vernalization requirement and flowering time in Brassica napus. Theor Appl Genet 90: 727-732. [doi:10.1007/BF00222140](http://dx.doi.org/10.1007/BF00222140) [original source and analysis]  
+* Kole C, Thorman CE, Karlsson BH, Palta JP, Gaffney P, Yandell BS, Osborn TC (2002) Comparative mapping of loci controlling winter survival and related traits in oilseed Brassica rapa and B. napus. Molecular Breeding 9: 201-210. [doi:10.1023/A:1019759512347](http://dx.doi.org/10.1023/A:1019759512347) [refined map and reanalysis]
+* Satagopan JM, Yandell BS, Newton MA, Osborn TC (1996) Markov chain Monte Carlo approach to detect polygene loci for complex traits. Genetics 144, 805-816. [Paper](http://www.genetics.org/cgi/content/abstract/144/2/805) [first MCMC for experimental crosses; analysis of B. napus N2=LG9]
+* Satagopan JM, Yandell BS (1996) Estimating the number of quantitative trait loci via Bayesian model determination. Special Contributed Paper Session on Genetic Analysis of Quantitative Traits and Complex Diseases, Biometrics Section, Joint Statistical Meetings, Chicago, IL. [Paper](http://www.stat.wisc.edu/~yandell/doc/1996/F8.JSM.pdf) [first RJ-MCMC for experimental crosses; analysis of B. napus N2=LG9] 
+
+## Read data as R/qtl cross object
+
+```{r}
+library(qtl)
+dirpath <- getwd()
+```
+
+```{r}
+Bnapus <- read.cross("csvsr", dirpath, phefile="traits.csv", genfile="markers.csv",
+                     genotypes=c("M","S"))
+Bnapus <- jittermap(Bnapus)
+```
+
+```{r}
+summary(Bnapus)
+```
+
+```{r}
+pdf("Bnapus_pheno.pdf", width=9,height=6)
+par(mfrow=c(2,2))
+plot(Bnapus$pheno[,8], Bnapus$pheno[,9],
+     xlab = "flower4", ylab = "flower8")
+plotPheno(Bnapus, 9)
+plotPheno(Bnapus, 8)
+dev.off()
+```
+
+```{r}
+pdf("Bnapus_map.pdf", width=9, height=6)
+plotMap(Bnapus)
+dev.off()
+```
+
+```{r}
+newmap <- est.map(Bnapus)
+plotMap(Bnapus, newmap)
+```
+
+```{r}
+pdf("Bnapus_genotype.pdf", width=9,height=6)
+geno.image(Bnapus, "N2", main="")
+dev.off()
+```
+
+```{r}
+pdf("Bnapus_genotype4.pdf", width=9,height=6)
+geno.image(Bnapus, "N2", main="", reorder=find.pheno(Bnapus, "flower4"))
+dev.off()
+```
+
+## Marker regression
+
+```{r}
+m1 <- "*wg6b10"
+m2 <- "*tg2f12"
+pdf("Bnapus_anova.pdf", width=6, height=7)
+tmppar <- par(mfrow=c(1,2))
+plotPXG(Bnapus, m1, find.pheno(Bnapus, "flower4"))
+plotPXG(Bnapus, m2, find.pheno(Bnapus, "flower4"))
+par(tmppar)
+dev.off()
+```
+
+
+
+## Interval mapping
+
+```{r}
+Bnapus <- calc.genoprob(Bnapus)
+```
+
+```{r}
+fl8 <- scanone(Bnapus, "N2", find.pheno(Bnapus, "flower8"))
+```
+
+```{r}
+plot(fl8)
+```
+
+```{r}
+fl4 <- scanone(Bnapus, "N2", find.pheno(Bnapus, "flower4"))
+```
+
+```{r}
+plot(fl4)
+```
+
+
