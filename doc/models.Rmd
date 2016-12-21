@@ -1,13 +1,11 @@
 ---
 title: "StatisticalModels"
-author: |
-  | Brian S. Yandell
-  | UW-Madison
-  | github.com/byandell/PlantSysGen
+author: "Brian S. Yandell, UW-Madison"
 date: "January 2017"
 output:
-  beamer_presentation:
-    fig_caption: false
+  ioslides_presentation: default
+  beamer_presentation: default
+  slidy_presentation: default
 ---
 
 ```{r setup, include=FALSE}
@@ -75,11 +73,11 @@ Genetic map
 
 ## Marker regression model
 
-$$ Y = \mu + M\beta + e $$
+$$ y = \mu_m + e = \mu + m\beta + e $$
 
-- $Y$ = phenotypic trait
-- $M$ = marker genotype (0,1)
-- $\mu$ = reference mean (when $M$=0)
+- $y$ = phenotypic trait
+- $m$ = marker genotype (0,1)
+- $\mu$ = reference mean (when $m$=0)
 - $\beta$ = marker (allele substition) effect
 - $e$ = error = unexplained variation
 
@@ -118,12 +116,12 @@ Statistical structure
 
 - Assume a single QTL model.
 - posit each genome position $\lambda$, one at a time, as putative QTL
-    + $X$ = genotypes at locus $\lambda$
+    + $q$ = genotypes at locus $\lambda$
 
-$$ pr(Y | X): Y = \mu + X\beta + e $$
+$$ pr(y | q): y = \mu_q + e = \mu + q\beta + e$$
 
 - mixing proportions over flanking markers
-$$ pr(X | M): \texttt{table of proportions}$$
+$$ pr(q | m): \texttt{table of proportions}$$
 
 - model is mixture over possible QTL genotypes $X$
 - mixture of normals
@@ -132,7 +130,7 @@ $$ pr(X | M): \texttt{table of proportions}$$
 
 <img src="../Fig/genoprob1_bw.pdf"/>
 
-Calculate $pr(X|M)$ assuming
+Calculate $pr(q|m)$ assuming
 
 - No crossover interference
 - No genotyping errors
@@ -146,7 +144,7 @@ Or use the hidden Markov model (HMM)} technology
 
 <img src="../Fig/genoprob2_bw.pdf"/>
 
-Calculate $pr(X|M)$ assuming
+Calculate $pr(q|m)$ assuming
 
 - No crossover interference
 - No genotyping errors
@@ -160,7 +158,7 @@ Or use the hidden Markov model (HMM)} technology
 
 <img src="../Fig/genoprob3_bw.pdf"/>
 
-Calculate $pr(X|M)$ assuming
+Calculate $pr(q|m)$ assuming
 
 - No crossover interference
 - No genotyping errors
@@ -174,7 +172,7 @@ Or use the hidden Markov model (HMM)} technology
 
 <img src="../Fig/genoprob4_bw.pdf"/>
 
-Calculate $pr(X|M)$ assuming
+Calculate $pr(q|m)$ assuming
 
 - No crossover interference
 - No genotyping errors
@@ -188,7 +186,7 @@ Or use the hidden Markov model (HMM)} technology
 
 <img src="../Fig/genoprob5_bw.pdf"/>
 
-Calculate $pr(X|M)$ assuming
+Calculate $pr(q|m)$ assuming
 
 - No crossover interference
 - No genotyping errors
@@ -202,7 +200,7 @@ Or use the hidden Markov model (HMM)} technology
 
 <img src="../Fig/genoprob6_bw.pdf"/>
 
-Calculate $pr(X|M)$ assuming
+Calculate $pr(q|m)$ assuming
 
 - No crossover interference
 - No genotyping errors
@@ -227,6 +225,42 @@ Or use the hidden Markov model (HMM)} technology
 - mixture components
     + dashed curves
 
+## Interval mapping details
+
+QTL given markers: $p_{ij} = \Pr(q_i = j | m), i=1,\cdots,n;j=0,1$ 
+
+phenotype given QTL: $y_i | q_i \sim N(\mu_{q_i},\sigma^2), i=1,\cdots,n$
+
+ $$\Pr(y_i | m,\mu_0,\mu_1,\sigma) =
+\sum_j p_{ij} \, f(y_i; \mu_j,\sigma)$$
+
+normal density: $f(y; \mu,\sigma)= \exp[-(y-\mu)^2/(2\sigma^2)] / \sqrt{2 \pi\sigma^2}$
+
+Log likelihood:
+
+$$l(\mu_0,\mu_1,\sigma) = \sum_i \log \Pr(y_i | m,\mu_0,\mu_1,\sigma)$$
+
+find $\hat{\mu}_0$, $\hat{\mu}_1$, $\hat{\sigma}$ to maximize $l(\mu_0,\mu_1,\sigma)$ (MLEs) 
+
+## EM algorithm (Dempster et al.\ 1977)
+
+**E step:** (pseudo)weights 
+$$w_{ij}^{(k)} = \Pr(q_i = j | y_i,m,\hat{\mu},\hat{\sigma})
+ = \frac{p_{ij} \,
+f(y_i; \hat{\mu}_j^{(k-1)},\hat{\sigma}^{(k-1)})}{
+\sum_j p_{ij} \, f(y_i; \hat{\mu}_j^{(k-1)},\hat{\sigma}^{(k-1)})}$$
+
+**M step:** (pseudo)values: 
+
+$$\hat{\mu}_j^{(k)} = \sum_i y_i w_{ij}^{(k)} / \sum_i
+w_{ij}^{(k)}$$
+
+$$\hat{\sigma}^{(k)} = \sqrt{ \sum_i \sum_j w_{ij}^{(k)}
+(y_i-\hat{\mu}_j^{(k)})^2/n}$$
+
+**EM algorithm:** Set $w_{ij}^{(1)} = p_{ij}$; iterate E\&M steps to
+convergence
+
 ## Pros and Cons of IM
 
 Pros:
@@ -240,17 +274,32 @@ Cons:
 
 ## Multiple loci models
 
-$$ X\beta = X_1\beta_1 + X_2\beta_2 + \dots $$
+$$ y = \mu_q + e $$
+
+$$ \mu_q = \mu(q_1, q_2, \cdots) = \mu+q_1\beta_1+q_2\beta_2+\cdots$$
 
 - allows for multiple loci
-- but only include significant loci in practice
-- selection bias: overestimate effects
 - can add epistasis
 
-$$ X\beta = X_1\beta_1 + X_2\beta_2 + (X_1 * X_2)\gamma $$
+$$ \mu_q  = \mu+q_1\beta_1+q_2\beta_2+q_{12}\gamma $$
 
 ## Shortcoming of multiple loci models
 
 - only inlcudes significant loci
-- many loci of small effect ignored ...
+- but only include significant loci in practice
+- selection bias: 
+    + overestimate effects of included loci
+    + many loci of small effect ignored ...
 
+## Missing heritability (Eleazar Eskin)
+
+Rewrite QTL genotype $q_j$ as $X_j$ with mean 0, variance 1 (depends on frequency of the genotype in population).
+
+Only pick up significant QTL
+
+
+$$ \mu_q  = \mu+\sum_{j=1}^k q_j\beta_j $$
+
+but actual model has $K>k$ terms
+
+$$ \mu_q  = \mu+\sum_{j=1}^K q_j\beta_j $$

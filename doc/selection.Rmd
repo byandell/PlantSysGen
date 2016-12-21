@@ -6,8 +6,9 @@ author: |
   | github.com/byandell/PlantSysGen
 date: "January 2017"
 output:
+  ioslides_presentation: default
   beamer_presentation:
-    fig_caption: false
+    fig_caption: no
 ---
 
 ```{r setup, include=FALSE}
