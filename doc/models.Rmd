@@ -40,7 +40,7 @@ Goals for genome-wide selection
 
 ## Phenotype data 
 
-![](../Fig/Bnapus_pheno.pdf)
+![](../Fig/Bnapus_pheno.jpg)
 
 <span style="font-size: 75%">Satagopan JM, Yandell BS, Newton MA, Osborn TC (1996) Genetics</span>
 
@@ -48,19 +48,19 @@ Goals for genome-wide selection
 
 Genetic map
 
-![](../Fig/Bnapus_map.pdf)
+![](../Fig/Bnapus_map.jpg)
 
 ## Genotypes on chr N2
 
-![](../Fig/Bnapus_genotype.pdf)
+![](../Fig/Bnapus_genotype.jpg)
 
 ## Genotypes reordered by `flower4`
 
-![](../Fig/Bnapus_genotype4.pdf)
+![](../Fig/Bnapus_genotype4.jpg)
 
 ## Marker regression (BC or DH)
 
-<img src="../Fig/Bnapus_anova.pdf" 
+<img src="../Fig/Bnapus_anova.jpg" 
   alt="anova" 
   style="width: 400px; float:right"/>
 

@@ -1,0 +1,22 @@
+---
+title: 'Broman Jax Figures'
+author: "Brian S. Yandell"
+date: "1/3/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This just reproduces figures from Karl Broman's Jax talk
+
+```{r}
+bropath <- "~/Documents/Research/broman_karl/Talk_JAXsysgen/"
+bw <- TRUE
+```
+
+```{r}
+setwd(bropath)
+```
+

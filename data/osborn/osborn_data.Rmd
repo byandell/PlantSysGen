@@ -44,6 +44,7 @@ Please cite Ferreira et al. (1995) and Kole et al. (2002) when publishing analys
 ```{r}
 library(qtl)
 dirpath <- getwd()
+figpath <- file.path(dirpath, "../../Fig")
 ```
 
 ```{r}
@@ -57,7 +58,7 @@ summary(Bnapus)
 ```
 
 ```{r}
-pdf("Bnapus_pheno.pdf", width=9,height=6)
+jpeg(file.path(figpath, "Bnapus_pheno.jpg"), width=800, height=400)
 par(mfrow=c(2,2))
 plot(Bnapus$pheno[,8], Bnapus$pheno[,9],
      xlab = "flower4", ylab = "flower8")
@@ -67,7 +68,7 @@ dev.off()
 ```
 
 ```{r}
-pdf("Bnapus_map.pdf", width=9, height=6)
+jpeg(file.path(figpath, "Bnapus_map.jpg"), width=800, height=400)
 plotMap(Bnapus)
 dev.off()
 ```
@@ -78,13 +79,13 @@ plotMap(Bnapus, newmap)
 ```
 
 ```{r}
-pdf("Bnapus_genotype.pdf", width=9,height=6)
+jpeg(file.path(figpath, "Bnapus_genotype.jpg"), width=800, height=400)
 geno.image(Bnapus, "N2", main="")
 dev.off()
 ```
 
 ```{r}
-pdf("Bnapus_genotype4.pdf", width=9,height=6)
+jpeg(file.path(figpath, "Bnapus_genotype4.jpg"), width=800, height=400)
 geno.image(Bnapus, "N2", main="", reorder=find.pheno(Bnapus, "flower4"))
 dev.off()
 ```
@@ -94,8 +95,8 @@ dev.off()
 ```{r}
 m1 <- "*wg6b10"
 m2 <- "*tg2f12"
-pdf("Bnapus_anova.pdf", width=6, height=7)
-tmppar <- par(mfrow=c(1,2))
+jpeg(file.path(figpath, "Bnapus_anova.jpg"), width=400, height=500)
+tmppar <- par(mfrow=c(2,1), mar=c(4,4,2,0))
 plotPXG(Bnapus, m1, find.pheno(Bnapus, "flower4"))
 plotPXG(Bnapus, m2, find.pheno(Bnapus, "flower4"))
 par(tmppar)
