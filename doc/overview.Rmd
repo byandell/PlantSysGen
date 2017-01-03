@@ -81,6 +81,21 @@ trait information (phenotype)
 
 (individual cell technologies not covered here) 
 
+## Genotyping
+
+- RFLPs & other early technologies 
+- SNPs & other structural variants
+    + InDels, inversions, larger blocks (100s-1000s of bps)
+    + huge blocks (20k+ bps)
+- GBS
+- RNA-Seq to genotype
+- Cautions:
+    + missing data
+    + mistakes in reads
+    + sample mixups
+    + biases in technologies 
+    + reference sequence vs other founders
+
 ## Evolution of statistical methods
 
 - experimental design: how populations are created

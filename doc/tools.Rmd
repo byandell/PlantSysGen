@@ -25,6 +25,54 @@ knitr::opts_chunk$set(echo = FALSE)
     + share with colleagues (in real time)
     + reach beyond domain boundaries
 
+## Technology tools and platforms
+
+- types of tools
+    + algorithms: software tools
+    + machines: hardware tools
+- Your laptop
+    + powerful for mid- to large-size projects
+    + powerful communication tool
+- Scaling up
+    + Massive data: storage, management, access, sharing
+    + Workflow steps: engine/CPU, organizing, scheduling
+
+## Sharing with authentication
+
+- Tools: Box, Google, GitHub
+    + data, methods, ideas, results
+- Research community
+    + [Arabidopsis](https://www.arabidopsis.org/)
+    + [Switchgrass](http://openwetware.org/wiki/Texas_Switchgrass_Collaborative)
+    + [Maize](http://www.maizegenetics.net/)
+- Cross-species systems
+    + DNA sequence (genomics)
+    + Phe-gen relationship (QTL, systems genetics)
+
+## Technology considerations
+
+- Your time
+    + familiarity with tools
+    + familiarity with data
+- Comparing results
+    + model selection on one dataset
+    + several methods on one data set
+    + multiple data sites
+
+## Data visualization
+
+- genotype diagnostics
+- Distribution at locus
+- Scatterplots with symbols (QTL, env)
+- Genome scans
+    + LOD profile
+    + Allele scans
+    + SNP scans (GWA Manhattan plots)
+- multiple traits
+    + over time or space (Moore)
+    + networks (small, not hair balls)
+    + box- or dot-plots over conditions
+
 ## Evolution of computational tools
 
 Advances in measurement, design and analysis would be academic

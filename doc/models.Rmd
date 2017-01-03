@@ -26,6 +26,35 @@ Goals for genome-wide selection
 - Predict breeding value of individuals
 - Select best individuals
 
+## PHE = GEN + ENV
+
+GEN = QTL + GWA
+
+- QTL ($\mu_q$) is local to genomic region
+- GWA depends on population structure ($K$ = kinship)
+    + measures relationships away from QTL
+    + GWA = $Zu$ = $K'Ku$
+
+ENV = design + predictors + error
+
+- design structure (blocks, locations)
+- predictor structure (soil additives)
+- measurement error
+    
+<span style="font-size: 75%">Falconer & Mackay (1960--1996)</span>
+
+## Strategy for mapping
+
+- Want to figure out what is going on
+    + preliminary search: find important story
+    + need strategies to uncover patterns
+- Want to tell story in publication
+
+- How to accomplish mapping goal
+    + organic search for patterns
+    + organize methods as you go
+    + document steps (so you can redo)
+
 ## Challenges of models for experiments 
 
 Simpler models yield clearer results
@@ -34,7 +63,7 @@ Simpler models yield clearer results
 - examine linear trend
 - control for other factors
 
-But reality may be complicated
+But reality may be more complicated
 
 - masking of genetic effect (by background, etc.)
 - subtle timing (when to measure)
@@ -54,6 +83,23 @@ But reality may be complicated
     + adjust for population structure
     + capture "missing heritability"
 - multi-parent populations (MPP)
+
+## Continuum of QTL to GWA
+
+<img src="../Figs/pareto.jpg" alt="Pareto Diagram" style="width: 800px"/>
+
+## Why study multiple traits?
+
+- We may not know ...
+    + how to measure (quality, shape, taste)
+    + when to measure (development, season, kinetics)
+    + what to measure (molecular pathways)
+- We are interested in many things
+    + individuals expensive
+    + multiple measurements cheap (high throughput)
+- There may be pleiotropy vs close linkage
+    + correlated through one cause or linkage drag?
+    + untangle genetics and environment
 
 ## Multiple traits and GxE
 
@@ -324,6 +370,20 @@ $$ \mu_q  = \mu+q_1\beta_1+q_2\beta_2+q_{12}\gamma $$
 - selection bias: 
     + overestimate effects of included loci
     + many loci of small effect ignored ...
+
+## GWA big idea
+
+- Kinship via pedigree: all we had
+    + average / predicted relationship
+    + works globally, might be inaccurate locally
+    + think maternal vs paternal twins
+- Kinship via SNP/GBS
+    + estimated from data
+    + used to be selected to be neutral
+    + now use all but away from QTL
+- GWA measures ...
+    + population structure
+    + other genetic effects including other QTL
 
 ## Missing heritability (Eleazar Eskin)
 
