@@ -9,14 +9,48 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-This just reproduces figures from Karl Broman's Jax talk
+This just reproduces figures from Karl Broman's Jax talk. Here is a list of figures:
+
+- DH_bw.pdf
+- backcross_bw.pdf
+- genoprob1_bw.pdf
+- genoprob2_bw.pdf
+- genoprob3_bw.pdf
+- genoprob4_bw.pdf
+- genoprob5_bw.pdf
+- genoprob6_bw.pdf
+- intercross_bw.pdf
+- mixtures_bw.pdf
+- structure_bw.pdf
+
 
 ```{r}
-bropath <- "~/Documents/Research/broman_karl/Talk_JAXsysgen/"
+library(stringr)
+bropath <- "~/Documents/Research/broman_karl/Talk_JAXsysgen"
 bw <- TRUE
 ```
 
+Trick to create jpeg instead of pdf:
+
 ```{r}
-setwd(bropath)
+pdf <- function(file, width, height, onefile, ...) {
+  jpeg(file = str_replace(file, ".pdf", ".jpg"), width = width * 96, height = height * 96, ...)
+}
+```
+
+## Design Talk
+
+```{r}
+source(file.path(bropath, "Intro/R", "backcross_fig.R"))
+source(file.path(bropath, "Intro/R", "intercross_fig.R"))
+source("DH_fig.R")
+```
+
+## Models Talk
+
+```{r}
+source(file.path(bropath, "Intro/R", "structure_fig.R"))
+source(file.path(bropath, "Intro/R", "genoprob_fig.R"))
+source(file.path(bropath, "Intro/R", "mixtures_fig.R"))
 ```
 

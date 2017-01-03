@@ -6,6 +6,7 @@
 *.Rproj
 *.xlsx
 *.docx
+*.doc
 *.pdf
 *.gif
 *.png
@@ -18,3 +19,5 @@ data/moore/?IL*
 *.rds
 *.rdata
 Figs
+broman/colors_bw.R
+broman/func.R

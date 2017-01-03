@@ -1,0 +1,68 @@
+---
+title: "plant systems genetics:"
+subtitle: "from markers to whole genomes"
+author: "Brian S. Yandell, UW-Madison, github.com/byandell/PlantSysGen"
+date: "January 2017"
+output:
+  ioslides_presentation: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Appeal of new technology
+
+- Better, faster, smarter, …?
+    + but does more yield better insight?
+- How to manage data volume
+    + keep track of it all
+    + decide what is important 
+- How (or why) to use more complicated models?
+    + need to develop new analysis tools
+    + want to find new ways to visualize
+- Be involved in process of data inquiry 
+    + share with colleagues (in real time)
+    + reach beyond domain boundaries
+
+## Evolution of computational tools
+
+Advances in measurement, design and analysis would be academic
+without advances in computational technology. 
+
+- faster machines -> faster throughput of more stuff
+- methods translated into algorithms
+    + open source: freely distrubuted, easy to study
+- standalone programs
+- packages in language systems (R or Python or Matlab)
+- interconnectivity of algorithms and data resources
+
+## Collaboration systems
+
+dangers of email-based collaboration
+
+- trading large files back and forth (slow, not secure)
+- nearly impossible to keep track of versions
+- minor updates require repeat sending
+
+modern approach: use email to notify collaborators only
+
+- [GitHub](https://github.com) to share code & ideas with version control
+- Box/DropBox & Google Drive to share documents
+- iPlant to improve data access & processing efficiency
+
+## Emerging collaboration systems
+
+modular philosophy of layers to separate
+
+- back-end: data and compute processing layer
+- middle-ware: analysis methodology layer
+- front-end: human interaction and data visualization layer
+    
+will enable overlapping communities to
+
+- customize local use
+- share data, methods & results with other communities
+- off-load data handling & compute headaches
+
+

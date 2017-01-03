@@ -1,14 +1,9 @@
 ---
 title: "Genome-Wide Selection"
-author: |
-  | Brian S. Yandell
-  | UW-Madison
-  | github.com/byandell/PlantSysGen
+author: "Brian S. Yandell, UW-Madison, github.com/byandell/PlantSysGen"
 date: "January 2017"
 output:
   ioslides_presentation: default
-  beamer_presentation:
-    fig_caption: no
 ---
 
 ```{r setup, include=FALSE}
@@ -38,7 +33,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## marker assisted selection (MAS)
 
-![](../Fig/pedigree-versus-marker-assisted-breeding.gif)
+![](../Figs/pedigree-versus-marker-assisted-breeding.gif)
 
 
 <span style="font-size: 50%">www.21stcentech.com/heard-marker-assisted-breeding/</span>

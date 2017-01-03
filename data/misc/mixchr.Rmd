@@ -10,7 +10,11 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
-pdf("mixchr.pdf", width=9, height=3)
+figpath <- file.path(dirpath, "../../Figs")
+```
+
+```{r}
+jpeg(file.path(figpath, "mixchr.jpg"), width=800, height=400)
 par(mar=rep(0,4))
 plot(c(0,20), c(-1,1.25), type="n", bty="n", xaxt="n", yaxt="n", xlab="", ylab="")
 lines(c(0,20), c(0,0), lwd=2)

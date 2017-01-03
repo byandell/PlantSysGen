@@ -5,3 +5,39 @@ date: "1/3/2017"
 output: html_document
 ---
 
+## Brassica napus ([data/osborn](data/osborn/osborn_data.Rmd)) example
+
+- Bnapus_anova.jpg
+- Bnapus_genotype.jpg
+- Bnapus_genotype4.jpg
+- Bnapus_map.jpg
+- Bnapus_pheno.jpg
+
+## Broman Jackson lab talks ([broman](broman/brofig.Rmd))
+
+- DH_bw.jpg
+- backcross_bw.jpg
+- genoprob1_bw.jpg
+- genoprob2_bw.jpg
+- genoprob3_bw.jpg
+- genoprob4_bw.jpg
+- genoprob5_bw.jpg
+- genoprob6_bw.jpg
+- intercross_bw.jpg
+- mixtures_bw.jpg
+- structure_bw.jpg
+
+## Yandell miscellaneous ([data/misc](data/misc))
+
+- mixchr.jpg
+- sim_phe_gen.Rmd
+
+## Internet finds
+
+- DO_laura_vanderploeg.jpg
+- [NIILpanel_Univ-of-Illinois-Chicago_w.jpeg](http://blog.generationcp.org/category/women-in-science-2/)
+- [meddic.jp.png](http://meddic.jp/isogenic_line)
+- [nrg2291-f4.jpeg](http://www.nature.com/nrg/journal/v9/n3/images/nrg2291-f4.jpg)
+- [pedigree-versus-marker-assisted-breeding.gif](http://www.21stcentech.com/heard-marker-assisted-breeding/)
+- [physiolgenomics.jpg](http://dx.doi.org/10.1152/physiolgenomics.00127.2013)
+- [plantcellbio.gif](http://plantcellbiology.masters.grkraj.org/html/Plant_Cell_Genetics2-Genetics_files/image029.gif)

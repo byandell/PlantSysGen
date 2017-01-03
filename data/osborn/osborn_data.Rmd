@@ -44,7 +44,7 @@ Please cite Ferreira et al. (1995) and Kole et al. (2002) when publishing analys
 ```{r}
 library(qtl)
 dirpath <- getwd()
-figpath <- file.path(dirpath, "../../Fig")
+figpath <- file.path(dirpath, "../../Figs")
 ```
 
 ```{r}

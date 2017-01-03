@@ -1,13 +1,9 @@
 ---
 title: "Experimental Designs"
-author: |
-  | Brian S. Yandell
-  | UW-Madison
-  | github.com/byandell/PlantSysGen
+author: "Brian S. Yandell, UW-Madison, github.com/byandell/PlantSysGen"
 date: "January 2017"
 output:
-  beamer_presentation:
-    fig_caption: false
+  ioslides_presentation: default
 ---
 
 ```{r setup, include=FALSE}
@@ -23,11 +19,11 @@ knitr::opts_chunk$set(echo = FALSE)
 - advanced intercross lines
     + recombinant inbred lines (RILs)
     + near isogenic lines (NILs) & consomics
-    + multi-parent populations
+    + multi-parent populations (MPP)
 
 ## common breeding designs
 
-<img src="../Fig/backcross_bw.pdf" 
+<img src="../Figs/backcross_bw.jpg" 
   alt="Backcross" 
   style="width: 350px; float:right"/>
 
@@ -37,17 +33,17 @@ knitr::opts_chunk$set(echo = FALSE)
 - doubled haploid (DH): 1 meiosis
 - intercross (F2): 2 meioses
 
-<img src="../Fig/intercross_bw.pdf" 
+<img src="../Figs/intercross_bw.jpg" 
   alt="Intercross" 
   style="width: 350px; float:left"/>
 
-<img src="../Fig/DH_bw.pdf" 
+<img src="../Figs/DH_bw.jpg" 
   alt="Intercross" 
   style="width: 350px; float:right"/>
 
 ## recombinant inbred lines (RIL)
 
-<img src="../Fig/nrg2291-f4.jpeg" 
+<img src="../Figs/nrg2291-f4.jpeg" 
   alt="RIL" 
   style="width: 300px; float:right"/>
 
@@ -61,11 +57,11 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## near isogenic lines (NIL)
 
-<img src="../Fig/NIILpanel_Univ-of-Illinois-Chicago_w.jpeg" 
+<img src="../Figs/NIILpanel_Univ-of-Illinois-Chicago_w.jpeg" 
   alt="RIL" 
   style="width: 300px; float:left"/>
 
-<img src="../Fig/meddic.jp.png" 
+<img src="../Figs/meddic.jp.png" 
   alt="RIL" 
   style="width: 450px; float:right"/>
 
@@ -76,7 +72,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Advanced Intercrosses
 
-<img src="../Fig/physiolgenomics.jpg" 
+<img src="../Figs/physiolgenomics.jpg" 
   alt="AI_Woods" 
   style="width: 800px"/>
 
@@ -84,15 +80,17 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## multi-parent populations
 
-<img src="../Fig/DO_laura_vanderploeg.jpg" 
+<img src="../Figs/DO_laura_vanderploeg.jpg" 
   alt="RIL" 
   style="width: 300px; float:right"/>
 
 - more than 2 inbred parents (4,8,20)
-- generations of cross-breeding
-- generations of selfing
-    + (sib-mating in animals)
-- possible generations of outcross
+- developed over generations
+    + generations of cross-breeding
+    + generations of selfing (or sibs)
+- increased meiotic events
+    + fine mapping to small region
+    + SNP level in one generation
 
 <span style="font-size: 75%">Laura Vanderploeg, Jackson Labs</span>
 
