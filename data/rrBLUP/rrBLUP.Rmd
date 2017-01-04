@@ -1,0 +1,121 @@
+---
+title: "rrBLUP"
+author: "Brian S. Yandell"
+date: "1/4/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r message=FALSE}
+library(BLR)
+library(rrBLUP)
+```
+
+**Reference:** Endelman JB (2011)
+Ridge Regression and Other Kernels for Genomic Selection with R Package rrBLUP.
+Plant Genome 4: 250-255.
+[doi:10.3835/plantgenome2011.08.0024](http://dx.doi.org/10.3835/plantgenome2011.08.0024)
+
+Wheat example: set of 599 wheat lines genotyped at 1279 DArT markers from the
+BLR package (Pérez et al. 2010). See <http://potatobreeding.cals.wisc.edu/software/>
+for more of this tutorial from Jeff Endelman.
+
+```{r}
+data(wheat)
+```
+
+```{r}
+M <- 2*X-1 #convert markers to {-1,1}
+dim(M)
+```
+
+```{r}
+A1 <- A.mat(M,shrink=TRUE)
+A2 <- A.mat(M[,sample(1:1279,384)],shrink=TRUE)
+A3 <- A.mat(M[,sample(1:1279,192)],shrink=TRUE)
+```
+
+Endelman designed a new function (since Endelman 2011) called `kin.blup`. This new function automates calculation of the design matrix, and the user can pass the relationship matrix rather than the markers, which allows greater control over how the A matrix is calculated (see above). We use relationship matrix A1 estimated with all markers. The 599 lines have been divided into 10 sets for cross-validation in the BLR package. To predict breeding values for the lines in set 1 using phenotypes for the lines in sets 2–10, first the phenotypes and corresponding genotypes identifiers must be assembled into a data frame.
+
+```{r}
+test <- which(sets==1)
+yNA <- Y[,1] #grain yield in environment 1
+yNA[test] <- NA #mask yields for validation set
+data1 <- data.frame(y=yNA,gid=1:599)
+```
+
+To mask the phenotypes for the validation set, set their values to `NA`, as above. A minimalist data set will have two columns, one with the phenotypes, and one with the genotype labels. After making sure the genotype labels in the data frame correspond to the rownames of the relationship matrix, we can make the genomic predictions.
+
+```{r}
+rownames(A1) <- 1:599
+ans1 <- kin.blup(data1,K=A1,geno="gid",pheno="y")
+str(ans1)
+```
+
+The relationship matrix `K` (for kinship) is passed to kin.blup, along with the names of the phenotype and genotype labels in the data frame. The function returns the REML estimates of the variance components ($Vg, $Ve) and the BLUP solution for the genetic values ($g), which in this case are breeding values. The residuals from the mixed model are also returned. As shown above, BLUP values were returned for all 599 entries in the relationship matrix, even though 10% of these lines had no phenotype (due to masking). The order of the BLUPs follows the order in the K matrix (the array is also named).
+
+To estimate the GEBV accuracy, the predictions for the validation set can be correlated against the masked phenotypes.
+
+```{r}
+round(cor(ans1$g[test],Y[test,1]),2)
+```
+
+For predictions with the Gaussian kernel, instead of passing the relationship matrix for `K`, use the Euclidean distance and set the GAUSS flag to `TRUE`.
+
+```{r}
+D <- as.matrix(dist(M)) #Euclidean distance
+system.time(ans2 <- kin.blup(data1,K=D,GAUSS=TRUE,geno="gid",pheno="y"))
+```
+
+```{r}
+system.time(ans2<-kin.blup(data1,K=D,GAUSS=TRUE,geno="gid",pheno="y",n.core=10))
+round(cor(ans2$g[test],Y[test,1]),2)
+```
+
+### Multiple Environments
+
+The kin.blup function has the ability to handle repeated measurements taken over
+different environments. The wheat data set from the BLR package has average yield
+measurements for the 599 lines in 4 environments. Environments 2–4 are correlated and for this
+example will be considered as representing a target population of environments for a breeding
+program. The following code creates an unbalanced data set with partial replication across
+environments:
+
+```{r}
+y <- c(Y[1:400,2],Y[101:400,3],Y[201:500,4])
+env <- c(rep(2,400),rep(3,300),rep(4,300))
+gid <- c(1:400,101:400,201:500)
+data2 <- data.frame(y=y,env=env,gid=gid)
+nrow(data2)
+```
+
+To model the main effect of the environment as a fixed effect in the prediction model, the name of the data frame column is passed to the function.
+
+```{r}
+system.time(ans <- kin.blup(data2,K=A1,geno="gid",pheno="y",fixed="env"))
+round(cor(ans$g[501:599],rowMeans(Y[501:599,2:4])),3) #accuracy
+```
+
+```{r}
+library(ggplot2)
+dat <- data.frame(x = rowMeans(Y[501:599,2:4]),
+                  y = ans$g[501:599])
+ggplot(dat, aes(x,y)) + 
+  geom_point() +
+  geom_abline(intercept = 0, slope = 1)
+```
+
+When there are multiple fixed effects to model, such as year and location, simply pass an array of the relevant column names, e.g., fixed=c(“year”,”location”).
+
+The above example is a one-step prediction, which is more computationally demanding than a two-step approach in which line means are calculated first. For unbalanced data, `kin.blup` can make predictions with the speed of a two-stage approach while retaining information about the different levels of replication. This is possible with the `reduce=TRUE` option, which transforms the mixed model to have dimension equal to the number of lines.
+
+```{r}
+system.time(ans2<-kin.blup(data2,K=A1,geno="gid",pheno="y",fixed="env",reduce=TRUE))
+round(cor(ans2$g[501:599],ans$g[501:599]),3)
+round(cor(ans2$g[501:599],rowMeans(Y[501:599,2:4])),3) #accuracy
+```
+
+In the above example, the computing time went down nearly fivefold with the reduction method. The predictions with the two methods were very similar (r = 0.96), but there was slightly higher accuracy without reduction in this example.

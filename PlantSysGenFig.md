@@ -31,6 +31,7 @@ output: html_document
 
 - mixchr.jpg
 - sim_phe_gen.Rmd
+- [pareto.jpg](http://www.stat.wisc.edu/~yandell/talk/sisg/seattle2008/bsyoverview.ppt)
 
 ## Internet finds
 

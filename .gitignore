@@ -12,6 +12,7 @@
 *.png
 *.pdf
 *.html
+*.gz
 _site/
 data/DO_mice/do
 data/moore/?IL*
