@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
-figpath <- file.path(dirpath, "../../Figs")
+figpath <- "../../Figs"
 ```
 
 ```{r}
@@ -22,9 +22,9 @@ for(x in c(0,7,20))
   lines(c(x,x), c(-.5,.5), lwd=2)
 text(3.5,0.5,"7 cM", cex=3)
 text(13.5,0.5,"13 cM", cex=3)
-text(0,1,"M", cex=3)
-text(7,1,"X", cex=3)
-text(20,1,"M", cex=3)
+text(0,1,"m", cex=3)
+text(7,1,"q", cex=3)
+text(20,1,"m", cex=3)
 dev.off()
 ```
 

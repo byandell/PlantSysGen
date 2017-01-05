@@ -1,5 +1,5 @@
 ---
-title: "sim_phe_gen"
+title: "sim_PHE_gen"
 author: "Brian S. Yandell"
 date: "1/1/2017"
 output: html_document
@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Simulate phenotype and genotype idea.
+Simulate PHEnotype and genotype idea.
 
 ```{r message=FALSE, warning=FALSE}
 library(ggplot2)
@@ -19,72 +19,78 @@ library(dplyr)
 ```{r}
 n <- 200
 sd <- 0
-env <- rnorm(n)
-qtl_num <- round(runif(n))
-gwa <- rnorm(n)
+ENV <- rnorm(n)
+QTL_num <- round(runif(n))
+GWA <- rnorm(n)
 err <- sd * rnorm(n)
-d <- data.frame(env,qtl_num,gwa,err)
-d$phe <- d$env + 2 * d$qtl_num + d$gwa + d$err
-d$phe_qxe <- 2 * d$env * d$qtl_num + d$gwa + d$err
-d$phe_gxe <- sqrt(2) * d$env * d$gwa + d$qtl_num + d$err
+d <- data.frame(ENV,QTL_num,GWA,err)
+d$PHE <- d$ENV + 2 * d$QTL_num + d$GWA + d$err
+d$PHE_qxe <- 2 * d$ENV * d$QTL_num + d$GWA + d$err
+d$PHE_gxe <- sqrt(2) * d$ENV * d$GWA + 2 * d$QTL_num + d$err
 ```
 
 ```{r}
-d <- mutate(d, qtl = c("AA","AB")[1 + round(qtl_num)])
+d <- mutate(d, QTL = c("AA","AB")[1 + round(QTL_num)])
 ```
 
 ```{r}
-ggplot(d, aes(phe,sort(env))) +
+ggplot(d, aes(PHE,sort(ENV))) +
   geom_point(size=3) +
   geom_smooth(method="lm",se=FALSE)
 ```
 
 
 ```{r}
-ggplot(d, aes(phe,env)) +
+ggplot(d, aes(PHE,ENV)) +
   geom_point(size=3) +
   geom_smooth(method="lm",se=FALSE)
 ```
 
 
 ```{r}
-ggplot(d, aes(phe,env, fill=qtl)) +
+jpeg("../../Figs/phe_qtl.jpg", width=600, height=400)
+ggplot(d, aes(ENV,PHE, fill=QTL)) +
   geom_point(size=3, shape=21) +
   geom_smooth(method="lm",se=FALSE) +
-  ggtitle("single QTL")
+  ggtitle("model: PHE = QTL + ENV")
+dev.off()
 ```
 
 ```{r}
-ggplot(d, aes(phe,env, fill=gwa)) +
+jpeg("../../Figs/phe_gwa.jpg", width=600, height=400)
+ggplot(d, aes(ENV,PHE, fill=GWA)) +
   geom_point(size=3, shape=21) +
   geom_smooth(method="lm",se=FALSE) +
   scale_fill_gradient2() +
-  ggtitle("GWA")
+  ggtitle("model: PHE = GWA + ENV")
+dev.off()
 ```
 
 ```{r}
-ggplot(d, aes(phe,env, fill=gwa)) +
+jpeg("../../Figs/phe_qtl_gwa.jpg", width=600, height=400)
+ggplot(d, aes(ENV,PHE, fill=GWA)) +
   geom_point(size=3,shape=21) +
   geom_smooth(method="lm",se=FALSE) +
-  facet_wrap(~qtl)+
+  facet_wrap(~QTL)+
+  scale_fill_gradient2() +
+  ggtitle("model: PHE = QTL + GWA + ENV")
+dev.off()
+```
+
+```{r}
+ggplot(d, aes(GWA,PHE, fill=ENV)) +
+  geom_point(size=3, shape=21) +
+  geom_smooth(method="lm",se=FALSE) +
+  facet_wrap(~QTL)+
   scale_fill_gradient2() +
   ggtitle("QTL & GWA")
 ```
 
 ```{r}
-ggplot(d, aes(phe,gwa, fill=env)) +
+ggplot(d, aes(GWA,ENV, fill=PHE)) +
   geom_point(size=3, shape=21) +
   geom_smooth(method="lm",se=FALSE) +
-  facet_wrap(~qtl)+
-  scale_fill_gradient2() +
-  ggtitle("QTL & GWA")
-```
-
-```{r}
-ggplot(d, aes(gwa,env, fill=phe)) +
-  geom_point(size=3, shape=21) +
-  geom_smooth(method="lm",se=FALSE) +
-  facet_wrap(~qtl)+
+  facet_wrap(~QTL)+
   scale_fill_gradient2() +
   ggtitle("QTL & GWA")
 ```
@@ -92,37 +98,41 @@ ggplot(d, aes(gwa,env, fill=phe)) +
 ## GxE
 
 ```{r}
-ggplot(d, aes(phe_qxe,env, fill=gwa)) +
+jpeg("../../Figs/phe_qxe.jpg", width=600, height=400)
+ggplot(d, aes(ENV,PHE_qxe, fill=GWA)) +
   geom_point(size=3,shape=21) +
   geom_smooth(method="lm",se=FALSE) +
-  facet_wrap(~qtl)+
+  facet_wrap(~QTL)+
   scale_fill_gradient2() +
-  ggtitle("QTl x ENV interaction")
+  ggtitle("QTL x ENV interaction")
+dev.off()
 ```
 
 ```{r}
-ggplot(d, aes(phe_gxe,env, fill=gwa)) +
+jpeg("../../Figs/phe_gxe.jpg", width=600, height=400)
+ggplot(d, aes(ENV,PHE_gxe, fill=GWA)) +
   geom_point(size=3,shape=21) +
   geom_smooth(method="lm",se=FALSE) +
-  facet_wrap(~qtl)+
+  facet_wrap(~QTL)+
   scale_fill_gradient2() +
   ggtitle("GWA x ENV interaction")
+dev.off()
 ```
 
 ```{r}
-ggplot(d, aes(gwa,env, fill=phe_gxe)) +
+ggplot(d, aes(GWA, ENV, fill=PHE_gxe)) +
   geom_point(size=3, shape=21) +
   geom_smooth(method="lm",se=FALSE) +
-  facet_wrap(~qtl)+
+  facet_wrap(~QTL)+
   scale_fill_gradient2() +
   ggtitle("GWA x ENV interaction")
 ```
 
 ```{r}
-ggplot(d, aes(phe_gxe,env*gwa, fill=gwa)) +
+ggplot(d, aes(PHE_gxe,ENV*GWA, fill=GWA)) +
   geom_point(size=3,shape=21) +
   geom_smooth(method="lm",se=FALSE) +
-  facet_wrap(~qtl)+
+  facet_wrap(~QTL)+
   scale_fill_gradient2() +
   ggtitle("GWA x ENV interaction")
 ```

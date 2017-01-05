@@ -1,5 +1,5 @@
 ---
-title: "StatisticalModels"
+title: "Statistical Models"
 author: "Brian S. Yandell, UW-Madison"
 date: "January 2017"
 output:
@@ -10,9 +10,7 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## Models: relate phenotype to genotype
-
-how does genotype influence phenotype?
+## does genotype influence phenotype?
 
 Goals for genetic architecture
 
@@ -28,20 +26,51 @@ Goals for genome-wide selection
 
 ## PHE = GEN + ENV
 
-GEN = QTL + GWA
+phenotype = genotype + environment
 
-- QTL ($\mu_q$) is local to genomic region
-- GWA depends on population structure ($K$ = kinship)
-    + measures relationships away from QTL
-    + GWA = $Zu$ = $K'Ku$
+- GEN = QTL + GWA
+    + genotype = local + genome-wide genetic effects
 
-ENV = design + predictors + error
-
-- design structure (blocks, locations)
-- predictor structure (soil additives)
-- measurement error
+- ENV = design + predictors + error
+    + design structure (blocks, locations, ...)
+    + predictor structure (soil additives, ...)
+    + measurement error (independent)
     
 <span style="font-size: 75%">Falconer & Mackay (1960--1996)</span>
+
+## GEN = QTL + GWA
+
+- QTL: quantitative trait loci
+    + local to an identified genomic region
+    + large Mendelian effects on mean
+- GWA: genome-wide association
+    + depends on population structure (kinship)
+    + measures relationships away from QTL
+    + average of many small effects
+
+## PHE = QTL + GWA + ENV example
+
+![](../Figs/phe_qtl.jpg)
+
+## PHE = QTL + GWA + ENV example
+
+![](../Figs/phe_gwa.jpg)
+
+## PHE = QTL + GWA + ENV example
+
+![](../Figs/phe_qtl_gwa.jpg)
+
+## PHE = GWA + QTL * ENV example
+
+![](../Figs/phe_qxe.jpg)
+
+## PHE = QTL + GWA * ENV example
+
+![](../Figs/phe_gxe.jpg)
+
+## Pareto chart: from QTL to GWA
+
+<img src="../Figs/pareto.jpg" alt="Pareto Diagram" style="width: 800px"/>
 
 ## Strategy for mapping
 
@@ -72,8 +101,8 @@ But reality may be more complicated
 
 ## Evolution of QTL models
 
-- original ideas developed when markers were rare & costly
-- models & methods refined over time as technology advanced
+original ideas focused on rare & costly markers  
+models & methods refined as technology advanced
 
 - single marker regression
 - QTL (quantitative trait loci)
@@ -84,10 +113,6 @@ But reality may be more complicated
     + capture "missing heritability"
 - multi-parent populations (MPP)
 
-## Continuum of QTL to GWA
-
-<img src="../Figs/pareto.jpg" alt="Pareto Diagram" style="width: 800px"/>
-
 ## Why study multiple traits?
 
 - We may not know ...
@@ -97,8 +122,8 @@ But reality may be more complicated
 - We are interested in many things
     + individuals expensive
     + multiple measurements cheap (high throughput)
-- There may be pleiotropy vs close linkage
-    + correlated through one cause or linkage drag?
+- pleiotropy vs close linkage
+    + traits influenced by one cause or linkage drag?
     + untangle genetics and environment
 
 ## Multiple traits and GxE
@@ -147,12 +172,11 @@ Genetic map
 
 ## Marker regression model
 
-$$ y = \mu_m + e = \mu + m\beta + e $$
+$$ y = \mu_m + e $$
 
 - $y$ = phenotypic trait
 - $m$ = marker genotype (0,1)
-- $\mu$ = reference mean (when $m$=0)
-- $\beta$ = marker (allele substition) effect
+- $\mu_m$ = mean for genotype $m$
 - $e$ = error = unexplained variation
 
 Marker regression:
@@ -162,20 +186,16 @@ Marker regression:
 
 ## Pros & cons of marker regression
 
-Advantages
-
-- Simple
-- Easily incorporates covariates
-- Easily extended to more complex models
-- No need for genetic map
-- ignores marker position on genome
-
-Disadvantages
-
-- Excludse individuals with missing genotype data
-- Imperfect information about QTL location
-- Suffers in low density scans
-- Only considers one QTL at a time
+- Advantages
+    + simple; no need for genetic map
+    + easy to add covariates
+    + easily extended to more complex models
+    + ignores marker position on genome
+- Disadvantages
+    + excludse individuals with missing genotype data
+    + imperfect information about QTL location
+    + suffers in low density scans
+    + only considers one QTL at a time
 
 ## Statistical structure
 
@@ -190,12 +210,12 @@ Disadvantages
 - posit each genome position $\lambda$, one at a time, as putative QTL
     + $q$ = genotypes at locus $\lambda$
 
-$$ pr(y | q): y = \mu_q + e = \mu + q\beta + e$$
+$$ \texttt{pr}(y | q): y = \mu_q + e $$
 
 - mixing proportions over flanking markers
-$$ pr(q | m): \texttt{table of proportions}$$
+$$ \texttt{pr}(q | m): \texttt{table of proportions}$$
 
-- model is mixture over possible QTL genotypes $X$
+- model is mixture over possible QTL genotypes $q$
 - mixture of normals
 
 <span style="font-size: 75%">Lander & Botstein (1989) Genetics</span>
@@ -290,13 +310,15 @@ Or use the hidden Markov model (HMM)} technology
 - To allow for genotyping errors
 - To incorporate dominant markers
 
-## Phenotype as mixture across unknown genotypes
+## phenotype given unknown genotype
 
 <img src="../Figs/mixtures_bw.jpg" 
   alt="mix" 
   style="width: 350px; float:right"/>
 
 <img src="../Figs/mixchr.jpg" style="width: 300px"/>
+
+$\texttt{pr}(y|m) = \sum \texttt{pr}(y|q)\texttt{pr}(q|m)$
 
 - 2 markers separated by 20 cM
     + QTL closer to left marker
@@ -305,7 +327,7 @@ Or use the hidden Markov model (HMM)} technology
 - mixture components
     + dashed curves
 
-## [Interval mapping idea](http://www.biostat.wisc.edu/~kbroman/D3/em_alg/)
+## [interval mapping idea](http://www.biostat.wisc.edu/~kbroman/D3/em_alg/)
 
 think marker regression with fuzzy groups
 
@@ -317,63 +339,65 @@ think marker regression with fuzzy groups
 
 
 
-## Interval mapping details
+## interval mapping (IM) details
 
-QTL given markers: $p_{ij} = \Pr(q_i = j | m), i=1,\cdots,n;j=0,1$ 
+QTL genotype given markers: $\texttt{pr}(q|m)$ 
 
-phenotype given QTL: $y_i | q_i \sim N(\mu_{q_i},\sigma^2), i=1,\cdots,n$
+phenotype given QTL: $\texttt{pr}(y|q)=N(y|\mu_q,\sigma^2)$ (normal density)
 
- $$\Pr(y_i | m,\mu_0,\mu_1,\sigma) =
-\sum_j p_{ij} \, f(y_i; \mu_j,\sigma)$$
+$$\texttt{pr}(y|m) = \sum_q \texttt{pr}(y|q)\texttt{pr}(q|m)$$
 
-normal density: $f(y; \mu,\sigma)= \exp[-(y-\mu)^2/(2\sigma^2)] / \sqrt{2 \pi\sigma^2}$
+log likelihood over individuals:
 
-Log likelihood:
-
-$$l(\mu_0,\mu_1,\sigma) = \sum_i \log \Pr(y_i | m,\mu_0,\mu_1,\sigma)$$
+$$l(\mu_0,\mu_1,\sigma) = \sum_i \log \texttt{pr}(y_i | m_i)$$
 
 find $\hat{\mu}_0$, $\hat{\mu}_1$, $\hat{\sigma}$ to maximize $l(\mu_0,\mu_1,\sigma)$ (MLEs) 
 
 ## EM algorithm (Dempster et al.\ 1977)
 
 **E step:** (pseudo)weights 
-$$w_{ij}^{(k)} = \Pr(q_i = j | y_i,m,\hat{\mu},\hat{\sigma})
- = \frac{p_{ij} \,
-f(y_i; \hat{\mu}_j^{(k-1)},\hat{\sigma}^{(k-1)})}{
-\sum_j p_{ij} \, f(y_i; \hat{\mu}_j^{(k-1)},\hat{\sigma}^{(k-1)})}$$
+$$w_{iq} = \texttt{pr}(q|m_i,y_i,\hat{\mu},\hat{\sigma}) = C * \texttt{pr}(q|m_i)N(y_i|\hat{\mu}_q,\hat{\sigma})$$
 
 **M step:** (pseudo)values: 
 
-$$\hat{\mu}_j^{(k)} = \sum_i y_i w_{ij}^{(k)} / \sum_i
-w_{ij}^{(k)}$$
+$$\hat{\mu}_q = \sum_i y_i w_{iq} / \sum_i w_{iq}$$
 
-$$\hat{\sigma}^{(k)} = \sqrt{ \sum_i \sum_j w_{ij}^{(k)}
-(y_i-\hat{\mu}_j^{(k)})^2/n}$$
+$$\hat{\sigma}^2 = \sum_i \sum_q w_{iq}
+(y_i-\hat{\mu}_q)^2/n$$
 
-**EM algorithm:** Set $w_{ij}^{(1)} = p_{ij}$; iterate E\&M steps to
-convergence
+**EM algorithm:** set $w_{iq} = \texttt{pr}(q|m_i)$; iterate E\&M to
+converge
 
 ## LOD Scores
 
-LOD score measures strength of evidence for QTL at a locus $\lambda$ as 
-$\log_{10}$ likelihood ratio of model with QTL at $\lambda$ to no QTL model
+LOD score measures strength of evidence for QTL at locus $\lambda$  
+$\log_{10}$ likelihood ratio of models:
 
-$\texttt{lod}(\lambda) = [l(\hat{\mu}_{0\lambda}, \hat{\mu}_{1\lambda}, \hat{\sigma}_\lambda) - l(\hat{\mu}, \hat{\sigma})]/\log(10)$
+- model with QTL at $\lambda$ (mean depends on QTL genotype $q$ at $\lambda$)
+- model with no QTL (common mean for all individuals)
 
-$\hat{\mu}_{0\lambda}, \hat{\mu}_{1\lambda}, \hat{\sigma}_\lambda$ are MLEs with QTL at $\lambda$
+$$\texttt{lod}(\lambda) = [l(\hat{\mu}_{0\lambda}, \hat{\mu}_{1\lambda}, \hat{\sigma}_\lambda) - l(\hat{\mu}, \hat{\sigma})]/\log(10)$$
 
-No QTL model: $y$ has mean $\mu$, variance $\sigma^2$
+<hr> 
+
+QTL model: means are MLEs $\hat{\mu}_{0\lambda}, \hat{\mu}_{1\lambda}$ with QTL at $\lambda$
+
+No QTL model: mean is unconditional MLE $\hat{\mu}=\bar{y}$
+
+SD computed given model means: $\hat{\sigma}_\lambda, \hat{\sigma}$
 
 ## Pros and Cons of IM
 
-Pros:
-
-- handles missing data
-- locus may be apart from marker
-
-Cons:
-
-- still only one locus affecting trait
+- Advantages
+    + takes proper account of missing data
+    + allows examination of positions between markers
+    + gives improved estimates of QTL effects
+    + provides pretty graphs (important!)
+- Disadvantages
+    + increased computation time
+    + requires specialized software
+    + difficult to generalize and extend
+    + only one QTL at a time
 
 ## Multiple loci models
 
