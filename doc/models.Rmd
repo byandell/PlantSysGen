@@ -290,7 +290,7 @@ Or use the hidden Markov model (HMM)} technology
 - To allow for genotyping errors
 - To incorporate dominant markers
 
-## Normal mixtures
+## Phenotype as mixture across unknown genotypes
 
 <img src="../Figs/mixtures_bw.jpg" 
   alt="mix" 
@@ -304,6 +304,18 @@ Or use the hidden Markov model (HMM)} technology
     + given marker genotypes
 - mixture components
     + dashed curves
+
+## [Interval mapping idea](http://www.biostat.wisc.edu/~kbroman/D3/em_alg/)
+
+think marker regression with fuzzy groups
+
+<img src="../Figs/em_alg_illustration.png" alt="Interactive EM illustration" style="width: 500px; float:left"/>
+
+<img src="../Figs/Bnapus_anova.jpg" 
+  alt="anova" 
+  style="width: 250px; float:right"/>
+
+
 
 ## Interval mapping details
 
@@ -340,6 +352,17 @@ $$\hat{\sigma}^{(k)} = \sqrt{ \sum_i \sum_j w_{ij}^{(k)}
 
 **EM algorithm:** Set $w_{ij}^{(1)} = p_{ij}$; iterate E\&M steps to
 convergence
+
+## LOD Scores
+
+LOD score measures strength of evidence for QTL at a locus $\lambda$ as 
+$\log_{10}$ likelihood ratio of model with QTL at $\lambda$ to no QTL model
+
+$\texttt{lod}(\lambda) = [l(\hat{\mu}_{0\lambda}, \hat{\mu}_{1\lambda}, \hat{\sigma}_\lambda) - l(\hat{\mu}, \hat{\sigma})]/\log(10)$
+
+$\hat{\mu}_{0\lambda}, \hat{\mu}_{1\lambda}, \hat{\sigma}_\lambda$ are MLEs with QTL at $\lambda$
+
+No QTL model: $y$ has mean $\mu$, variance $\sigma^2$
 
 ## Pros and Cons of IM
 

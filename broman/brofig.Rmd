@@ -26,7 +26,7 @@ This just reproduces figures from Karl Broman's Jax talk. Here is a list of figu
 
 ```{r}
 library(stringr)
-bropath <- "~/Documents/Research/broman_karl/Talk_JAXsysgen"
+bropath <- "~/Documents/Talks/broman_karl/Talk_JAXsysgen"
 bw <- TRUE
 ```
 

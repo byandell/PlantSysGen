@@ -27,6 +27,8 @@ for more of this tutorial from Jeff Endelman.
 data(wheat)
 ```
 
+This adds marker genotypes `X` (`r paste(dim(X), collapse = "x")`) and relatedness `A` (`r paste(dim(A), collapse = "x")`), as well as responses `Y` (`r length(Y)`).
+
 ```{r}
 M <- 2*X-1 #convert markers to {-1,1}
 dim(M)
@@ -38,7 +40,7 @@ A2 <- A.mat(M[,sample(1:1279,384)],shrink=TRUE)
 A3 <- A.mat(M[,sample(1:1279,192)],shrink=TRUE)
 ```
 
-Endelman designed a new function (since Endelman 2011) called `kin.blup`. This new function automates calculation of the design matrix, and the user can pass the relationship matrix rather than the markers, which allows greater control over how the A matrix is calculated (see above). We use relationship matrix A1 estimated with all markers. The 599 lines have been divided into 10 sets for cross-validation in the BLR package. To predict breeding values for the lines in set 1 using phenotypes for the lines in sets 2–10, first the phenotypes and corresponding genotypes identifiers must be assembled into a data frame.
+Endelman designed a new function (since Endelman 2011) called `kin.blup`, which automates calculation of the design matrix. The user can pass the relationship matrix rather than the markers, which allows greater control over how the A matrix is calculated (see above). We use relationship matrix A1 estimated with all markers. The 599 lines have been divided into 10 sets for cross-validation in the BLR package. To predict breeding values for the lines in set 1 using phenotypes for the lines in sets 2–10, first the phenotypes and corresponding genotypes identifiers must be assembled into a data frame.
 
 ```{r}
 test <- which(sets==1)
@@ -119,3 +121,26 @@ round(cor(ans2$g[501:599],rowMeans(Y[501:599,2:4])),3) #accuracy
 ```
 
 In the above example, the computing time went down nearly fivefold with the reduction method. The predictions with the two methods were very similar (r = 0.96), but there was slightly higher accuracy without reduction in this example.
+
+## Mapping of wheat
+
+The data can be put in R/qtl format. However, there is considerable work to organize the markers.
+
+```{r}
+write.csv(X, "X.csv")
+write.csv(Y, "Y.csv")
+```
+
+
+```{r message=FALSE}
+library(qtl)
+```
+
+```{r}
+wheat <- read.cross("csv", ".", "wheat.csv", genotypes = c("0","1"))
+```
+
+```{r}
+plot.map(wheat)
+```
+

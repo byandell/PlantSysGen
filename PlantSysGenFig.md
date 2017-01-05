@@ -15,6 +15,7 @@ output: html_document
 
 ## Broman Jackson lab talks ([broman](broman/brofig.Rmd))
 
+- [em_alg_illustration.png](~/Documents/Talks/broman_karl/Talk_JAXsysgen/Intro/Figs/em_alg_illustration.png)
 - DH_bw.jpg
 - backcross_bw.jpg
 - genoprob1_bw.jpg
