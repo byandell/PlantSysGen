@@ -16,6 +16,7 @@ output: html_document
 ## Broman Jackson lab talks ([broman](broman/brofig.Rmd))
 
 - [em_alg_illustration.png](~/Documents/Talks/broman_karl/Talk_JAXsysgen/Intro/Figs/em_alg_illustration.png)
+- [interactive_lod_curve.png](~/Documents/Talks/broman_karl/Talk_JAXsysgen/Intro/Figs/interactive_lod_curve.png)
 - DH_bw.jpg
 - backcross_bw.jpg
 - genoprob1_bw.jpg
@@ -27,6 +28,10 @@ output: html_document
 - intercross_bw.jpg
 - mixtures_bw.jpg
 - structure_bw.jpg
+- loddist_bw.jpg
+- permtest_bw.jpg
+- perm_hist_bw.jpg
+- lodsuppint_bw.jpg
 
 ## Yandell miscellaneous ([data/misc](data/misc))
 

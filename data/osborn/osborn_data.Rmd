@@ -58,6 +58,11 @@ summary(Bnapus)
 ```
 
 ```{r}
+Bnapus$pheno$logflower4 <- log10(Bnapus$pheno$flower4)
+Bnapus$pheno$logflower8 <- log10(Bnapus$pheno$flower8)
+```
+
+```{r}
 jpeg(file.path(figpath, "Bnapus_pheno.jpg"), width=800, height=400)
 par(mfrow=c(2,2))
 plot(Bnapus$pheno[,8], Bnapus$pheno[,9],
@@ -112,7 +117,7 @@ Bnapus <- calc.genoprob(Bnapus)
 ```
 
 ```{r}
-fl8 <- scanone(Bnapus, "N2", find.pheno(Bnapus, "flower8"))
+fl8 <- scanone(Bnapus,, find.pheno(Bnapus, "flower8"))
 ```
 
 ```{r}
@@ -120,11 +125,21 @@ plot(fl8)
 ```
 
 ```{r}
-fl4 <- scanone(Bnapus, "N2", find.pheno(Bnapus, "flower4"))
+fl4 <- scanone(Bnapus,, find.pheno(Bnapus, c("logflower4","logflower8")))
 ```
 
 ```{r}
-plot(fl4)
+jpeg(file.path(figpath, "Bnapus_lod.jpg"), width=750, height=400)
+plot(fl4, lodcolumn=1:2, ylab="LOD")
+mtext("flowering time: 4 (black) and 8 (blue) weeks")
+dev.off()
 ```
 
+
+```{r}
+jpeg(file.path(figpath, "Bnapus_lod2.jpg"), width=750, height=400)
+plot(fl4, lodcolumn=1:2, chr="N2", ylab="LOD")
+mtext("flowering time: 4 (black) and 8 (blue) weeks")
+dev.off()
+```
 

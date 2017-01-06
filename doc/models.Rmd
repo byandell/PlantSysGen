@@ -386,6 +386,19 @@ No QTL model: mean is unconditional MLE $\hat{\mu}=\bar{y}$
 
 SD computed given model means: $\hat{\sigma}_\lambda, \hat{\sigma}$
 
+## LOD profile of flowering time
+
+![](../Figs/Bnapus_lod.jpg)
+
+## LOD profile for one chromosome
+
+![](../Figs/Bnapus_lod2.jpg)
+
+## [Interactive LOD scan](http://www.biostat.wisc.edu/~kbroman/D3/lod_and_effect/) 
+
+<img src="../Figs/interactive_lod_curve.png" alt="Interactive LOD curve" style="width: 650px"/>
+
+
 ## Pros and Cons of IM
 
 - Advantages
@@ -399,48 +412,67 @@ SD computed given model means: $\hat{\sigma}_\lambda, \hat{\sigma}$
     + difficult to generalize and extend
     + only one QTL at a time
 
-## Multiple loci models
+## LOD thresholds: how large is large?
 
-$$ y = \mu_q + e $$
+Large LOD scores = evidence for presence of a QTL  
+LOD threshold = 95 %ile of histogram of max LOD genome-wide (if there are no QTLs anywhere)
 
-$$ \mu_q = \mu(q_1, q_2, \cdots) = \mu+q_1\beta_1+q_2\beta_2+\cdots$$
+Derivation:
 
-- allows for multiple loci
-- can add epistasis
+- Analytical calculations (Lander & Botstein 1989)
+- Simulations (Lander & Botstein 1989)
+- Permutation tests (Churchill & Doerge 1994)
 
-$$ \mu_q  = \mu+q_1\beta_1+q_2\beta_2+q_{12}\gamma $$
+## Null distribution of the LOD score
 
-## Shortcoming of multiple loci models
+<img src="../Figs/loddist_bw.jpg" 
+  alt="loddist" 
+  style="width: 400px; float:right"/>
 
-- only inlcudes significant loci
-- but only include significant loci in practice
-- selection bias: 
-    + overestimate effects of included loci
-    + many loci of small effect ignored ...
+- Null distribution from simulation
+    + backcross with typical size genome
+- Dashed curve: 
+    + LOD score histogram for any one point
+- Solid curve: 
+    + max LOD histogram, genome-wide
 
-## GWA big idea
+## permutation test schematic
 
-- Kinship via pedigree: all we had
-    + average / predicted relationship
-    + works globally, might be inaccurate locally
-    + think maternal vs paternal twins
-- Kinship via SNP/GBS
-    + estimated from data
-    + used to be selected to be neutral
-    + now use all but away from QTL
-- GWA measures ...
-    + population structure
-    + other genetic effects including other QTL
+shuffle phenotypes independent of genotype data  
+repeat 10,000 times
 
-## Missing heritability (Eleazar Eskin)
+<img src="../Figs/permtest_bw.jpg" 
+  alt="permtest" 
+  style="width: 800px"/>
 
-Rewrite QTL genotype $q_j$ as $X_j$ with mean 0, variance 1 (depends on frequency of the genotype in population).
+## 10,000 permutation results
 
-Only pick up significant QTL
+<img src="../Figs/perm_hist_bw.jpg" 
+  alt="loddist" 
+  style="width: 700px"/>
 
+## [Interactive permutations](http://www.biostat.wisc.edu/~kbroman/D3/lod_random/)
 
-$$ \mu_q  = \mu+\sum_{j=1}^k q_j\beta_j $$
+<img src="../Figs/interactive_perm_test.png" 
+  alt="interactive_perm_test" 
+  style="width: 800px"/>
 
-but actual model has $K>k$ terms
+## LOD support intervals
 
-$$ \mu_q  = \mu+\sum_{j=1}^K q_j\beta_j $$
+<img src="../Figs/lodsuppint_bw.jpg" 
+  alt="permtest" 
+  style="width: 700px"/>
+  
+## References
+
+- <span style="font-size: 75%">Broman KW (2001) Review of statistical methods for QTL mapping in experimental
+crosses. Lab Animal 30:44–52. (review for non-statisticians)</span>
+- <span style="font-size: 75%">Lynch M, Walsh B (1998)
+Genetics and analysis of quantitative traits
+Sinauer Associates, Sunderland, MA, ch. 15. (chapter on QTL mapping)</span>
+- <span style="font-size: 75%">Lander ES, Botstein D (1989) Mapping Mendelian factors underlying quantitative
+traits using RFLP linkage maps. Genetics 121:185–199. (the seminal paper)</span>
+- <span style="font-size: 75%">Churchill GA, Doerge RW (1994) Empirical threshold values for quantitative trait
+mapping. Genetics 138:963–971. (LOD thresholds by permutation tests)</span>
+- <span style="font-size: 75%">Strickberger MW (1985)
+Genetics, 3rd edition. Macmillan, New York, ch. 11. (old but excellent general genetics textbook with a very interesting discussion of epistasis)</span>
