@@ -27,6 +27,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ## Communication Opportunities
 
 - many online resources
+    + <http://www.stat.wisc.edu/~yandell/statgen/reference/>: Yandell Statistical Genomics References
     + <http://datacarpentry.org>: spreadsheet to R in 2 days
     + <https://www.lynda.com/>: online skills tutorials
     + [Professional Skills for Data Science](http://www.stat.wisc.edu/network-skills)
@@ -35,7 +36,7 @@ knitr::opts_chunk$set(echo = FALSE)
     + [Github](https://github.com/) for version control
 - [Google Drive](https://www.google.com/drive/), [DropBox](https://www.dropbox.com/), [Box](https://www.box.com/), ...
 
-Material for this course at <https://github.com/byandell/thailand>
+Material for this course at <https://github.com/byandell/PlantSysGen>
 
 ## Setup
 

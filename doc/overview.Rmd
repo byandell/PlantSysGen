@@ -65,6 +65,21 @@ mix of presentation style to plant-based audience
     + [rrBLUP](http://potatobreeding.cals.wisc.edu/software/): genome-wide prediction & GWAS
     + [qtl2](http://kbroman.org/qtl2/): high throughput gene mapping
 
+## Challenges of systems genetics experiments 
+
+Simpler models yield clearer results
+
+- compare 2 conditions 
+- examine linear trend
+- control for other factors
+
+But reality may be more complicated
+
+- masking of genetic effect (by background, etc.)
+- subtle timing (when to measure)
+- hard to measure key features (shape, quality)
+- unknown details of processes under study
+
 ## Evolution of laboratory protocol
 
 genetic information (genotype)
@@ -139,18 +154,3 @@ great time to become involved in modern approaches
 - many challenges
 - many opportunities for substantial contributions
 - help unravel important problems in biological systems
-
-## What affects outcomes?
-
-- Time
-    + development, growth, aging, senescence
-    + physiology, reaction to stimuli
-    + evolution, selection
-- Space
-    + geography, altitude, longitude, height, gravity
-    + soil structure, plant density
-    + seed & pollen (plant part) dispersal
-- Stress
-    + physiology, nutrients, light, heat, water
-    + weeds, herbivores, pollinators
-    + disease, pests, parasites, harvesting

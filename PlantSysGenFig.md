@@ -32,6 +32,12 @@ output: html_document
 - permtest_bw.jpg
 - perm_hist_bw.jpg
 - lodsuppint_bw.jpg
+- epistasis_bc_bw.jpg
+- epistasis_f2_bw.jpg
+
+## Eleazar Eskin
+
+- [eskin-population-structure-draft.jpg](https://doi.org/10.1101/092106)
 
 ## Yandell miscellaneous ([data/misc](data/misc))
 

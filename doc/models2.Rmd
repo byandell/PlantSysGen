@@ -1,0 +1,289 @@
+---
+title: "Statistical Models II"
+author: "Brian S. Yandell, UW-Madison"
+date: "January 2017"
+output:
+  ioslides_presentation: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Evolution of QTL models
+
+original ideas focused on rare & costly markers  
+models & methods refined as technology advanced
+
+- single marker regression
+- QTL (quantitative trait loci)
+    + single locus models: interval mapping for QTL
+    + **multiple QTL models: epistasis**
+- **GWA (genome-wide association mapping)**
+    + adjust for population structure
+    + capture "missing heritability"
+- multi-parent populations (MPP)
+
+## QTL model search
+
+- Goals
+    + identify QTL (and possible interactions among QTL)
+    + estimate interval for QTL location
+    + estimate QTL effects
+- Challenges
+    + how many QTL? which ones?
+    + more complicated to fit each multiple QTL model
+    + need rules to search across many QTL models
+
+## Pros and Cons of Multiple QTL models
+
+- Benefits
+    + reduce residual variation
+    + increased power
+    + separate linked QTL
+    + identify interactions among QTL (epistasis)
+- Shortcomings
+    + only includes significant loci
+    + gets complicated very quickly
+    + selection bias: overestimate effects of included loci
+    + many loci of small effect ignored ...
+   
+## Epistasis in BC or DH
+
+<img src="../Figs/epistasis_bc_bw.jpg" alt="Epistasis BC" style="width: 700px"/>
+
+    
+## Epistasis in F2
+
+<img src="../Figs/epistasis_f2_bw.jpg" alt="Epistasis F2" style="width: 700px"/>
+
+## Multiple loci models
+
+basic model looks the same
+
+$$ y = \mu_q + e $$
+but now QTL has parts: $q = (q_1, q_2, \cdots)$
+$$ \mu_q = \mu(q_1, q_2, \cdots) = \mu+q_1\beta_1+q_2\beta_2+\cdots$$
+
+- allows for multiple loci
+- can add epistasis (here for BC)
+
+$$ \mu_q  = \mu+\beta_1q_1+\beta_2q_2+\gamma q_1 q_2 $$
+- more terms for F2 ...
+
+## LOD-based tests for 2 QTL
+
+For all pairs of positions, fit the following models:
+
+$\texttt{H}_f: y = \mu + \beta_1 q_1 + \beta_2 q_2 + \gamma q_1 q_2 + e$  
+$\texttt{H}_a: y = \mu + \beta_1 q_1 + \beta_2 q_2 + e$  
+$\texttt{H}_1: y = \mu + \beta_1 q_1 + e$  
+$\texttt{H}_0: y = \mu + e$
+
+log$_{10}$ likelihoods for QTL positions $\lambda_1$ (for $q_1$) and $\lambda_2$ (for $q_2$)
+
+$l_f(\lambda_1,\lambda_2)$  
+$l_a(\lambda_1,\lambda_2)$  
+$l_1(\lambda_1)$  
+$l_0$
+
+## LOD scores for 2-QTL scan
+
+full (interactive) vs no QTL ($f-0$): 
+$$\texttt{lod}_f(\lambda_1,\lambda_2) = l_f(\lambda_1,\lambda_2) - l_0$$  
+
+additive vs no QTL ($a-0$): 
+$$\texttt{lod}_a(\lambda_1,\lambda_2) = l_a(\lambda_1,\lambda_2) - l_0$$ 
+
+interaction, or full vs additive ($f-a$): 
+$$\texttt{lod}_i(\lambda_1,\lambda_2) = l_f(\lambda_1,\lambda_2) - l_a(\lambda_1,\lambda_2)$$  
+
+usual 1 QTL vs no QTL ($1-0$): 
+$$\texttt{lod}_1(\lambda_1) = l_1(\lambda_1) - l_0$$
+
+## Model search and selection
+
+- QTL mapping began as hypothesis testing: is this a QTL?
+    + much focus on adjusting for multiple testing
+- better to view problem as model selection
+    + what set of QTL are well supported?
+    + is there evidence for QTL-QTL interactions?
+
+Model = an identified set of QTL and QTL-QTL interactions  
+(and possibly covariates and QTL-covariate interactions)
+
+## QTL model search and selection
+
+- Class of models: begin with additive models
+    + add pairwise or higher interactions?
+    + other approaches?
+- Model fit (MLE, Haley-Knott, ...)
+- Model comparison
+    + estimated prediction error
+    + model effects criterion: AIC, BIC, penalized likelihood
+    + Bayes method (prior across model space)
+- Model search
+    + forward, backward, stepwise selection
+    + randomized algorithm
+    
+## QTL Model search goal
+
+Goal: identify major players
+
+- selected model has two types of errors:
+    + miss important terms (QTLs or interactions)
+    + include extraneous terms
+- both errors likely at the same time
+    + identify as many correct terms as possible
+    + while controlling rate of inclusion of extra terms
+- hypothesis testing only has one error at a time
+    + pick no QTL model, but there is really a QTL at $\lambda_1$
+    + pick 1 QTL model, but there is really no QTL
+    
+## Special nature of QTL Models
+
+What is special here?
+
+- continuum of ordinal-valued predictors (the genetic loci)
+- association among these QTL predictors
+- loci on different chromosomes are independent
+- along chromosome:
+    + simple (and known) correlation structure
+    
+See [Broman MultiQTL talk](https://www.biostat.wisc.edu/~kbroman/teaching/misc/Jax/2016/multiqtl.pdf) for more details
+
+## Pros and Cons of Multiple QTL revisted
+
+- Benefits
+    + reduce residual variation
+    + increased power
+    + separate linked QTL
+    + identify interactions among QTL (epistasis)
+- Shortcomings
+    + only includes significant loci
+    + gets complicated very quickly
+    + selection bias: overestimate effects of included loci
+    + many loci of small effect ignored ...
+
+## GWA big idea
+
+- only detect some genetic effects
+    + significant QTL
+- effects of modest or small effect ignored
+    + non-significant QTL
+    + effects too small to observe or test
+- these other effects have two sources
+    + many small effects on phenotype
+    + population admixture reflected in genome structure
+
+## Pareto chart: from QTL to GWA
+
+<img src="../Figs/pareto.jpg" alt="Pareto Diagram" style="width: 800px"/>
+
+## Missing heritability
+
+"actual" genetic model $y = \mu_q + e$  
+with $J$ genetic effects (recode $q_j$ to have variance 1)
+
+$$\mu_q  = \mu+\sum_{j=1}^J \beta_j q_j$$
+
+actual heritability: 
+$$h^2 = \frac{\sum_{j=1}^J \beta_j^2}{\sigma^2 + \sum_{j=1}^J \beta_j^2}$$
+(consider backcross and ignore epistasis from here forward)
+
+## Best QTL misses most of heritability
+
+but "best" model has $2$ terms
+
+$$ \mu_q  = \mu+ \beta_1 q_1 + \beta_2 q_2$$
+with heritability:
+$$h_\texttt{best}^2 = \frac{\beta_1^2 + \beta_2^2}{\sigma^2 + \sum_{j=1}^J \beta_j^2}$$
+
+missing genetic variability: 
+$$h^2 - h_\texttt{best}^2 > 0$$
+
+<span style="font-size: 75%">Eskin (2105) <http://dx.doi.org/10.1145/2817827></span>
+
+## population structure inflates effects
+
+- spurious association of phenotype
+- population structure affects
+    + some phenotypes
+    + some genetic loci
+- but genotype may not affect phenotype
+    + if we adjust for population structure
+
+## mouse strains & body weight
+
+<img src="../Figs/eskin-population-structure-draft.jpg" alt="Eskin population structure" style="width: 700px"/>
+
+<span style="font-size: 50%">Eskin (2106 draft) Review doi:10.1101/092106</span>
+
+## mixed model: QTL + GWA
+
+$$y = \mu_q + g + e$$
+
+$\mu_q$ = QTL effects (fixed)  
+$g$ = GWA effects (random)  
+$$g\sim N(0,\sigma_g^2 K)$$  
+e = unexplained variation (random)  
+$$e\sim N(0,\sigma^2 I)$$
+
+$K$ = kinship matrix  
+$I$ = identity matrix (1s on diagonal, 0s off diagonal)
+
+## PHE = QTL + GWA + ENV example
+
+![](../Figs/phe_qtl_gwa.jpg)
+
+## fitting the mixed model
+
+distribution of phenotype
+$$y = \mu_q + g + e$$
+$$y \sim N(\mu_q,V), V =\sigma_g^2K + \sigma^2I$$
+
+iterate to solve (similar to EM idea)
+
+- get MLE of $\mu_q$ given $V$
+- estimate $\sigma_g$ and $\sigma^2$ given $\mu_q$
+
+## GWA and kinship $K$
+
+- Kinship via pedigree: all we had in past
+    + average / predicted relationship
+    + works globally, might be inaccurate locally
+    + think siblings vs parent/offspring
+- Kinship via SNP or GBS
+    + estimate $K$ from marker data $M$
+    + used to select markers to be neutral
+    + now use markers away from QTL $q$
+
+$$K = c*M'M$$
+
+## mixed model software for QTL and GWA
+
+[EMMA (Efficient Mixed Model Association)](http://mouse.cs.ucla.edu/emma/)
+
+- Convert matrix operations to vector operations
+    + with one clever eigendecomposition
+    + 1000x faster than TASSEL/SAS implementation
+    + O(n) per iteration
+    + accurate and reliable
+- Eleazar Eskin (UCLA) standalone package
+
+## EMMA software spinoffs
+
+[rrBLUP](http://pbgworks.org/node/1440)
+
+- EMMA adapted to genotypic prediction
+    + `A.mat` to compute $K$ from markers
+    + `kin.blup` to predict phenotypes
+- <span style="font-size: 75%">Jeff Endelman (UW-Madison) R package</span>
+
+[qtl2scan](http://kbroman.org/qtl2/)
+
+- EMMA adapted to R/qtl2 package
+- leave out one chromosome method
+    + `calc_kinship` with `type="loco"` to compute $K$
+    + `scan1` with `kinship` option to fit mixed model
+- <span style="font-size: 75%">Karl Broman (UW-Madison) R package suite</span>

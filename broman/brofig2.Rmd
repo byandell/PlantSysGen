@@ -1,0 +1,46 @@
+---
+title: 'Broman Jax Figures'
+author: "Brian S. Yandell"
+date: "1/3/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This just reproduces figures from Karl Broman's Jax talk. 
+This file is done separately because of some clash with `c()` function when attaching `qtl` or `qtlbook` packages.
+Here is a list of figures:
+
+- perm_hist_bw.jpg
+
+```{r}
+source("func.R")
+source("colors_bw.R")
+bropath <- "~/Documents/Talks/broman_karl/Talk_JAXsysgen"
+bw <- TRUE
+```
+
+Trick to create jpeg instead of pdf:
+
+```{r}
+pdf <- function(file, width, height, onefile, ...) {
+  jpeg(file = stringr::str_replace(file, ".pdf", ".jpg"), width = width * 96, height = height * 96, ...)
+}
+```
+
+## Models Talk
+
+```{r}
+if(!dir.exists("Rcache")) {
+  dir.create("Rcache")
+}
+```
+
+The `perm_hist.R` seems to get stuck. Had to do by hand.
+
+```{r}
+source(file.path(bropath, "Intro/R", "perm_hist.R"))
+```
+

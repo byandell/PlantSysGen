@@ -55,6 +55,12 @@ knitr::opts_chunk$set(echo = FALSE)
 
 <span style="font-size: 50%">www.nature.com/nrg/journal/v9/n3/images/nrg2291-f4.jpg</span>
 
+## Selfing vs sib mating
+
+![](../Figs/rigenome_fig2_lg.png)
+
+<a href="http://kbroman.org/pages/publpics/rigenome_fig2.html"><span style="font-size: 75%">Broman (2005) Genetics</span></a>
+
 ## near isogenic lines (NIL)
 
 <img src="../Figs/NIILpanel_Univ-of-Illinois-Chicago_w.jpeg" 

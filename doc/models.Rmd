@@ -32,8 +32,8 @@ phenotype = genotype + environment
     + genotype = local + genome-wide genetic effects
 
 - ENV = design + predictors + error
-    + design structure (blocks, locations, ...)
-    + predictor structure (soil additives, ...)
+    + design factors (blocks, locations, ...)
+    + predictor variables (heat, light, soil additives, ...)
     + measurement error (independent)
     
 <span style="font-size: 75%">Falconer & Mackay (1960--1996)</span>
@@ -72,72 +72,7 @@ phenotype = genotype + environment
 
 <img src="../Figs/pareto.jpg" alt="Pareto Diagram" style="width: 800px"/>
 
-## Strategy for mapping
-
-- Want to figure out what is going on
-    + preliminary search: find important story
-    + need strategies to uncover patterns
-- Want to tell story in publication
-
-- How to accomplish mapping goal
-    + organic search for patterns
-    + organize methods as you go
-    + document steps (so you can redo)
-
-## Challenges of models for experiments 
-
-Simpler models yield clearer results
-
-- compare 2 conditions 
-- examine linear trend
-- control for other factors
-
-But reality may be more complicated
-
-- masking of genetic effect (by background, etc.)
-- subtle timing (when to measure)
-- hard to measure key features (shape, quality)
-- unknown details of processes under study
-
-## Evolution of QTL models
-
-original ideas focused on rare & costly markers  
-models & methods refined as technology advanced
-
-- single marker regression
-- QTL (quantitative trait loci)
-    + single locus models: interval mapping for QTL
-    + multiple QTL models: epistasis
-- GWA (genome-wide association mapping)
-    + adjust for population structure
-    + capture "missing heritability"
-- multi-parent populations (MPP)
-
-## Why study multiple traits?
-
-- We may not know ...
-    + how to measure (quality, shape, taste)
-    + when to measure (development, season, kinetics)
-    + what to measure (molecular pathways)
-- We are interested in many things
-    + individuals expensive
-    + multiple measurements cheap (high throughput)
-- pleiotropy vs close linkage
-    + traits influenced by one cause or linkage drag?
-    + untangle genetics and environment
-
-## Multiple traits and GxE
-
-- same phenotype in multiple environments
-    + does genetic response depend on environment?
-    + comparing 2 (or more) environments
-    + trends across a cline or gradient
-- multiple phenotypes
-    + does one trait affect others (directly)?
-    + leveraging similar biological function
-    + correlation and causalty models
-
-## Phenotype data 
+## Phenotype data: flowering time 
 
 ![](../Figs/Bnapus_pheno.jpg)
 
@@ -145,7 +80,7 @@ models & methods refined as technology advanced
 
 ## Genotype data
 
-Genetic map
+Genetic map for Osborn's _Brassica napus_ study
 
 ![](../Figs/Bnapus_map.jpg)
 
@@ -156,6 +91,32 @@ Genetic map
 ## Genotypes reordered by `flower4`
 
 ![](../Figs/Bnapus_genotype4.jpg)
+
+## Evolution of QTL models
+
+original ideas focused on rare & costly markers  
+models & methods refined as technology advanced
+
+- **single marker regression**
+- QTL (quantitative trait loci)
+    + **single locus models: interval mapping for QTL**
+    + multiple QTL models: epistasis
+- GWA (genome-wide association mapping)
+    + adjust for population structure
+    + capture "missing heritability"
+- multi-parent populations (MPP)
+
+## Strategy for QTL mapping
+
+- Want to figure out what is going on
+    + preliminary search: find important story
+    + need strategies to uncover patterns
+- Want to tell story in publication
+
+- How to accomplish QTL mapping goal
+    + organic search for patterns
+    + organize methods as you go
+    + document steps (so you can redo)
 
 ## Marker regression (BC or DH)
 
@@ -169,6 +130,8 @@ Genetic map
     + red = missing genotype
 - Do a t-test or ANOVA
 - Repeat for each marker
+
+<span style="font-size: 75%>Soller _et al._ (1976)</span>
 
 ## Marker regression model
 
@@ -331,13 +294,13 @@ $\texttt{pr}(y|m) = \sum \texttt{pr}(y|q)\texttt{pr}(q|m)$
 
 think marker regression with fuzzy groups
 
-<img src="../Figs/em_alg_illustration.png" alt="Interactive EM illustration" style="width: 500px; float:left"/>
+<a href="http://www.biostat.wisc.edu/~kbroman/D3/em_alg/"><img
+  src="../Figs/em_alg_illustration.png" alt="Interactive EM illustration"
+  style="width: 500px; float:left"/></a>
 
 <img src="../Figs/Bnapus_anova.jpg" 
   alt="anova" 
   style="width: 250px; float:right"/>
-
-
 
 ## interval mapping (IM) details
 
@@ -355,11 +318,11 @@ find $\hat{\mu}_0$, $\hat{\mu}_1$, $\hat{\sigma}$ to maximize $l(\mu_0,\mu_1,\si
 
 ## EM algorithm (Dempster et al.\ 1977)
 
-**E step:** (pseudo)weights 
-$$w_{iq} = \texttt{pr}(q|m_i,y_i,\hat{\mu},\hat{\sigma}) = C * \texttt{pr}(q|m_i)N(y_i|\hat{\mu}_q,\hat{\sigma})$$
+**E step:** (pseudo)weights for individual $i$, QTL genotype $q$
+$$w_{iq} = \texttt{pr}(q|m_i,y_i,\hat{\mu},\hat{\sigma}) = c_i * \texttt{pr}(q|m_i)N(y_i|\hat{\mu}_q,\hat{\sigma})$$
+$c_i$ chosen so that $\sum_q w_{iq} = 1$ 
 
-**M step:** (pseudo)values: 
-
+**M step:** (pseudo)values for QTL group means and variance
 $$\hat{\mu}_q = \sum_i y_i w_{iq} / \sum_i w_{iq}$$
 
 $$\hat{\sigma}^2 = \sum_i \sum_q w_{iq}
@@ -367,6 +330,22 @@ $$\hat{\sigma}^2 = \sum_i \sum_q w_{iq}
 
 **EM algorithm:** set $w_{iq} = \texttt{pr}(q|m_i)$; iterate E\&M to
 converge
+
+## Haley-Knott regression
+
+<a href="http://www.biostat.wisc.edu/~kbroman/D3/em_alg/"><img
+  src="../Figs/em_alg_illustration.png" alt="Interactive EM illustration"
+  style="width: 500px; float:right"/></a>
+
+Idea: just run one iteration of EM algorithm
+
+- becomes marker regression on genotype probabilities
+- ignores mixture of normals issue
+- now widely used for dense marker maps (high throughput)
+
+<span style="font-size: 75%">Haley, Knott (1992</span>  
+<span style="font-size: 75%">Martinez, Curnow (1992</span>
+
 
 ## LOD Scores
 

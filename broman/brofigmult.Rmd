@@ -1,0 +1,45 @@
+---
+title: 'Broman Jax Figures'
+author: "Brian S. Yandell"
+date: "1/3/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This just reproduces figures from Karl Broman's Jax talk. 
+See also [brofig.Rmd](brofig.Rmd).
+Here is a list of figures:
+
+
+```{r}
+library(qtlbook)
+source("func.R")
+source("colors_bw.R")
+bropath <- "~/Documents/Talks/broman_karl/Talk_JAXsysgen"
+bw <- TRUE
+```
+
+Trick to create jpeg instead of pdf:
+
+```{r}
+pdf <- function(file, width, height, onefile, ...) {
+  jpeg(file = stringr::str_replace(file, ".pdf", ".jpg"), width = width * 96, height = height * 96, ...)
+}
+```
+
+## Models2 Talk
+
+```{r}
+source(file.path(bropath, "Intro/R", "epistasis_fig.R"))
+```
+
+## Traits talk
+
+```{r}
+source("causal_network_bw.R")
+source("pleiotropy_network_bw.R")
+```
+

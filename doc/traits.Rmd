@@ -1,0 +1,104 @@
+---
+title: "Multiple Traits"
+author: "Brian S. Yandell, UW-Madison"
+date: "January 2017"
+output:
+  ioslides_presentation: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Why study multiple traits?
+
+- We may not know ...
+    + how to measure (quality, shape, taste)
+    + when to measure (development, season, kinetics)
+    + what to measure (molecular pathways)
+- We are interested in many things
+    + individuals expensive
+    + multiple measurements cheap (high throughput)
+- causal relationships among traits
+    + pleiotropy vs close linkage
+    + indirect effect of QTL via other trait
+    + untangle genetic & environment correlation
+
+## Multiple traits and GxE
+
+- same phenotype in multiple environments
+    + does genetic response depend on environment?
+    + comparing 2 (or more) environments
+    + trends across a cline or gradient
+- multiple phenotypes
+    + does one trait affect others (directly)?
+    + leveraging similar biological function
+    + correlation and causalty models
+
+## What affects outcomes?
+
+- Time
+    + <span style="font-size: 75%">development, growth, aging, senescence</span>
+    + <span style="font-size: 75%">physiology, reaction to stimuli</span>
+    + <span style="font-size: 75%">evolution, selection</span>
+- Space
+    + <span style="font-size: 75%">geography, altitude, longitude, height, gravity</span>
+    + <span style="font-size: 75%">soil structure, plant density</span>
+    + <span style="font-size: 75%">seed & pollen (plant part) dispersal</span>
+- Stress
+    + <span style="font-size: 75%">physiology, nutrients, light, heat, water</span>
+    + <span style="font-size: 75%">weeds, herbivores, pollinators</span>
+    + <span style="font-size: 75%">disease, pests, parasites, harvesting</span>
+
+## Goals
+
+- use multiple phenotypes to improve QTL detection
+- do traits share QTL (pleiotropy)?
+- causal relationships among traits?
+- effects of QTL across time
+
+## Pleiotropy?
+
+<img src="../Figs/pleiotropy_network_bw.jpg" alt="pleiotropy" style="width: 800px"/>
+
+## Close linkage?
+
+<img src="../Figs/causal_network_bw.jpg" alt="close linkage" style="width: 800px"/>
+
+## Basic model
+
+one trait:
+$$ y = q \beta + e, \qquad e \sim \text{N}(0, \sigma^2) $$
+
+$$ \text{LOD} = (n/2) \log_{10} ( \text{RSS}_0 /
+  \text{RSS}_1 ) $$
+
+multiple traits:
+
+$$ Y = Q\boldsymbol{\beta} + E,
+  \qquad E \sim \text{MVN}(0, \Sigma) $$
+
+$$ \text{LOD} = (n/2) \log_{10} ( {|\hat{\Sigma}_0|} /
+  { |\hat{\Sigma}_1|}) $$
+  
+## Pleiotropy?
+
+- consider two traits and one chromosome
+- assume each affected by a single QTL
+- 1-D scan for single QTL assumed to affect both
+- 2-D scan over chromosome
+    + separate axes for each trait
+- significance?
+    + parametric bootstrap using fitted single-QTL model
+    + stratified (within QTL genotype) permutation test
+
+## Measurements over time
+
+- gravitropic response in _Arabidopsis_
+
+## [Traits mapped over time](http://kbroman.org/qtlcharts/example/iplotMScanone.html)
+
+<a href="http://kbroman.org/qtlcharts/example/iplotMScanone.html"><img
+  src="../Figs/Screen Shot_iplotMScanone.png" alt="Interactive scan over time"
+  style="width: 600px"/></a>
+

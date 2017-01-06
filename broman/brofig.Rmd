@@ -9,7 +9,9 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-This just reproduces figures from Karl Broman's Jax talk. Here is a list of figures:
+This just reproduces figures from Karl Broman's Jax talk. 
+See also [brofig2.Rmd](brofig2.Rmd).
+Here is a list of figures:
 
 - DH_bw.jpg
 - backcross_bw.jpg
@@ -24,7 +26,6 @@ This just reproduces figures from Karl Broman's Jax talk. Here is a list of figu
 - structure_bw.jpg
 - loddist_bw.jpg
 - permtest_bw.jpg
-- perm_hist_bw.jpg
 - lodsuppint_bw.jpg
 
 ```{r}
@@ -63,18 +64,19 @@ source(file.path(bropath, "Intro/R", "mixtures_fig.R"))
 if(!dir.exists("Rcache")) {
   dir.create("Rcache")
 }
+```
+
+```{r}
 source(file.path(bropath, "Intro/R", "loddist_fig.R"))
 source(file.path(bropath, "Intro/R", "permtest.R"))
 ```
 
-The `perm_hist.R` seems to get stuck. Had to do by hand.
-
 ```{r}
 source(file.path(bropath, "Intro/R", "alod_fig.R"))
-source(file.path(bropath, "Intro/R", "perm_hist.R"))
+# does not work with rest
+#source(file.path(bropath, "Intro/R", "perm_hist.R"))
 ```
 
 ```{r}
 source(file.path(bropath, "Intro/R", "lodsupint_fig.R"))
 ```
-
