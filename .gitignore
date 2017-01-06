@@ -16,6 +16,7 @@
 _site/
 data/DO_mice/do
 data/moore/?IL*
+data/rrBLUP/*.csv
 *.zip
 *.rds
 *.rdata

@@ -306,7 +306,7 @@ think marker regression with fuzzy groups
 
 QTL genotype given markers: $\texttt{pr}(q|m)$ 
 
-phenotype given QTL: $\texttt{pr}(y|q)=N(y|\mu_q,\sigma^2)$ (normal density)
+phenotype given QTL: $\texttt{pr}(y|q)= \text{N}(y|\mu_q,\sigma^2)$ (normal density)
 
 $$\texttt{pr}(y|m) = \sum_q \texttt{pr}(y|q)\texttt{pr}(q|m)$$
 
@@ -319,8 +319,9 @@ find $\hat{\mu}_0$, $\hat{\mu}_1$, $\hat{\sigma}$ to maximize $l(\mu_0,\mu_1,\si
 ## EM algorithm (Dempster et al.\ 1977)
 
 **E step:** (pseudo)weights for individual $i$, QTL genotype $q$
-$$w_{iq} = \texttt{pr}(q|m_i,y_i,\hat{\mu},\hat{\sigma}) = c_i * \texttt{pr}(q|m_i)N(y_i|\hat{\mu}_q,\hat{\sigma})$$
-$c_i$ chosen so that $\sum_q w_{iq} = 1$ 
+$$w_{iq} = \texttt{pr}(q|m_i,y_i,\hat{\mu},\hat{\sigma}) = c_i * \texttt{pr}(q|m_i) 
+\text{N} (y_i|\hat{\mu}_q,\hat{\sigma})$$
+$c_i$ set so that $\sum_q w_{iq} = 1$ 
 
 **M step:** (pseudo)values for QTL group means and variance
 $$\hat{\mu}_q = \sum_i y_i w_{iq} / \sum_i w_{iq}$$

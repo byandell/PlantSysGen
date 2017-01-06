@@ -30,6 +30,12 @@ pdf <- function(file, width, height, onefile, ...) {
 }
 ```
 
+```{r}
+if(!dir.exists("Rcache")) {
+  dir.create("Rcache")
+}
+```
+
 ## Models2 Talk
 
 ```{r}
@@ -41,5 +47,21 @@ source(file.path(bropath, "Intro/R", "epistasis_fig.R"))
 ```{r}
 source("causal_network_bw.R")
 source("pleiotropy_network_bw.R")
+```
+
+```{r}
+if(!file.exists("Rcache/selbiasSUB.RData")) {
+  SUB <- 0
+  source(file.path(bropath, "SpecialTopics/R", "selbias_sims.R"))
+  if(file.exists("selbiasSUB.RData")) {
+    file.rename("selbiasSUB.RData", "Rcache/selbias.RData")
+  }
+}
+source(file.path(bropath, "SpecialTopics/R", "selbias_fig.R"))
+```
+
+```{r}
+source(file.path(bropath, "SpecialTopics/R", "covar_fig.R"))
+source("covar_illustrations_bw.R")
 ```
 
