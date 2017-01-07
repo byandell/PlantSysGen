@@ -143,3 +143,60 @@ mtext("flowering time: 4 (black) and 8 (blue) weeks")
 dev.off()
 ```
 
+## Pleiotropy vs close linkage
+
+Need package `qtlpvl` from Github:
+
+```
+library(devtools)
+install_github("kbroman/qtlpvl")
+```
+
+
+```{r}
+library(qtlpvl)
+# Kludge to make scanone.mvn work (for now)
+for(i in names(Bnapus$geno)) {
+  class(Bnapus$geno[[i]]$map) <- c(class(Bnapus$geno[[i]]$map), "vector")
+}
+flpvl <- scanone.mvn(subset(Bnapus, chr="N2"), 
+  as.matrix(Bnapus$pheno[, find.pheno(Bnapus, c("logflower4","logflower8"))]))
+```
+
+```{r}
+jpeg(file.path(figpath, "Bnapus_1qtl.jpg"), width=750, height=400)
+plot(flpvl, chr="N2", col="red", ylab="LOD")
+plot(fl4, lodcolumn=1:2, chr="N2", add=T)
+mtext("flowering time: 4 (black) and 8 (blue) weeks; red=pleiotropy")
+dev.off()
+```
+
+```{r}
+# this does not handle missing data
+Bnapus <- subset(Bnapus, ind = !is.na(Bnapus$pheno$logflower4))
+flpvl2 <- scantwo.mvn(subset(Bnapus, chr="N2"), 
+  as.matrix(Bnapus$pheno[, find.pheno(Bnapus, c("logflower4","logflower8"))]))
+flpvl$fl4 <- apply(flpvl2,1,max)
+flpvl$fl8 <- apply(flpvl2,2,max)
+```
+
+```{r}
+jpeg(file.path(figpath, "Bnapus_pleiotropy.jpg"), width=750, height=400)
+par(mar=c(4,4,1,0))
+plot(flpvl, lodcolumn = 1:3, chr="N2", ylab="LOD")
+mtext("flowering time: 1 QTL (black), 4 (blue) or 8 week 2-QTL max")
+dev.off()
+```
+
+```{r}
+jpeg(file.path(figpath, "Bnapus_linkage.jpg"), width=500, height=500)
+par(mar=c(4,4,1,0))
+image(Bnapus$geno$N2$map, Bnapus$geno$N2$map, flpvl2, 
+      col = rev(grey.colors(10)),
+      xlab = "4-week vernalization",
+      ylab = "8-week vernalization")
+mtext("LOD grey scale 0 (white) to 21 (black)")
+abline(0,1)
+dev.off()
+```
+

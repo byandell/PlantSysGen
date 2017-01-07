@@ -88,15 +88,30 @@ $$ \text{LOD} = (n/2) \log_{10} ( {|\hat{\Sigma}_0|} /
 - 1-D scan for single QTL assumed to affect both
 - 2-D scan over chromosome
     + separate axes for each trait
+    + or profile each trait across other trait
 - significance?
     + parametric bootstrap using fitted single-QTL model
     + stratified (within QTL genotype) permutation test
 
-## Measurements over time
+## Pleiotropy in flowering time
 
-- gravitropic response in _Arabidopsis_
+![](../Figs/Bnapus_1qtl.jpg)
 
-## [Traits mapped over time](http://kbroman.org/qtlcharts/example/iplotMScanone.html)
+## Pleiotropy in flowering time
+
+<img src="../Figs/Bnapus_linkage.jpg" alt="pleiotropy flower" style="float:right"/>
+
+- allow 2 QTL per trait  
+- is 1 enough?
+- or are there 2 QTL?
+
+## Pleiotropy in flowering time
+
+profile LOD of each trait with respect to the other
+
+![](../Figs/Bnapus_pleiotropy.jpg)
+
+## [gravitropic response over time](http://kbroman.org/qtlcharts/example/iplotMScanone.html)
 
 <a href="http://kbroman.org/qtlcharts/example/iplotMScanone.html"><img
   src="../Figs/Screen Shot_iplotMScanone.png" alt="Interactive scan over time"
