@@ -101,6 +101,20 @@ $$\texttt{lod}_i(\lambda_1,\lambda_2) = l_f(\lambda_1,\lambda_2) - l_a(\lambda_1
 usual 1 QTL vs no QTL ($1-0$): 
 $$\texttt{lod}_1(\lambda_1) = l_1(\lambda_1) - l_0$$
 
+## flowering time 2-D search
+
+<img src="../Figs/Bnapus_4_2.jpg" alt="flower 4_2" 
+ style="width: 400px; float:right"/>
+<img src="../Figs/Bnapus_8_2.jpg" alt="flower 8_2" 
+ style="width: 400px; float:right"/>
+ 
+- meek evidence for 2 QTL at 4 week
+- modest evidencde for 2 QTL at 8 week
+- no evidence for interaction
+
+<img src="../Figs/Bnapus_lod2.jpg" alt="flower lod" 
+ style="width: 350px; float:left"/>
+
 ## Model search and selection
 
 - QTL mapping began as hypothesis testing: is this a QTL?
@@ -334,18 +348,17 @@ $$\text{H}_a: y  =  \mu + \beta_x x + \beta_q q + e$$
 
 ## adjust then scan?
 
-- consider phenotype divided by covariate: $y/x$
-- QTL model is $(y/x) = \mu + \beta_q q + e$
+<img src="../Figs/y_over_x.jpg" alt="y over x" style="width:400px; float:right"/>
+
+- consider ratio: $y/x$
+- QTL model  
+
+$(y/x) = \mu + \beta_q q + e$
+
 - equivalently
 
-$$y = \left\{ \begin{array}{c@{\hspace{1cm}}l} \mu \ x + e & \text{if
-      $q = 0$} \\
-    (\mu + \beta_q) x + e & \text{if $q =
-      1$} \end{array} \right. $$
-
-## adjust then scan?
-
-<img src="../Figs/y_over_x.jpg" alt="y over x" style="width: 500px"/>
+$y = \mu \ x + e$ if $q = 0$  
+$y = (\mu + \beta_q) x + e$ if $q = 1$
 
 ## interactive covariate
 

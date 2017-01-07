@@ -130,7 +130,8 @@ fl48 <- scanone(Bnapus,, find.pheno(Bnapus, c("logflower4","logflower8")))
 
 ```{r}
 jpeg(file.path(figpath, "Bnapus_lod.jpg"), width=750, height=400)
-plot(fl48, lodcolumn=1:2, ylab="LOD")
+par(mar=c(4,4,0,0))
+plot(fl48, lodcolumn=1:2, ylab="LOD", lwd=4)
 mtext("flowering time: 4 (black) and 8 (blue) weeks")
 dev.off()
 ```
@@ -151,7 +152,8 @@ fl4_perm <- scanone(Bnapus,, find.pheno(Bnapus, "logflower4"),
 
 ```{r}
 jpeg(file.path(figpath, "Bnapus_perm.jpg"), width=750, height=400)
-plot(fl48, chr = "N2", lodcolumn=1:2, ylab="LOD")
+par(mar=c(4,4,0,0))
+plot(fl48, chr = "N2", lodcolumn=1:2, ylab="LOD", lwd=4)
 mtext("flowering time: 4 (black) and 8 (blue) weeks")
 abline(h=sum4, lty=2, lwd=2, col="red")
 dev.off()
@@ -159,7 +161,8 @@ dev.off()
 
 ```{r}
 jpeg(file.path(figpath, "Bnapus_lodint.jpg"), width=750, height=400)
-plot(fl48, chr = "N2", lodcolumn=1:2, ylab="LOD")
+par(mar=c(4,4,0,0))
+plot(fl48, chr = "N2", lodcolumn=1:2, ylab="LOD", lwd=4)
 mtext("flowering time: 4 weeks")
 abline(h=summary(fl4_perm), lty=2, lwd=2, col="red")
 # flower4
@@ -182,7 +185,8 @@ dev.off()
 
 ```{r}
 jpeg(file.path(figpath, "Bnapus_lod2.jpg"), width=750, height=400)
-plot(fl48, lodcolumn=1:2, chr="N2", ylab="LOD")
+par(mar=c(4,4,0,0))
+plot(fl48, lodcolumn=1:2, chr="N2", ylab="LOD", lwd=4)
 mtext("flowering time: 4 (black) and 8 (blue) weeks")
 dev.off()
 ```
@@ -194,15 +198,27 @@ pl4_2 <- scantwo(Bnapus, "N2", find.pheno(Bnapus, "logflower4"))
 ```
 
 ```{r}
-plot(pl4_2, col.scheme = "gray")
-```
-
-```{r}
 pl8_2 <- scantwo(Bnapus, "N2", find.pheno(Bnapus, "logflower8"))
 ```
 
 ```{r}
-plot(pl8_2, col.scheme = "gray")
+jpeg(file.path(figpath, "Bnapus_4_2.jpg"), width=600, height=400)
+plot(pl4_2, col.scheme = "gray", 
+     lower="cond-add",
+     xlab="add vs 1 QTL (a-1)",
+     ylab="interaction (f-a)")
+title("4 week vernalization")
+dev.off()
+```
+
+```{r}
+jpeg(file.path(figpath, "Bnapus_8_2.jpg"), width=600, height=400)
+plot(pl8_2, col.scheme = "gray", 
+     lower="cond-add",
+     xlab="add vs 1 QTL (a-1)",
+     ylab="interaction (f-a)")
+title("8 week vernalization")
+dev.off()
 ```
 
 ## Pleiotropy vs close linkage
