@@ -113,7 +113,7 @@ dev.off()
 ## Interval mapping
 
 ```{r}
-Bnapus <- calc.genoprob(Bnapus)
+Bnapus <- calc.genoprob(Bnapus, step=5, stepwidth="max")
 ```
 
 ```{r}
@@ -125,22 +125,84 @@ plot(fl8)
 ```
 
 ```{r}
-fl4 <- scanone(Bnapus,, find.pheno(Bnapus, c("logflower4","logflower8")))
+fl48 <- scanone(Bnapus,, find.pheno(Bnapus, c("logflower4","logflower8")))
 ```
 
 ```{r}
 jpeg(file.path(figpath, "Bnapus_lod.jpg"), width=750, height=400)
-plot(fl4, lodcolumn=1:2, ylab="LOD")
+plot(fl48, lodcolumn=1:2, ylab="LOD")
 mtext("flowering time: 4 (black) and 8 (blue) weeks")
+dev.off()
+```
+
+```{r message=FALSE}
+fl4_perm <- scanone(Bnapus,, find.pheno(Bnapus, "logflower4"),
+                    n.perm = 1000)
+```
+
+```{r}
+(lodint4 <- lodint(fl48, "N2", lodcolumn=1))
+(sum4 <- summary(fl4_perm))
+```
+
+```{r}
+(lodint8 <- lodint(fl48, "N2", lodcolumn=2))
+```
+
+```{r}
+jpeg(file.path(figpath, "Bnapus_perm.jpg"), width=750, height=400)
+plot(fl48, chr = "N2", lodcolumn=1:2, ylab="LOD")
+mtext("flowering time: 4 (black) and 8 (blue) weeks")
+abline(h=sum4, lty=2, lwd=2, col="red")
+dev.off()
+```
+
+```{r}
+jpeg(file.path(figpath, "Bnapus_lodint.jpg"), width=750, height=400)
+plot(fl48, chr = "N2", lodcolumn=1:2, ylab="LOD")
+mtext("flowering time: 4 weeks")
+abline(h=summary(fl4_perm), lty=2, lwd=2, col="red")
+# flower4
+arrows(lodint4[1,2], sum4[2]/2, lodint4[3,2], sum4[2]/2, 
+       code=3, lwd=2, length=0.1)
+segments(lodint4[1, 2], rep(0,2), lodint4[1,2], lodint4[1,3],
+         col = "darkgray")
+segments(lodint4[3, 2], rep(0,2), lodint4[3,2], lodint4[3,3],
+         col = "darkgray")
+# flower8
+arrows(lodint8[1,2], 0, lodint8[3,2], 0,
+       code=3, lwd=2, length=0.1)
+segments(lodint8[1, 2], rep(0,2), lodint8[1,2], lodint8[1,4],
+         col = "darkgray")
+segments(lodint8[3, 2], rep(0,2), lodint8[3,2], lodint8[3,4],
+         col = "darkgray")
 dev.off()
 ```
 
 
 ```{r}
 jpeg(file.path(figpath, "Bnapus_lod2.jpg"), width=750, height=400)
-plot(fl4, lodcolumn=1:2, chr="N2", ylab="LOD")
+plot(fl48, lodcolumn=1:2, chr="N2", ylab="LOD")
 mtext("flowering time: 4 (black) and 8 (blue) weeks")
 dev.off()
+```
+
+## 2 QTL
+
+```{r}
+pl4_2 <- scantwo(Bnapus, "N2", find.pheno(Bnapus, "logflower4"))
+```
+
+```{r}
+plot(pl4_2, col.scheme = "gray")
+```
+
+```{r}
+pl8_2 <- scantwo(Bnapus, "N2", find.pheno(Bnapus, "logflower8"))
+```
+
+```{r}
+plot(pl8_2, col.scheme = "gray")
 ```
 
 ## Pleiotropy vs close linkage
