@@ -137,12 +137,20 @@ dev.off()
 ```
 
 ```{r message=FALSE}
-fl4_perm <- scanone(Bnapus,, find.pheno(Bnapus, "logflower4"),
-                    n.perm = 1000)
+if(file.exists("fl4_perm.rds")) {
+  fl4_perm <- readRDS("fl4_perm.rds")
+} else {
+  fl4_perm <- scanone(Bnapus,, find.pheno(Bnapus, "logflower4"),
+                      n.perm = 1000)
+  saveRDS(fl4_perm, "fl4_perm.rds")
+}
 ```
 
 ```{r}
 (lodint4 <- lodint(fl48, "N2", lodcolumn=1))
+```
+
+```{r}
 (sum4 <- summary(fl4_perm))
 ```
 
@@ -191,7 +199,57 @@ mtext("flowering time: 4 (black) and 8 (blue) weeks")
 dev.off()
 ```
 
+## pheno as covariate
+
 ## 2 QTL
+
+```{r message=FALSE,error=FALSE}
+fl4_cov <- scanone(Bnapus, "N2", 
+                     find.pheno(Bnapus, "logflower4"),
+                     addcovar = Bnapus$pheno$logflower8)
+fl8_cov <- scanone(Bnapus, "N2", 
+                     find.pheno(Bnapus, "logflower8"),
+                     addcovar = Bnapus$pheno$logflower4)
+```
+
+```{r}
+jpeg(file.path(figpath, "Bnapus_pheno_covar.jpg"), width=600, height=400)
+par(mfrow=c(2,1), mar=c(4,4,0,0))
+plot(fl48, chr="N2", lodcolumn = 1)
+abline(v=lodint4[2,2], col="red", lwd=2, lty=2)
+plot(fl4_cov, lodcolumn =1, add=TRUE, col="blue")
+plot(fl48, chr="N2", lodcolumn = 2)
+abline(v=lodint8[2,2], col="red", lwd=2, lty=2)
+plot(fl8_cov, lodcolumn = 1, add=TRUE, col="blue")
+dev.off()
+```
+
+#### QTL as covariate
+
+```{r message=FALSE,error=FALSE}
+geno_max <- pull.argmaxgeno(argmax.geno(Bnapus))[,find.marker(Bnapus, "N2", lodint4[2,2])]
+fl4_qtl1 <- scanone(Bnapus, "N2", 
+                     find.pheno(Bnapus, "logflower4"),
+                     addcovar = geno_max)
+geno_max <- pull.argmaxgeno(argmax.geno(Bnapus))[,find.marker(Bnapus, "N2", lodint8[2,2])]
+fl8_qtl1 <- scanone(Bnapus, "N2", 
+                     find.pheno(Bnapus, "logflower8"),
+                     addcovar = geno_max)
+```
+
+```{r}
+jpeg(file.path(figpath, "Bnapus_covar.jpg"), width=600, height=400)
+par(mfrow=c(2,1), mar=c(4,4,0,0))
+plot(fl48, chr="N2", lodcolumn = 1)
+abline(v=lodint4[2,2], col="red", lwd=2, lty=2)
+plot(fl4_qtl1, lodcolumn =1, add=TRUE, col="blue")
+plot(fl48, chr="N2", lodcolumn = 2)
+abline(v=lodint8[2,2], col="red", lwd=2, lty=2)
+plot(fl8_qtl1, lodcolumn = 1, add=TRUE, col="blue")
+dev.off()
+```
+
+#### 2-D scan
 
 ```{r}
 pl4_2 <- scantwo(Bnapus, "N2", find.pheno(Bnapus, "logflower4"))
@@ -219,6 +277,51 @@ plot(pl8_2, col.scheme = "gray",
      ylab="interaction (f-a)")
 title("8 week vernalization")
 dev.off()
+```
+
+#### multiqtl with R/qtl
+
+```{r}
+trait <- "logflower4"
+Bnapus4 <- subset(Bnapus, chr="N2",
+                  ind = !is.na(Bnapus$pheno[[trait]]))
+Bnapus4$pheno <- Bnapus4$pheno[, trait, drop=FALSE]
+Bnapus4 <- sim.geno(Bnapus4, step=5, n.draws=128, err=0.001, stepwidth="max")
+(qfl4 <- makeqtl(Bnapus4, chr = "N2", pos = lodint4[2,2], what="draws"))
+```
+
+```{r}
+aqfl4 <- addqtl(Bnapus4, qtl=qfl4, formula = y~Q1)
+```
+
+```{r}
+trait <- "logflower8"
+Bnapus8 <- subset(Bnapus, chr="N2",
+                  ind = !is.na(Bnapus$pheno[[trait]]))
+Bnapus8$pheno <- Bnapus8$pheno[, trait, drop=FALSE]
+Bnapus8 <- sim.geno(Bnapus8, step=5, n.draws=128, err=0.001, stepwidth="max")
+(qfl8 <- makeqtl(Bnapus8, chr = "N2", pos = lodint8[2,2]))
+```
+
+```{r}
+aqfl8 <- addqtl(Bnapus8, qtl=qfl8, formula = y~Q1)
+```
+
+```{r}
+jpeg(file.path(figpath, "Bnapus_addqtl.jpg"), width=600, height=400)
+par(mfrow=c(2,1), mar=c(4,4,0,0))
+plot(fl48, chr="N2", lodcolumn=1)
+abline(v=qfl4$pos, lty=2, lwd=2, col="red")
+plot(aqfl4, add=TRUE, col="blue")
+plot(fl48, chr="N2", lodcolumn=2)
+abline(v=qfl8$pos, lty=2, lwd=2, col="red")
+plot(aqfl8, add=TRUE, col="blue")
+dev.off()
+```
+
+```{r}
+rqfl48 <- refineqtl(Bnapus2, qtl=qfl48,
+                    formula = y~Q1)
 ```
 
 ## Pleiotropy vs close linkage

@@ -101,6 +101,10 @@ $$\texttt{lod}_i(\lambda_1,\lambda_2) = l_f(\lambda_1,\lambda_2) - l_a(\lambda_1
 usual 1 QTL vs no QTL ($1-0$): 
 $$\texttt{lod}_1(\lambda_1) = l_1(\lambda_1) - l_0$$
 
+## flowering time: add QTL?
+
+![](../Figs/Bnapus_addqtl.jpg)
+
 ## flowering time 2-D search
 
 <img src="../Figs/Bnapus_4_2.jpg" alt="flower 4_2" 
@@ -325,45 +329,3 @@ $$K = c*M'M$$
     + `calc_kinship` with `type="loco"` to compute $K$
     + `scan1` with `kinship` option to fit mixed model
 - <span style="font-size: 75%">Karl Broman (UW-Madison) R package suite</span>
-
-## covariates
-
-- examples: treatment, sex, age, weight
-- control residual variation to increase power
-- look for QTL * covariate interactions
-
-## additive covariate
-
-$$\text{H}_0: y  =  \mu + \beta_x x + e$$  
-$$\text{H}_a: y  =  \mu + \beta_x x + \beta_q q + e$$
-
-- If covariate has strong effect on the phenotype, accounting for
-  it can give improved power to detect QTL.
-- In permutations, keep phenotype and covariate together
-- Use care when the covariate is another phenotype
-
-## additive covariate
-
-<img src="../Figs/addcovar.jpg" alt="add covar" style="width: 700px"/>
-
-## adjust then scan?
-
-<img src="../Figs/y_over_x.jpg" alt="y over x" style="width:400px; float:right"/>
-
-- consider ratio: $y/x$
-- QTL model  
-
-$(y/x) = \mu + \beta_q q + e$
-
-- equivalently
-
-$y = \mu \ x + e$ if $q = 0$  
-$y = (\mu + \beta_q) x + e$ if $q = 1$
-
-## interactive covariate
-
-Models to compare:
-
-$$\texttt{H}_0: y = \mu + \beta_x x + e$$
-$$\texttt{H}_a: y = \mu + \beta_x x + \beta_q q + e$$
-$$\texttt{H}_i: y = \mu + \beta_x x + \beta_q q + \gamma x q + e$$

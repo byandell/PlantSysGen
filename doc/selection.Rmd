@@ -10,6 +10,15 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+## Selection?
+
+- natural selection: survival of the fittest
+- model selection: search for QTLs
+- selection bias: overestimate of QTL effects
+- marker assisted selection: read on ...
+- genomic selection: read on ...
+- genome-wide selection: read on ...
+
 ## Genome-wide selection (GS)
 
 - Use markers to improve selection for complex traits
@@ -40,6 +49,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## New paradigm: use "all" markers
 
+- genomic or genome-wide selection
 - using only significant markers to predict trait
     + good estimates (maybe) of those markers
     + but does not maximize accuracy

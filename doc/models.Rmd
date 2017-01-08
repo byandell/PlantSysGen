@@ -455,6 +455,56 @@ but 1.5 LOD support interval is narrower
 
 ![](../Figs/Bnapus_lodint.jpg)
 
+## covariates
+
+- examples: treatment, sex, age, weight
+- control residual variation to increase power
+- look for QTL * covariate interactions
+
+## additive covariate
+
+$$\text{H}_0: y  =  \mu + \beta_x x + e$$  
+$$\text{H}_a: y  =  \mu + \beta_x x + \beta_q q + e$$
+
+- If covariate has strong effect on the phenotype, accounting for
+  it can give improved power to detect QTL.
+- In permutations, keep phenotype and covariate together
+- Use care when the covariate is another phenotype
+
+## additive covariate
+
+<img src="../Figs/addcovar.jpg" alt="add covar" style="width: 700px"/>
+
+## flower time phenotype as covariate
+
+![](../Figs/Bnapus_pheno_covar.jpg)
+
+## flowering time: QTL as covariate
+
+![](../Figs/Bnapus_covar.jpg)
+
+## adjust then scan?
+
+<img src="../Figs/y_over_x.jpg" alt="y over x" style="width:400px; float:right"/>
+
+- consider ratio: $y/x$
+- QTL model  
+
+$(y/x) = \mu + \beta_q q + e$
+
+- equivalently
+
+$y = \mu \ x + e$ if $q = 0$  
+$y = (\mu + \beta_q) x + e$ if $q = 1$
+
+## interactive covariate
+
+Models to compare:
+
+$$\texttt{H}_0: y = \mu + \beta_x x + e$$
+$$\texttt{H}_a: y = \mu + \beta_x x + \beta_q q + e$$
+$$\texttt{H}_i: y = \mu + \beta_x x + \beta_q q + \gamma x q + e$$
+
 ## References
 
 - <span style="font-size: 75%">Broman KW (2001) Review of statistical methods for QTL mapping in experimental
