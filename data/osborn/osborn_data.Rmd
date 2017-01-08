@@ -130,7 +130,7 @@ fl48 <- scanone(Bnapus,, find.pheno(Bnapus, c("logflower4","logflower8")))
 
 ```{r}
 jpeg(file.path(figpath, "Bnapus_lod.jpg"), width=750, height=400)
-par(mar=c(4,4,0,0))
+par(mar=c(4,4,1,0))
 plot(fl48, lodcolumn=1:2, ylab="LOD", lwd=4)
 mtext("flowering time: 4 (black) and 8 (blue) weeks")
 dev.off()
@@ -160,7 +160,7 @@ if(file.exists("fl4_perm.rds")) {
 
 ```{r}
 jpeg(file.path(figpath, "Bnapus_perm.jpg"), width=750, height=400)
-par(mar=c(4,4,0,0))
+par(mar=c(4,4,1,0))
 plot(fl48, chr = "N2", lodcolumn=1:2, ylab="LOD", lwd=4)
 mtext("flowering time: 4 (black) and 8 (blue) weeks")
 abline(h=sum4, lty=2, lwd=2, col="red")
@@ -169,7 +169,7 @@ dev.off()
 
 ```{r}
 jpeg(file.path(figpath, "Bnapus_lodint.jpg"), width=750, height=400)
-par(mar=c(4,4,0,0))
+par(mar=c(4,4,1,0))
 plot(fl48, chr = "N2", lodcolumn=1:2, ylab="LOD", lwd=4)
 mtext("flowering time: 4 weeks")
 abline(h=summary(fl4_perm), lty=2, lwd=2, col="red")
@@ -193,7 +193,7 @@ dev.off()
 
 ```{r}
 jpeg(file.path(figpath, "Bnapus_lod2.jpg"), width=750, height=400)
-par(mar=c(4,4,0,0))
+par(mar=c(4,4,1,0))
 plot(fl48, lodcolumn=1:2, chr="N2", ylab="LOD", lwd=4)
 mtext("flowering time: 4 (black) and 8 (blue) weeks")
 dev.off()

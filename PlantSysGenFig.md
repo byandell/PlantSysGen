@@ -1,17 +1,29 @@
 ---
 title: "PlantSysGen Figures"
 author: "Brian S. Yandell"
-date: "1/3/2017"
+date: "January 2017"
 output: html_document
 ---
 
 ## Brassica napus ([data/osborn](data/osborn/osborn_data.Rmd)) example
 
+- Bnapus_addqtl.jpg
 - Bnapus_anova.jpg
+- Bnapus_covar.jpg
 - Bnapus_genotype.jpg
 - Bnapus_genotype4.jpg
+- Bnapus_linkage.jpg
+- Bnapus_lod.jpg
+- Bnapus_lodint.jpg
+- Bnapus_lod2.jpg
 - Bnapus_map.jpg
+- Bnapus_perm.jpg
 - Bnapus_pheno.jpg
+- Bnapus_pheno_covar.jpg
+- Bnapus_pleiotropyl.jpg
+- Bnapus_1qtl.jpg
+- Bnapus_4_2.jpg
+- Bnapus_8_2.jpg
 
 ## Broman Jackson lab talks ([broman](broman/brofig.Rmd))
 

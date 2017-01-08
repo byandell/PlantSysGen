@@ -1,0 +1,33 @@
+---
+title: "Extra Slides not Used"
+author: "Brian S. Yandell, UW-Madison"
+date: "January 2017"
+output:
+  ioslides_presentation: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## adjust then scan?
+
+<img src="../Figs/y_over_x.jpg" alt="y over x" style="width:400px; float:right"/>
+
+- consider ratio: $y/x$
+- QTL model  
+
+$(y/x) = \mu + \beta_q q + e$
+
+- equivalently
+
+$y = \mu \ x + e$ if $q = 0$  
+$y = (\mu + \beta_q) x + e$ if $q = 1$
+
+## interactive covariate
+
+Models to compare:
+
+$$\texttt{H}_0: y = \mu + \beta_x x + e$$
+$$\texttt{H}_a: y = \mu + \beta_x x + \beta_q q + e$$
+$$\texttt{H}_i: y = \mu + \beta_x x + \beta_q q + \gamma x q + e$$
