@@ -270,6 +270,12 @@ $$h^2 - h_\texttt{QTL}^2 > 0$$
 
 <span style="font-size: 50%">Eskin (2106 draft) Review doi:10.1101/092106</span>
 
+## indirect correlation
+
+<img src="../Figs/Eskin_indirect.png" alt="Eskin indirect" style="width: 700px"/>
+
+<span style="font-size: 50%">Eskin (2106 draft) Review doi:10.1101/092106</span>
+
 ## mixed model: QTL + GWA
 
 $$y = \mu_q + g + e$$
@@ -294,7 +300,7 @@ $I$ = identity matrix (1s on diagonal, 0s off diagonal)
     + used to select markers to be neutral
     + now use markers away from QTL $q$
 
-$$K = c*M'M$$
+$$K = c*M^{\text{T}}M$$
 $c$ set so diagonal of $K$ is 1
 
 ## PHE = QTL + GWA + ENV example
@@ -309,7 +315,7 @@ $$y \sim N(\mu_q,V), V =\sigma_g^2K + \sigma^2I$$
 
 iterate to solve (similar to EM idea)
 
-- get MLE of $\mu_q$ given $V$
+- get MLE of $\mu_q$ given $V$: $\hat{\mu}_q=(V^{\text{T}}V)^{-1}V^{\text{T}}y$
 - estimate $\sigma_g$ and $\sigma^2$ given $\mu_q$
 
 ## mixed model software for QTL and GWA
@@ -372,10 +378,24 @@ models & methods refined as technology advanced
 
 ![](../Figs/DO_lod_kinship.jpg)
 
-
 ## detail for key chromosome
 
 ![](../Figs/DO_lod_kinship2.jpg)
+
+## allele scan on chr 2
+
+![](../Figs/DO_allele.jpg)
+
+## allele scan on chr 2 with BLUP
+
+![](../Figs/DO_allele_blup.jpg)
+
+## Detailed look in region of peak
+
+- consider SNPs within region of peak
+- $t$-test for differences
+- SNPs have different patterns across founders
+- use SNPs to refine search
 
 ## SNP scans
 

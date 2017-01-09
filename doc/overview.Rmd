@@ -24,7 +24,7 @@ knitr::opts_chunk$set(echo = FALSE)
     + [Days to Flowering](osborn_two.html)
     + [Root Tip Growth](moore_time.html)
 
-## Overview
+## overview
 
 Systems genetics is an approach to understand the flow of biological information that underlies complex traits. 
 
@@ -32,8 +32,8 @@ Systems genetics is an approach to understand the flow of biological information
 
 how to relate phenotype to genotype
 
-- gene mapping (QTL or linkage analysis)
-- genomic selection (MAS)
+- genetic effects (QTL & GWA)
+- prediction & selection (MAS, GS)
 
 with changing technology
 
@@ -43,7 +43,7 @@ with changing technology
 
 <span style="font-size: 50%">Figure: plantcellbiology.masters.grkraj.org</span>
 
-## Thanks up front
+## thanks up front
 
 - [Karl Broman, UW-Madison](http://kbroman.org)
 - [Jeff Endelman, UW-Madison](http://potatobreeding.cals.wisc.edu/people/)
@@ -53,7 +53,7 @@ with changing technology
 - [Alan Attie, UW-Madison](https://biochem.wisc.edu/faculty/attie)
 - UW-Madison sabbatical program
 
-## Approach in these talks
+## approach in these talks
 
 mix of presentation style to plant-based audience
 
@@ -64,16 +64,17 @@ mix of presentation style to plant-based audience
     + [qtl](http://rqtl.org): basic gene mapping
     + [rrBLUP](http://potatobreeding.cals.wisc.edu/software/): genome-wide prediction & GWAS
     + [qtl2](http://kbroman.org/qtl2/): high throughput gene mapping
+- see <https://github.com/byandell/PlantSysGen> `data` folder
 
-## Challenges of systems genetics experiments 
+## challenges in systems genetics 
 
-Simpler models yield clearer results
+simpler models yield clearer results
 
 - compare 2 conditions 
 - examine linear trend
 - control for other factors
 
-But reality may be more complicated
+but reality may be more complicated
 
 - masking of genetic effect (by background, etc.)
 - subtle timing (when to measure)
@@ -84,30 +85,29 @@ But reality may be more complicated
 
 genetic information (genotype)
 
-- genetic markers discovered by accident (RFLP)
+- genetic markers discovered by accident (RFLP,...)
 - dense sets of polymorphic markers (SNP, GBS)
 - whole genomes sequencing
 
 trait information (phenotype)
 
-- physiological (internal) & environmental (external) measurements
-- molecules and images
-- inexpensive, high volume assays on 100s or 1000s of plants
+- physiology (internal) & environment (external)
+- molecules & images
+- inexpensive, high volume assays $100-10,000s$ of plants
 
 (individual cell technologies not covered here) 
 
 ## Genotyping
 
 - RFLPs & other early technologies 
-- SNPs & other structural variants
+- structural variants
+    + SNPs (single nucleotide polymorphisms)
     + InDels, inversions, larger blocks (100s-1000s of bps)
-    + huge blocks (20k+ bps)
-- GBS
-- RNA-Seq to genotype
+    + huge blocks (20K+ bps)
+- GBS (genotype by sequence)
+- read genotype from RNA-Seq
 - Cautions:
-    + missing data
-    + mistakes in reads
-    + sample mixups
+    + missing data, mistakes in reads, sample mixups
     + biases in technologies 
     + reference sequence vs other founders
 
@@ -119,8 +119,8 @@ trait information (phenotype)
     + multi-parent populations (MPP)
 - model selection: how phenotypes relate to genotypes
     + single marker regressions & interval mapping (QTL)
-    + association mapping (including GWAS)
-    + account for non-locus genetic effects
+    + association mapping (including GWA)
+    + account for non-locus genetic effects (again GWA)
 - estimation and prediction
     + genetic action (additive, dominance, epistasis)
     + marker assisted selection (MAS)
@@ -149,7 +149,7 @@ without advances in computational technology.
     + genomic locations
     + genetic action on phenotypes
 
-great time to become involved in modern approaches
+Great time to become involved in modern approaches!
 
 - many challenges
 - many opportunities for substantial contributions

@@ -25,6 +25,18 @@ knitr::opts_chunk$set(echo = FALSE)
     + share with colleagues (in real time)
     + reach beyond domain boundaries
 
+## tools & workflow: big idea
+
+<img src="../Figs/sysgen_big_pic.png" alt="sysgen_big_pic" style="width: 700px"/>
+
+## team research aims
+
+<img src="../Figs/team_research_aims.png" alt="team_research_aims" style="width: 700px"/>
+
+## tools workflow
+
+<img src="../Figs/tools_workflow.png" alt="tools_workflow" style="width: 700px"/>
+
 ## Technology tools and platforms
 
 - types of tools

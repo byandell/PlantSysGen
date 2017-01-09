@@ -37,6 +37,7 @@ First we set up needed packages, or libraries.
 library(qtl2geno)
 library(qtl2scan)
 library(qtl2ggplot)
+library(rrBLUP)
 ```
 
 Could read in data over the internet. We do it here with local copy,
@@ -105,119 +106,24 @@ plot(pheno_scan)
 Calculate kinship matrices using the `"loco"` option, which calculates kinship for each chromosome using SNPs from all but that chromosome.
 
 ```{r}
-kinship <- calc_kinship(apr, "loco")
-```
-
-Create a copy of the phenotype matrix and rename the phenotype to `"OF_kinship"`
-for plotting purposes. Do genome scan.
-
-```{r}
-pheno_2 <- DOex$pheno
-dimnames(pheno_2)[[2]] <- "OF_kinship"
-pheno_scan_2 <- scan1(apr, pheno_2, kinship)
-plot(pheno_scan_2)
-```
-
-Bind the two scans together and plot.
-
-```{r}
-pheno_scan_2 <- cbind(pheno_scan, pheno_scan_2)
+kinship_all <- calc_kinship(apr, "overall")
+data1 <- data.frame(y=DOex$pheno[,1],gid=as.numeric(row.names(DOex$pheno)))
+rr_blup <- kin.blup(data1, K = kinship_all,
+                 geno="gid", pheno="y")
 ```
 
 ```{r}
-jpeg(file.path("../../Figs", "DO_lod_kinship.jpg"), width=800, height=400)
-par(mar=c(4,4,1,0))
-plot(pheno_scan_2, 1:2) +
-  ggplot2::ggtitle("LOD with and without kinship adjustment")
-dev.off()
-```
-
-## Subset to chr 2
-
-```{r}
-jpeg(file.path("../../Figs", "DO_lod_kinship2.jpg"), width=800, height=400)
-plot(pheno_scan_2, 1:2, chr="2")
-dev.off()
-```
-
-## Allele scans
-
-```{r}
-eff <- scan1coef(apr, DOex$pheno)
-plot_coefCC(eff) +
-  geom_vline(xintercept = max(pheno_scan_2)$pos, linetype="dashed")
-```
-
-
-```{r}
-effk <- scan1coef(apr, DOex$pheno, kinship[[1]])
-jpeg(file.path("../../Figs", "DO_allele.jpg"), width=800, height=400)
-plot_coefCC(effk) +
-  geom_vline(xintercept = max(pheno_scan_2)$pos, linetype="dashed")
-dev.off()
+round(cor(rr_blup$g,data1$y),2)
 ```
 
 ```{r}
-effb <- scan1blup(apr, DOex$pheno, kinship[[1]])
-jpeg(file.path("../../Figs", "DO_allele_blup.jpg"), width=800, height=400)
-plot_coefCC(effb) +
-  geom_vline(xintercept = max(pheno_scan_2)$pos, linetype="dashed")
-dev.off()
+library(ggplot2)
+dat <- data.frame(x = data1$y,
+                  y = rr_blup$g)
+ggplot(dat, aes(x,y)) + 
+  geom_point() +
+  geom_smooth(method="lm",se=FALSE) +
+  geom_abline(intercept = 0, slope = 1)
 ```
 
-# Set up SNP info on chr 2.
-
-Read `snpinfo` from file.
-
-```{r}
-snpinfo <- readRDS(snp_file)
-```
-
-Calculate strain distribution patterns.
-
-```{r}
-snpinfo$sdp <- calc_sdp(snpinfo[,-(1:4)])
-```
-
-Convert to snp probabilities.
-
-```{r}
-snppr <- genoprob_to_snpprob(apr[,"2"], snpinfo)
-```
-
-## SNP association analysis
-
-Perform SNP association analysis.
-
-```{r}
-out_snps <- scan1(snppr, DOex$pheno, kinship[["2"]])
-```
-
-Plot results
-
-```{r}
-jpeg(file.path("../../Figs", "DO_SNP.jpg"), width=800, height=400)
-plot(out_snps, cex=2, drop.hilit=2.5)
-dev.off()
-```
-
-Show strain distribution patterns in SNPs.
-
-```{r}
-jpeg(file.path("../../Figs", "DO_SNP_pattern.jpg"), width=800, height=400)
-plot(out_snps, patterns="all",drop.hilit=2.5,cex=2)
-dev.off()
-```
-
-Show only top strain distribution patterns in SNPs.
-
-```{r}
-jpeg(file.path("../../Figs", "DO_SNP_pattern_best.jpg"), width=800, height=400)
-plot(out_snps, patterns="hilit",drop.hilit=2.5,cex=2, ylim=c(4,8))
-dev.off()
-```
-
-```{r}
-(tmp <- top_snps(out_snps)[,c("snp_id","pos_Mbp", "alleles", "sdp", "lod")])
-```
-
+Want to do on test set and training set. Also need to account for how mean and variance changed
