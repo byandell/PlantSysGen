@@ -52,7 +52,6 @@ models & methods refined as technology advanced
 
 <img src="../Figs/epistasis_bc_bw.jpg" alt="Epistasis BC" style="width: 700px"/>
 
-    
 ## epistasis in F2
 
 <img src="../Figs/epistasis_f2_bw.jpg" alt="Epistasis F2" style="width: 700px"/>
@@ -121,6 +120,13 @@ fancier form of using first QTL as covariate
 
 <img src="../Figs/Bnapus_addqtl.jpg" alt="flower lod" 
  style="width: 350px; float:left"/>
+
+## _Brassica_ FLC homologs (6 years later)
+
+<img src="../Figs/F3.osborn.gif" alt="flower lod" 
+ style="float:center"/>
+
+<a href="http://www.genetics.org/content/162/3/1457"><span style="font-size: 75%">Schranz et al. Osborn (2002)</span></a>
 
 ## model search and selection
 
@@ -333,3 +339,53 @@ iterate to solve (similar to EM idea)
     + `calc_kinship` with `type="loco"` to compute $K$
     + `scan1` with `kinship` option to fit mixed model
 - <span style="font-size: 75%">Karl Broman (UW-Madison) R package suite</span>
+
+## evolution of QTL models
+
+original ideas focused on rare & costly markers  
+models & methods refined as technology advanced
+
+- single marker regression
+- QTL (quantitative trait loci)
+    + single locus models: interval mapping for QTL
+    + multiple QTL models: epistasis
+- GWA (genome-wide association mapping)
+    + adjust for population structure
+    + capture "missing heritability"
+- **multi-parent populations (MPP)**
+
+## Diversity Outbred experiment
+
+<img src="../Figs/DO_laura_vanderploeg.jpg" 
+  alt="DO" 
+  style="width: 300px; float:right"/>
+
+- 283 mice 
+- Diversity Outbred cross
+- generations 4 & 5
+- 320 (of 7851) SNP markers
+- phenotype = `OF_immobile_pct`
+- <span style="font-size: 75%">Data: <https://github.com/rqtl/qtl2data/></span>  
+- <a href="http://dx.doi.org/10.1007/s00335-014-9508-0"><span style="font-size: 75%">Recla, Robledo, Gatti, Bult, Churchill, Chesler (2014)</span></a>
+
+## genome scans with kinship
+
+![](../Figs/DO_lod_kinship.jpg)
+
+
+## detail for key chromosome
+
+![](../Figs/DO_lod_kinship2.jpg)
+
+## SNP scans
+
+![](../Figs/DO_SNP.jpg)
+
+## SNP patterns
+
+![](../Figs/DO_SNP_pattern.jpg)
+
+## SNP best patterns
+
+![](../Figs/DO_SNP_pattern_best.jpg)
+

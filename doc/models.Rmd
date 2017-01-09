@@ -372,7 +372,9 @@ SD computed given model means: $\hat{\sigma}_\lambda, \hat{\sigma}$
 
 ## LOD profile for one chromosome
 
-![](../Figs/Bnapus_lod2.jpg)
+<img src="../Figs/Bnapus_lod2.jpg" alt="Interactive LOD curve" style="width: 800px"/>
+
+LOD and means by genotype scans on chr N2
 
 ## [Interactive LOD scan](http://www.biostat.wisc.edu/~kbroman/D3/lod_and_effect/) 
 

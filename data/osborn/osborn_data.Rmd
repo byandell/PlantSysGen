@@ -191,17 +191,9 @@ dev.off()
 ```
 
 
-```{r}
-jpeg(file.path(figpath, "Bnapus_lod2.jpg"), width=750, height=400)
-par(mar=c(4,4,1,0))
-plot(fl48, lodcolumn=1:2, chr="N2", ylab="LOD", lwd=4)
-mtext("flowering time: 4 (black) and 8 (blue) weeks")
-dev.off()
-```
-
-## pheno as covariate
-
 ## 2 QTL
+
+#### pheno as covariate
 
 ```{r message=FALSE,error=FALSE}
 fl4_cov <- scanone(Bnapus, "N2", 
@@ -320,7 +312,7 @@ dev.off()
 ```
 
 ```{r}
-rqfl48 <- refineqtl(Bnapus2, qtl=qfl48,
+rqfl4 <- refineqtl(Bnapus4, qtl=qfl4,
                     formula = y~Q1)
 ```
 
@@ -381,3 +373,37 @@ abline(0,1)
 dev.off()
 ```
 
+
+#### effects
+
+```{r}
+eff4 <- effectscan(Bnapus4, find.pheno(Bnapus4, "logflower4"), "N2")
+```
+
+```{r}
+eff8 <- effectscan(Bnapus8, find.pheno(Bnapus8, "logflower8"), "N2")
+```
+
+```{r}
+jpeg(file.path(figpath, "Bnapus_lod2.jpg"), width=900, height=450)
+par(mfrow=c(2,2), mar=c(4,4,2,0))
+ylim <- range(fl48$logflower4, fl48$logflower8, na.rm=TRUE)
+plot(fl48, lodcolumn=1, chr="N2", ylab="LOD", lwd=4, ylim=ylim)
+mtext("logflower4")
+plot(fl48, lodcolumn=2, chr="N2", ylab="LOD", lwd=4, ylim=ylim, col="blue")
+mtext("logflower8")
+eff4$AB <- mean(Bnapus4$pheno$logflower4) + eff4$a/2
+eff4$AA <- mean(Bnapus4$pheno$logflower4) - eff4$a/2
+eff8$AB <- mean(Bnapus8$pheno$logflower8) + eff8$a/2
+eff8$AA <- mean(Bnapus8$pheno$logflower8) - eff8$a/2
+ylim <- range(eff4$AB, eff4$AA, eff8$AB, eff8$AA, na.rm=TRUE)
+plot(eff4, lodcolumn = 2:3, ylim = ylim,
+     ylab = "mean by genotype", lwd=4)
+abline(v = lodint4[2,2], col="red", lwd=2, lty=2)
+mtext("black = AA; blue = AB")
+plot(eff8, lodcolumn = 2:3, ylim = ylim,
+     ylab = "mean by genotype", lwd=4)
+abline(v = lodint8[2,2], col="red", lwd=2, lty=2)
+mtext("black = AA; blue = AB")
+dev.off()
+```

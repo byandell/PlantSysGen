@@ -122,13 +122,22 @@ Bind the two scans together and plot.
 
 ```{r}
 pheno_scan_2 <- cbind(pheno_scan, pheno_scan_2)
-plot(pheno_scan_2, 1:2)
+```
+
+```{r}
+jpeg(file.path("../../Figs", "DO_lod_kinship.jpg"), width=800, height=400)
+par(mar=c(4,4,1,0))
+plot(pheno_scan_2, 1:2) +
+  ggplot2::ggtitle("LOD with and without kinship adjustment")
+dev.off()
 ```
 
 ## Subset to chr 2
 
 ```{r}
+jpeg(file.path("../../Figs", "DO_lod_kinship2.jpg"), width=800, height=400)
 plot(pheno_scan_2, 1:2, chr="2")
+dev.off()
 ```
 
 
@@ -163,17 +172,23 @@ out_snps <- scan1(snppr, DOex$pheno, kinship[["2"]])
 Plot results
 
 ```{r}
+jpeg(file.path("../../Figs", "DO_SNP.jpg"), width=800, height=400)
 plot(out_snps, cex=2, drop.hilit=2.5)
+dev.off()
 ```
 
 Show strain distribution patterns in SNPs.
 
 ```{r}
+jpeg(file.path("../../Figs", "DO_SNP_pattern.jpg"), width=800, height=400)
 plot(out_snps, patterns="all",drop.hilit=2.5,cex=2)
+dev.off()
 ```
 
 Show only top strain distribution patterns in SNPs.
 
 ```{r}
+jpeg(file.path("../../Figs", "DO_SNP_pattern_best.jpg"), width=800, height=400)
 plot(out_snps, patterns="hilit",drop.hilit=2.5,cex=2, ylim=c(4,8))
+dev.off()
 ```

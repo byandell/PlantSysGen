@@ -69,6 +69,7 @@ if(!dir.exists("Rcache")) {
 ```{r}
 source(file.path(bropath, "Intro/R", "loddist_fig.R"))
 source(file.path(bropath, "Intro/R", "permtest.R"))
+source("permcovar.R")
 ```
 
 ```{r}

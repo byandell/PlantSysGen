@@ -24,6 +24,7 @@ output: html_document
 - Bnapus_1qtl.jpg
 - Bnapus_4_2.jpg
 - Bnapus_8_2.jpg
+- [F3.osborn.gif](http://www.genetics.org/content/162/3/1457)
 
 ## Broman Jackson lab talks ([broman](broman/brofig.Rmd))
 
