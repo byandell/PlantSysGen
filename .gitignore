@@ -13,6 +13,7 @@
 *.pdf
 *.html
 *.gz
+*.txt
 _site/
 data/DO_mice/do
 data/moore/?IL*

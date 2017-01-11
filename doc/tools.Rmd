@@ -48,6 +48,12 @@ knitr::opts_chunk$set(echo = FALSE)
 - Scaling up
     + Massive data: storage, management, access, sharing
     + Workflow steps: engine/CPU, organizing, scheduling
+    
+## data recording hardware
+
+![](../Figs/SpaldingHardware.jpeg)
+
+<span style="font-size: 75%">http://phytomorph.wisc.edu (Edgar Spalding Lab)</span>
 
 ## Sharing with authentication
 

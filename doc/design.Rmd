@@ -100,5 +100,52 @@ knitr::opts_chunk$set(echo = FALSE)
 
 <span style="font-size: 75%">Laura Vanderploeg, Jackson Labs</span>
 
+## Osborn _Brassica napus_ intercross
+
+- 104 doubled haploid (DH) lines
+- 300 markers on 19 chromosomes
+    + originally scattered linkage groups
+- 9 phenotypes (flowering time & seedling survival)
+
+<span style="font-size: 75%">Ferreira, Satagopan, Yandell, Williams, Osborn (1995) TAG</span>  
+<span style="font-size: 75%">Satagopan, Yandell, Newton, Osborn (1996) Genetics</span>
+
+## Moore/Spalding _A. thaliana_ NIL & RILs
+
+- _Arabidopsis thaliana_ Ler x Cvi population
+    + 92 near-isogenic lines (NIL); 2525 seedlings
+    + 162 RILs; 2132 (RIL1) or 2325 (RIL2) seedlings
+- genotypes: 102 (NIL) or 234 (RILs) markers on 5 chr
+- phenotypes: 241 root tip angles, every 2 min
+- automated image acquisition & analysis
+    + images: 7000 lines x 241 time points
+    + genome scans across all time points
+- botany / computer science / biostatistics collaboration
+
+<span style="font-size: 75%">Moore, Johnson, Kwak, Livny, Broman, Spalding (2013)</span>
+
+## Diversity Outbred example
+
+<img src="../Figs/DO_laura_vanderploeg.jpg" 
+  alt="DO" 
+  style="width: 300px; float:right"/>
+
+- 283 mice (generations 4 & 5)
+- 320 (of 7851) SNP markers
+- phenotype = `OF_immobile_pct` (of 1000s)
+- <span style="font-size: 75%">Data: <https://github.com/rqtl/qtl2data/></span>  
+- <a href="http://dx.doi.org/10.1007/s00335-014-9508-0"><span style="font-size: 75%">Recla, Robledo, Gatti, Bult, Churchill, Chesler (2014)</span></a>
+
+## Attie/Jax DO population
+
+- 8 CC founder strains (generation 19-22)
+- 500 mice in 5 waves
+- multiple traits measured
+    + 150K SNP GIGA-MUGA chip imputed to 40M SNPs
+    + 100s clinical traits (insulin secretion)
+    + 30K RNA-Seq expression traits
+    + 2K proteomic, 200 metabolomic, 200 lipidomic
+    + microbiome: 2K of 16s; 1M of sequencing
+
 
 

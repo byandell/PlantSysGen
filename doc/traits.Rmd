@@ -57,6 +57,29 @@ knitr::opts_chunk$set(echo = FALSE)
 - causal relationships among traits?
 - effects of QTL across time
 
+## gravitopic response: root tip
+
+<img
+  src="../Figs/genetics.113.153346.gif" alt="root tip"
+  style="width: 350px; float:right"/>
+
+- _Arabidopsis thaliana_ Ler x Cvi
+    + 92 NIL; 2525 seedlings
+    + 162 RILs; 2132 (RIL1) or 2325 (RIL2) seedlings
+- genotypes: 102 (NIL) or 234 (RILs) markers on 5 chr
+
+- root tip angles every 2 min
+
+<span style="font-size: 75%">Moore, Johnson, Kwak, Livny, Broman, Spalding (2013)</span>
+  
+## [gravitropic response over time](http://kbroman.org/qtlcharts/example/iplotMScanone.html)
+
+<a href="http://kbroman.org/qtlcharts/example/iplotMScanone.html"><img
+  src="../Figs/Screen Shot_iplotMScanone.png" alt="Interactive scan over time"
+  style="width: 600px"/></a>
+
+<span style="font-size: 75%">Moore, Johnson, Kwak, Livny, Broman, Spalding (2013)</span>
+
 ## Pleiotropy?
 
 <img src="../Figs/pleiotropy_network_bw.jpg" alt="pleiotropy" style="width: 800px"/>
@@ -75,7 +98,7 @@ $$ \text{LOD} = (n/2) \log_{10} ( \text{RSS}_0 /
 
 multiple traits:
 
-$$ Y = Q\boldsymbol{\beta} + E,
+$$ Y = Q \boldsymbol{\beta} + E,
   \qquad E \sim \text{MVN}(0, \Sigma) $$
 
 $$ \text{LOD} = (n/2) \log_{10} ( {|\hat{\Sigma}_0|} /
@@ -111,9 +134,6 @@ profile LOD of each trait with respect to the other
 
 ![](../Figs/Bnapus_pleiotropy.jpg)
 
-## [gravitropic response over time](http://kbroman.org/qtlcharts/example/iplotMScanone.html)
+## causal models
 
-<a href="http://kbroman.org/qtlcharts/example/iplotMScanone.html"><img
-  src="../Figs/Screen Shot_iplotMScanone.png" alt="Interactive scan over time"
-  style="width: 600px"/></a>
 
