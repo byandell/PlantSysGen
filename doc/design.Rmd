@@ -100,6 +100,14 @@ knitr::opts_chunk$set(echo = FALSE)
 
 <span style="font-size: 75%">Laura Vanderploeg, Jackson Labs</span>
 
+## dataset used in this talk
+
+- Tom Osborn _Brassica napus_ intercross (F2)
+- Edgar Spalding _Arabidopsis thaliana_ advanced intercrosses
+- _Mus musculus_ Diversity Outbred (DO)
+    + Elissa Chesler & collaborators (Recla et al. 2014)
+    + Alan Attie & collaborators (in progress)
+    
 ## Osborn _Brassica napus_ intercross
 
 - 104 doubled haploid (DH) lines

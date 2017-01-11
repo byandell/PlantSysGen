@@ -20,10 +20,7 @@ See details of data description in `Data_Description_*.xlsx` files and data read
 RIL = recombinant inbred line; NIL = near isogenic line
 
 Data site: <http://phenome.jax.org/db/q?rtn=projects/projdet&reqprojid=281>  
-Reference: Moore CR, Johnson LS, Kwak IY, Livny M, Broman KW, Spalding EP. High-throughput computer vision introduces the time axis to a quantitative trait map of a plant growth response. Genetics. 2013 Nov;195(3):1077-86. [doi:10.1534/genetics.113.153346](http://dx.doi.org/10.1534/genetics.113.153346). Epub 2013 Aug 26.     
-[PubMed 23979570](http://www.ncbi.nlm.nih.gov/pubmed/23979570?dopt=Abstract) |
-[MGI](http://www.informatics.jax.org/reference/23979570) |
-[FullText](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3813838/?tool=pubmed)
+Reference: Moore CR, Johnson LS, Kwak IY, Livny M, Broman KW, Spalding EP. High-throughput computer vision introduces the time axis to a quantitative trait map of a plant growth response. Genetics. 2013 Nov;195(3):1077-86. [doi:10.1534/genetics.113.153346](http://dx.doi.org/10.1534/genetics.113.153346). 
 
 ## Read data as cross objects using R/qtl
 
