@@ -9,13 +9,13 @@ topic | section  | slides
 ----- | --------- | ----
 intro | overview | 11
 intro | setup | 11
-intro | design | 12
-QTL | models | 14/51
-GWA | 37/51
-more models | models2 | 41
-traits | selection | 9
-traits | traits | 13
-traits | tools | 12
+intro | design | 13
+intro | models | 14/51
+QTL | models | 37/51
+GWA | models2 | 41
+traits | selection | 10
+traits | traits | 15
+traits | tools | 13
 total | | 156
 
 tools:

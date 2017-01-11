@@ -5,7 +5,10 @@ date: "January 2017"
 output: html_document
 ---
 
-## Brassica napus ([data/osborn](data/osborn/osborn_data.Rmd)) example
+These are figures used in Brian Yandell's PlantSysGen talk. See
+<https://github.com/byandell/PlantSysGen>.
+
+## _Brassica napus_ ([data/osborn](https://github.com/byandell/PlantSysGen/tree/master/data/osborn)) example
 
 - Bnapus_1qtl.jpg
 - Bnapus_4_2.jpg
@@ -27,7 +30,7 @@ output: html_document
 
 - [F3.osborn.gif](http://www.genetics.org/content/162/3/1457)
 
-## Moore/Spalding _Arabidopsis-
+## Moore/Spalding _Arabidopsis_
 
 - [genetics.113.153346.gif](http://dx.doi.org/10.1534/genetics.113.153346)
 - [SpaldingHardware.jpeg](http://phytomorph.wisc.ed)
@@ -44,7 +47,7 @@ output: html_document
 
 - recla2014.jpeg
 
-## Broman Jackson lab talks ([broman](broman/brofig.Rmd))
+## Broman Jackson lab talks ([broman](https://github.com/byandell/PlantSysGen/tree/master/broman))
 
 - backcross_bw.jpg
 _ covar_bw.jpg
@@ -81,7 +84,7 @@ _ covar_bw.jpg
 
 - MAS_Endelman.png
 
-## Yandell Broman stuff ([broman](broman))
+## Yandell Broman stuff ([broman](https://github.com/byandell/PlantSysGen/tree/master/broman))
 
 Adapted directly from Broman.
 
@@ -92,7 +95,7 @@ Adapted directly from Broman.
 - permcovar_bw.jpg
 - `y_over_x.jpg`
 
-## Yandell miscellaneous ([data/misc](data/misc))
+## Yandell miscellaneous ([data/misc](https://github.com/byandell/PlantSysGen/tree/master/data/misc))
 
 - mixchr.jpg
 - phe_gwa.jpg

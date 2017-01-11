@@ -120,11 +120,9 @@ trait information (phenotype)
 - model selection: how phenotypes relate to genotypes
     + single marker regressions & interval mapping (QTL)
     + association mapping (including GWA)
-    + account for non-locus genetic effects (again GWA)
 - estimation and prediction
     + genetic action (additive, dominance, epistasis)
-    + marker assisted selection (MAS)
-    + genomic selection
+    + marker assisted (MAS) & genomic selection (GS)
 
 ## Evolution of computational tools
 
