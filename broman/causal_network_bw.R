@@ -10,15 +10,15 @@ plot(0,0, xaxt="n", yaxt="n", xlab="", ylab="", type="n",
      xlim=c(-16-2/3, 150), ylim=c(0, 100), xaxs="i", yaxs="i")
 x <- c(25, 75, 105, 135)
 y <- seq(10, 90, len=5)
-text(x[1], y[2], expression(Q[2]))
-text(x[1], y[4], expression(Q[1]))
+text(x[1], y[2], expression(q[2]))
+text(x[1], y[4], expression(q[1]))
 
-text(x[2], y[1], expression(E[3]))
-text(x[2], y[3], expression(E[2]))
-text(x[2], y[5], expression(E[1]))
+text(x[2], y[1], expression(r[3]))
+text(x[2], y[3], expression(r[2]))
+text(x[2], y[5], expression(r[1]))
 
-text(x[3], y[3], expression(Y))
-text(x[4], y[3], expression(E[4]))
+text(x[3], y[3], expression(y))
+text(x[4], y[3], expression(r[4]))
 
 
 arrowcol <- "black"

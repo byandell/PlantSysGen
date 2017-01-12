@@ -82,7 +82,17 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Pleiotropy?
 
-<img src="../Figs/pleiotropy_network_bw.jpg" alt="pleiotropy" style="width: 800px"/>
+<img src="../Figs/pleiotropy_network_bw.jpg" alt="pleiotropy" style="width: 400px; float:right"/>
+
+- $y_1$ & $y_2$ are pleiotropic
+    + both depend on $q_1$
+    + cor($y_1,y_2|q_1$) = 0
+- $y_2$ & $y_3$ are pleiotropic
+    + both depend on $q_2$
+    + cor($y_2,y_3|q_2$) = 0
+- $y_1$ & $y_3$ have linked QTLs
+    + cor($q_1,q_2$) via linkage
+    + cor($y_1,y_3$) indirect 
 
 ## Close linkage?
 
@@ -135,5 +145,33 @@ profile LOD of each trait with respect to the other
 ![](../Figs/Bnapus_pleiotropy.jpg)
 
 ## causal models
+
+- All ... phenomena are linked together, and the problem ... is how close is the degree of association. Karl Pearson (1911)
+- direct influence of one condition on another ... [through] all connecting paths of influence ... among the variables in a system with ... causal relations. Sewall Wright (1921)
+- Causality is not mystical or metaphysical. It can be understood in terms of simple processes ... in a friendly mathematical language, ready for computer analysis. Judea Pearl (2000)
+
+## causal relations
+
+<img src="../Figs/causal_network_bw.jpg" alt="close linkage" style="width: 500px; float:right"/>
+
+- $q_j$ = genotype (QTL) 
+- $r_k$ = RNA expression
+- $y$ = physiology
+
+QTLs: <span style="font-size: 75%">$r_j = \mu_{qj} + e_j$</span>  
+linkage: <span style="font-size: 75%">$\texttt{cor}(q_1,q_2)$</span>  
+causal: <span style="font-size: 75%">$y = r_2 + e_2$</span>   
+reactive: <span style="font-size: 75%">$r_4 = a + by + e_4$</span>   
+
+<span style="font-size: 75%">$$\texttt{pr}(Q,R,Y)=
+\texttt{pr}(q_1,q_2) 
+\texttt{pr}(y_1|q_1)  
+\texttt{pr}(r_2|q_2)  
+\texttt{pr}(r_3|q_2)  
+\texttt{pr}(y|r_2) 
+\texttt{pr}(r_4|y)$$</span>
+
+## causal models
+
 
 
