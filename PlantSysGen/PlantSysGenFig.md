@@ -109,8 +109,11 @@ Adapted directly from Broman.
 - [team_research_aims.png](http://www.stat.wisc.edu/~yandell/talk/stat/Yandell_CHTC.pptx)
 - [tools_workflow.png](http://www.stat.wisc.edu/~yandell/talk/stat/Yandell_CHTC.pptx)
 
+- [causal models](http://www.stat.wisc.edu/~yandell/talk/2013AnGen.ppt)
+
 ## Internet finds
 
+- [ccmice.png](http://compgen.unc.edu/wp/wp-content/uploads/2009/03/ccmice.png)
 - DO_laura_vanderploeg.jpg
 - [NIILpanel_Univ-of-Illinois-Chicago_w.jpeg](http://blog.generationcp.org/category/women-in-science-2/)
 - [meddic.jp.png](http://meddic.jp/isogenic_line)

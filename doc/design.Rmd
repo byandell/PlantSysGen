@@ -146,6 +146,10 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Attie/Jax DO population
 
+<img src="../Figs/ccmice.png" 
+  alt="ccmice" 
+  style="width: 300px; float:right"/>
+
 - 8 CC founder strains (generation 19-22)
 - 500 mice in 5 waves
 - multiple traits measured

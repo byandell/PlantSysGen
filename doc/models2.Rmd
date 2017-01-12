@@ -397,6 +397,41 @@ models & methods refined as technology advanced
 - SNPs have different patterns across founders
 - use SNPs to refine search
 
+## allele vs SNP scans
+
+- allele-based genome scan: LOD maps
+    + continuous curve across loci
+    + interval mapping for missing data
+    + model effect of founder alleles
+- DO founder alleles: A,B,C,D,E,F,G,H
+- response ~ sum of effects of alleles
+- additive model
+    + 1-QTL allele-based genotype $q$ = {$a_1,a_2$}
+    + $\mu_q = \mu + a_1 + a_2$
+    + test if all $a$s are the same
+    + 8 unknown parameters
+
+## SNP-based genome scan
+
+- SNP-based genome scan: GWAS Manhattan plots
+    + discrete tests of SNPs or other features
+    + typically 2 SNP alleles (1 is reference)
+    + model effect of number of non-ref SNP copies 
+- SNP recorded as pair of DNA base pairs (A,C,G,T)
+    + SNPs typically have two values (G/T)
+    + individual has genotype GG, GT or TT
+    
+## SNP-based genome scan details
+
+- simplifed to number of copies of non-reference allele
+    + SNP genotypes $s$ = 0,1
+    + DO reference is B = B6
+- mixed model $y= a+bs+g+e$
+    + fixed part $\mu_q = a+bs$
+    + GWA mixed part $g$
+    + unexplained variation $e$
+- test slope $b=0$ using LOD score
+
 ## SNP scans
 
 ![](../Figs/DO_SNP.jpg)
@@ -408,4 +443,52 @@ models & methods refined as technology advanced
 ## SNP best patterns
 
 ![](../Figs/DO_SNP_pattern_best.jpg)
+
+## additive model is quick & easy
+
+- good news
+    + fewer parameters to understand
+    + easy to build tools
+    + fast to run
+    + relate LOD to allele effects directly
+    + likely good model for mRNA expression
+- bad news
+    + could miss important gene action information
+    + could miss loci (false negatives)
+    + could detect false positives
+    + LOD and allele effects may conflict due to dominance
+
+## full model (with dominance)
+
+- DO founder alleles: A,B,C,D,E,F,G,H
+- response ~ effect of pair of alleles
+- full model for allele-based scan
+    + $\mu_q = \mu + a_1 + a_2 + d_{12}$ (additive & dominance effects)
+    + $E(y) = \texttt{mean}(A_1,A_2)$ (alleles $A_1$, $A_2$)
+    + test if all means are the same (all $a$s equal, all $d$s zero)
+    + 36 unknown parameters
+- full model for SNP-based scan: $s$ = 0,1,2
+    + $E(y) = \texttt{mean}(s)$ (3 unknowns)
+    + test if all means are the same
+
+## gene/SNP action
+
+- study additive & dominance of single trait
+- compare co-mapping traits -- same gene action?
+- extend discrete SNP-based scan to continuous
+    + scan of particular allele contrasts
+    + LOD and allele contrast scans
+    
+```{r echo=FALSE, fig.height=3}
+data <- data.frame(x=rep(0:2,4),y=c(0:2,0,1.5,2,0,2,2,0,0,2),
+                   z=rep(c("additive","general","dominant","recessive"), each = 3))
+library(ggplot2)
+ggplot(data, aes(x,y)) +
+  geom_point(size=4) +
+  geom_line(size=2) +
+  facet_grid(~z) +
+  labs(x="",y="phenotype mean") + 
+  theme(axis.text.y = element_blank()) +
+  scale_x_continuous(breaks=0:2)
+```
 
