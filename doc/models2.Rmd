@@ -420,6 +420,10 @@ models & methods refined as technology advanced
 - SNP recorded as pair of DNA base pairs (A,C,G,T)
     + SNPs typically have two values (G/T)
     + individual has genotype GG, GT or TT
+
+## SNP scans
+
+![](../Figs/DO_SNP.jpg)
     
 ## SNP-based genome scan details
 
@@ -431,10 +435,6 @@ models & methods refined as technology advanced
     + GWA mixed part $g$
     + unexplained variation $e$
 - test slope $b=0$ using LOD score
-
-## SNP scans
-
-![](../Figs/DO_SNP.jpg)
 
 ## SNP patterns
 
