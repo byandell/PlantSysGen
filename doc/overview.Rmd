@@ -139,6 +139,14 @@ without advances in computational technology.
     + collaboration tools -- beyond email attachments
     + emerging collaboration systems
 
+## tools & workflow: big idea
+
+<img src="../Figs/sysgen_big_pic.png" alt="sysgen_big_pic" style="width: 700px"/>
+
+## team research aims
+
+<img src="../Figs/team_research_aims.png" alt="team_research_aims" style="width: 700px"/>
+
 ## Goal of system genetics studies
 
 - predict performance of future offspring
