@@ -117,6 +117,13 @@ modern approach: use email to notify collaborators only
 - Box/DropBox & Google Drive to share documents
 - iPlant to improve data access & processing efficiency
 
+## software infrastructure
+
+
+<img src="../Figs/nrg2048-f1.jpg" alt="software infrastructure" style="width: 600px"/>
+
+<a href="http://dx.doi.org/10.1038/nrg2048"><span style="font-size: 75%">Jansen & Swertz (2007)</span></a>
+
 ## Emerging collaboration systems
 
 modular philosophy of layers to separate

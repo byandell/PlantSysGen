@@ -119,6 +119,7 @@ Adapted directly from Broman.
 - DO_laura_vanderploeg.jpg
 - [NIILpanel_Univ-of-Illinois-Chicago_w.jpeg](http://blog.generationcp.org/category/women-in-science-2/)
 - [meddic.jp.png](http://meddic.jp/isogenic_line)
+- [nrg2048-f1.jpg](http://dx.doi.org/10.1038/nrg2048)
 - [nrg2291-f4.jpeg](http://www.nature.com/nrg/journal/v9/n3/images/nrg2291-f4.jpg)
 - [pedigree-versus-marker-assisted-breeding.gif](http://www.21stcentech.com/heard-marker-assisted-breeding/)
 - [physiolgenomics.jpg](http://dx.doi.org/10.1152/physiolgenomics.00127.2013)
