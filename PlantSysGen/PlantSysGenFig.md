@@ -104,6 +104,8 @@ Adapted directly from Broman.
 - phe_qtl_gwa.jpg
 - phe_qxe.jpg
 
+- [nfat_causal_arch.png](http://dx.doi.org/10.1371/journal.pgen.1006466)
+- [nfat_plosgen.jpg](http://dx.doi.org/10.1371/journal.pgen.1006466)
 - [pareto.jpg](http://www.stat.wisc.edu/~yandell/talk/sisg/seattle2008/bsyoverview.ppt)
 - [sysgen_big_pic.png](http://www.stat.wisc.edu/~yandell/talk/stat/Yandell_CHTC.pptx)
 - [team_research_aims.png](http://www.stat.wisc.edu/~yandell/talk/stat/Yandell_CHTC.pptx)

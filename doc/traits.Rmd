@@ -171,7 +171,25 @@ reactive: <span style="font-size: 75%">$r_4 = a + by + e_4$</span>
 \texttt{pr}(y|r_2) 
 \texttt{pr}(r_4|y)$$</span>
 
-## causal models
+## Nfatc2 impact on LOD
 
+<img
+  src="../Figs/nfat_plosgen.jpg" alt="nfat impact on LOD"
+  style="width: 400px; float:right"/>
 
+- 500 mice F2: B6 x BTBR obese
+- diabetes & obesity
+- insulin resistance
+- 130+ mRNA expression hot spot
+- Nfatc2 as key driver
+
+<a href="http://dx.doi.org/10.1371/journal.pgen.1006466"><span style="font-size: 75%">Keller et al. Yandell, Kendziorski, Attie (2016) PLoS Gen</span></a>
+
+## Nfatc2 causal archicture
+
+is gene mRNA causal (red) or reactive (blue) to other mRNA?
+
+<img
+  src="../Figs/nfat_causal_arch.png" alt="nfat causal architecture"
+  style="width: 600px"/>
 
