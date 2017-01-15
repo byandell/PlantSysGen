@@ -1,5 +1,5 @@
 ---
-title: "Statistical Models II"
+title: "Genome-Wide Association"
 author: "Brian S. Yandell, UW-Madison"
 date: "January 2017"
 output:
@@ -491,4 +491,88 @@ ggplot(data, aes(x,y)) +
   theme(axis.text.y = element_blank()) +
   scale_x_continuous(breaks=0:2)
 ```
+
+## what is genomic selection?
+
+use statistical modeling to predict how a plant will perform  
+before it is field-tested
+
+- genomic selection (GS)
+    + marker assisted selection (MAS)
+    + genome-wide selection (GS)
+- other uses of word (relevent to systems genetics)
+    + natural selection: survival of the fittest
+    + model selection: search for QTLs
+    + selection bias: overestimate of QTL effects
+
+## why use genomic selection?
+
+- trait is highly polygenic (genetically variable)
+    + influenced by a few key genomic regions
+    + high heritability (low environmental variation)
+- measuring trait is costly
+    + difficult or expensive process (technology)
+    + measuring tool may be highly variable
+    + time-consuming (plant has to grow first)
+    + desire to streamline multi-year selection
+
+## what is genomic selection?
+
+- forms of genome-wide selection
+    + marker-assisted: with phenotypes
+    + marker-based: without phenotypes
+    
+- use markers to improve selection for complex traits
+    + predict phenotype from marker genotype
+    + select candidates based on best marker genotypes
+    + use training set to predict test set of individuals
+
+## old paradigm: marker prediction
+
+- 1990s & 2000s: markers were expensive
+- economic strategy:
+    + first identify significant markers (QTL analysis)
+    + use best markers to genotype selection candidates
+- estimate marker effects by multiple regression
+    + treat genetic effects as fixed and few
+    + $E(y)= \mu_q, q=(q_1,q_2,q_3)$
+
+## marker assisted selection (MAS)
+
+![](../Figs/pedigree-versus-marker-assisted-breeding.gif)
+
+
+<span style="font-size: 50%">www.21stcentech.com/heard-marker-assisted-breeding/</span>
+
+## new paradigm: use "all" markers
+
+- new paradigm with technology advances
+    + improved statistical methods and software
+    + cheap markers
+- using only significant markers to predict trait ...
+    + gives good estimates (maybe) of markers ...
+    + but does not maximize accuracy
+- simple but effective approach
+    + treat marker effects as random
+    + use all markers (away from QTL if any)
+
+## old vs new
+
+<img src="../Figs/MAS_Endelman.png" alt="old vs new GS" style="width: 750px"/>
+
+## mixed model approach
+
+MAS approach $y = \mu_q + e, V(e) = \sigma^2I$
+
+- estimate fixed QTL effects $\hat{\mu}_q$ (MLEs)
+- predict phenotype using fixed effects $\hat{y}=\hat{\mu}_q$
+
+GS approach  $y = \mu + g + e, V(g) = \sigma_g^2K$
+
+- estimate kinship $K$ from all markers $M$ as for GWA
+- predict random effect $\hat{g}$ using BLUP
+- predict phenotype $\hat{y}=\hat{g}$
+
+## GS example
+
 

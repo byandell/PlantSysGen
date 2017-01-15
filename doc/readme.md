@@ -5,15 +5,18 @@ date: "January 2017"
 output: html_document
 ---
 
+Files still in doc are left over from development of four main sections,
+which are in folder ../PlantSysGen and are basis of web pages.
+
 topic | section  | slides
 ----- | --------- | ----
 intro | overview | 11
 intro | setup | 11
 intro | design | 13
 intro | models | 14/51
-QTL | models | 37/51
-GWA | models2 | 41
-traits | selection | 10
+qtl | models | 37/51
+gwa | models2 | 41
+gwa | selection | 10
 traits | traits | 15
 traits | tools | 13
 total | | 156

@@ -1,0 +1,472 @@
+---
+title: "plant systems genetics:"
+subtitle: "from markers to whole genomes"
+author: "Brian S. Yandell, UW-Madison, www.stat.wisc.edu/~yandell/PlantSysGen"
+date: "January 2017"
+output:
+  ioslides_presentation: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## outline
+
+- [Introduction](intro.html)
+- [QTL Gene Mapping](qtl.html)
+- [Genome-Wide Association](gwa.html)
+- [Multiple Traits](traits.html)
+
+<http://www.stat.wisc.edu/~yandell/talk/PlantSysGen>
+
+## overview
+
+Systems genetics is an approach to understand the flow of biological information that underlies complex traits. 
+
+<img src="../Figs/plantcellbio.gif" alt="plantcellbiology.masters.grkraj.org/html/Plant_Cell_Genetics2-Genetics_files/image029.gif" style="width: 250px; float:right"/>
+
+how to relate phenotype to genotype
+
+- genetic effects (QTL & GWA)
+- prediction & selection (MAS, GS)
+
+with changing technology
+
+- laboratory protocols
+- statistical methods
+- computational tools
+
+<span style="font-size: 50%">Figure: plantcellbiology.masters.grkraj.org</span>
+
+## goal of system genetics studies
+
+- predict performance of future offspring
+    + genome-wide selection
+- estimate genetic architecture of traits
+    + quantitative trait loci (QTL)
+
+Great time to become involved in modern approaches!
+
+- many challenges
+- many opportunities for substantial contributions
+- help unravel important problems in biological systems
+- data tools are maturing
+
+## does genotype influence phenotype?
+
+Goals for genetic architecture
+
+- identify quantitative trait loci (QTL)
+    + (and interactions among QTL)
+- find interval estimates of QTL location
+- estimate QTL effects
+
+Goals for predicting future performance
+
+- predict breeding value of individuals
+- select best individuals using genome
+
+## PHE = GEN + ENV
+
+phenotype = genotype + environment
+
+- GEN = QTL + GWA
+    + genotype = local + genome-wide genetic effects
+
+- ENV = design + predictors + error
+    + design factors (blocks, locations, ...)
+    + predictor variables (heat, light, soil additives, ...)
+    + measurement error (independent)
+    
+<span style="font-size: 75%">Falconer & Mackay (1960--1996)</span>
+
+## GEN = QTL + GWA
+
+- QTL: quantitative trait loci
+    + local to an identified genomic region
+    + large Mendelian effects on mean
+- GWA: genome-wide association
+    + depends on population structure (kinship)
+    + measures relationships away from QTL
+    + average of many small effects
+
+## PHE = QTL + GWA + ENV example
+
+![](../Figs/phe_qtl.jpg)
+
+## PHE = QTL + GWA + ENV example
+
+![](../Figs/phe_gwa.jpg)
+
+## PHE = QTL + GWA + ENV example
+
+![](../Figs/phe_qtl_gwa.jpg)
+
+## PHE = GWA + QTL * ENV example
+
+![](../Figs/phe_qxe.jpg)
+
+## PHE = QTL + GWA * ENV example
+
+![](../Figs/phe_gxe.jpg)
+
+## Pareto chart: from QTL to GWA
+
+<img src="../Figs/pareto.jpg" alt="Pareto Diagram" style="width: 800px"/>
+
+## thanks up front
+
+- [Karl Broman, UW-Madison](http://kbroman.org)
+- [Jeff Endelman, UW-Madison](http://potatobreeding.cals.wisc.edu/people/)
+- [Guilherme Rosa, UW-Madison](http://www.ansci.wisc.edu/Facultypages/rosa.html)
+- [Eleazar Eskin, UCLA](http://web.cs.ucla.edu/~eeskin/)
+- [Gary Churchill, Jackson Labs](https://www.jax.org/research-and-faculty/faculty/gary-churchill)
+- [Alan Attie, UW-Madison](https://biochem.wisc.edu/faculty/attie)
+- UW-Madison sabbatical program
+
+## approach in these talks
+
+mix of presentation style to plant-based audience
+
+- theory
+    + set the stage
+    + show big picture
+- applied: using R packages
+    + [qtl](http://rqtl.org): basic gene mapping
+    + [rrBLUP](http://potatobreeding.cals.wisc.edu/software/): genome-wide prediction & GWAS
+    + [qtl2](http://kbroman.org/qtl2/): high throughput gene mapping
+- source: <https://github.com/byandell/PlantSysGen>
+- slides: <http://www.stat.wisc.edu/~yandell/talk/PlantSysGen>
+
+## challenges in systems genetics 
+
+simpler models yield clearer results
+
+- compare 2 conditions 
+- examine linear trend
+- control for other factors
+
+but reality may be more complicated
+
+- masking of genetic effect (by background, etc.)
+- subtle timing (when to measure)
+- hard to measure key features (shape, quality)
+- unknown details of processes under study
+
+## evolution of laboratory protocol
+
+genetic information (genotype)
+
+- genetic markers discovered by accident (RFLP,...)
+- dense sets of polymorphic markers (SNP, GBS)
+- whole genomes sequencing
+
+trait information (phenotype)
+
+- physiology (internal) & environment (external)
+- molecules & images
+- inexpensive, high volume assays $100-10,000s$ of plants
+
+(individual cell technologies not covered here) 
+
+## genotyping
+
+- RFLPs & other early technologies 
+- structural variants
+    + SNPs (single nucleotide polymorphisms)
+    + InDels, inversions, larger blocks (100s-1000s of bps)
+    + huge blocks (20K+ bps)
+- GBS (genotype by sequence)
+- read genotype from RNA-Seq
+- Cautions:
+    + missing data, mistakes in reads, sample mixups
+    + biases in technologies 
+    + reference sequence vs other founders
+
+## evolution of statistical methods
+
+- experimental design: how populations are created
+    + two-founder experiments (backcross, intercross)
+    + advanced crosses (RILs)
+    + multi-parent populations (MPP)
+- model selection: how phenotypes relate to genotypes
+    + single marker regressions & interval mapping (QTL)
+    + association mapping (including GWA)
+- estimation and prediction
+    + genetic action (additive, dominance, epistasis)
+    + marker assisted (MAS) & genomic selection (GS)
+
+## evolution of computational tools
+
+Advances in measurement, design and analysis would be academic
+without advances in computational technology. 
+
+- faster machines -> faster throughput of more stuff
+- methods translated into algorithms
+    + open source code: freely distrubuted, easy to study
+    + standalone programs
+    + packages in language systems (R or Python or Matlab)
+- collaboration and sharing
+    + interconnectivity of algorithms and data resources
+    + collaboration tools -- beyond email attachments
+    + emerging collaboration systems
+
+## tools & workflow: big idea
+
+<img src="../Figs/sysgen_big_pic.png" alt="sysgen_big_pic" style="width: 700px"/>
+
+## team research aims
+
+<img src="../Figs/team_research_aims.png" alt="team_research_aims" style="width: 700px"/>
+
+## communication challenges
+
+- English as 2nd, 3rd (4th?) language
+- data experience and learned patterns
+- stat experience and access to consultants
+- math anxiety (see [Sheila Tobias books](http://sheilatobias.com/books.html))
+- IT/computing experience and access to tools
+- genetics knowledge
+- communicating outside chosen field
+
+## communication opportunities
+
+- many online resources
+    + <http://www.stat.wisc.edu/~yandell/statgen/reference/>: Yandell Statistical Genomics References
+    + <http://datacarpentry.org>: spreadsheet to R in 2 days
+    + <https://www.lynda.com/>: online skills tutorials
+    + [Professional Skills for Data Science](http://www.stat.wisc.edu/network-skills)
+- open source tools are quite good
+    + [R](https://cran.r-project.org/) & [Rstudio](https://www.rstudio.com/) for data science
+    + [Github](https://github.com/) for version control
+- [Google Drive](https://www.google.com/drive/), [DropBox](https://www.dropbox.com/), [Box](https://www.box.com/), ...
+
+Material for this course at <https://github.com/byandell/PlantSysGen>
+
+## workshop setup
+
+If we were going to do a live demo ...
+
+- install [R](http://www.r-project.org/) and [RStudio](http://www.rstudio.com/)
+    + see [datacarpentry instructions](http://www.datacarpentry.org/R-ecology-lesson/)
+    + or next two slides
+- install packages qtl, rrBLUP
+- download or view <https://github.com/byandell/thailand>
+
+## install R
+
+R: powerful programming language for data exploration, visualization, and analysis
+
+- main R site: <https://cran.r-project.org/>
+- Thailand mirror: <http://mirrors.psu.ac.th/pub/cran/> (use this)
+- Want version 3.2.2 or higher
+- click on machine version to "**Download and Install R**"
+- for Windows, click on "**base**"
+- click on current version to install
+- follow instructions
+
+## install Rstudio
+
+RStudio: nice graphical interface for R projects
+
+- <https://www.rstudio.com/products/rstudio/download3/>
+- click "**Download**" under "**RStudio Desktop Personal License**"
+- click on "**Installer**" for your machine
+- follow instructions for easy install
+
+## install R packages
+
+- open up Rstudio, which opens R
+- On console, type
+
+```
+install.packages("qtl", "rrBLUP")
+```
+
+This will install the two main packages we will use.
+
+## qtl: R package help
+
+- <http://rqtl.org> (lots of useful stuff here)
+    + see [R/qtl Install steps](http://rqtl.org/tutorials/rqtltour2.pdf)
+- A brief tour of R/qtl: [[pdf](http://rqtl.org/tutorials/rqtltour.pdf) | [code](http://rqtl.org/tutorials/rqtltour.R)]
+- A shorter tour of R/qtl: [[pdf](http://rqtl.org/tutorials/rqtltour2.pdf) | [code](http://rqtl.org/tutorials/rqtltour2.R)]
+- [R/qtl sample data formats](http://rqtl.org/sampledata/)
+- [A Guide to QTL Mapping with R/qtl: book by Karl W. Broman & Śaunak Sen](http://www.rqtl.org/book/)
+
+## rrBLUP: R package help
+
+- <http://potatobreeding.cals.wisc.edu/software/>
+- [Amy Jacobson slides](http://pbgworks.org/sites/pbgworks.org/files/Introduction%20to%20Genomic%20Selection%20in%20R.pdf)
+- [Jeff Endelman Notes](https://potatobreeding.cals.wisc.edu/wp-content/uploads/sites/21/2014/01/GS_tutorial.pdf)
+
+## other useful R packages
+
+There is a very useful set of R packages that were recently developed, which are packaged together as the "Tidyverse" (<http://tidyverse.org/>). We will not use these directly, but they are worth knowing about.
+To install them type the following on the Rstudio console:
+
+```
+install.packages(tidyverse)
+```
+
+This will install a number of small packages on your system.
+
+For the advanced R/qtl2 section, there are further packages. We will discuss that later.
+
+## organizing your work
+
+Want to go further organizing your work?
+
+- [Karl Broman's initial steps to reproducible research](http://kbroman.org/steps2rr/)
+- [Karl Broman's data organization tips](http://kbroman.org/dataorg/)
+
+## Experimental Designs
+
+- common breeding designs
+    + backcross (BC)
+    + intercross (F2)
+    + doubled haploid (DH)
+- advanced intercross lines
+    + recombinant inbred lines (RILs)
+    + near isogenic lines (NILs) & consomics
+    + multi-parent populations (MPP)
+
+## common breeding designs
+
+<img src="../Figs/backcross_bw.jpg" 
+  alt="Backcross" 
+  style="width: 350px; float:right"/>
+
+- 2 (inbred) founder alleles
+- 2 generations
+- backcross (BC): 1 meiosis
+- doubled haploid (DH): 1 meiosis
+- intercross (F2): 2 meioses
+
+<img src="../Figs/intercross_bw.jpg" 
+  alt="Intercross" 
+  style="width: 350px; float:left"/>
+
+<img src="../Figs/DH_bw.jpg" 
+  alt="Intercross" 
+  style="width: 350px; float:right"/>
+
+## recombinant inbred lines (RIL)
+
+<img src="../Figs/nrg2291-f4.jpeg" 
+  alt="RIL" 
+  style="width: 300px; float:right"/>
+
+- 2 or more inbred founders
+- single F1 self-pollinated
+- generations of random mating
+- generations of selfing
+- aim for homozygosity at all loci
+
+<span style="font-size: 50%">www.nature.com/nrg/journal/v9/n3/images/nrg2291-f4.jpg</span>
+
+## Selfing vs sib mating
+
+![](../Figs/rigenome_fig2_lg.png)
+
+<a href="http://kbroman.org/pages/publpics/rigenome_fig2.html"><span style="font-size: 75%">Broman (2005) Genetics</span></a>
+
+## near isogenic lines (NIL)
+
+<img src="../Figs/NIILpanel_Univ-of-Illinois-Chicago_w.jpeg" 
+  alt="RIL" 
+  style="width: 300px; float:left"/>
+
+<img src="../Figs/meddic.jp.png" 
+  alt="RIL" 
+  style="width: 450px; float:right"/>
+
+
+<span style="font-size: 50%">Rebecca Nelson blog.generationcp.org/category/women-in-science-2/</span>
+
+<span style="font-size: 50%">meddic.jp/isogenic_line</span>
+
+## Advanced Intercrosses
+
+<img src="../Figs/physiolgenomics.jpg" 
+  alt="AI_Woods" 
+  style="width: 800px"/>
+
+<span style="font-size: 75%">Leah Solberg Woods doi:10.1152/physiolgenomics.00127.2013</span> 
+
+## multi-parent populations
+
+<img src="../Figs/DO_laura_vanderploeg.jpg" 
+  alt="RIL" 
+  style="width: 300px; float:right"/>
+
+- more than 2 inbred parents (4,8,20)
+- developed over generations
+    + generations of cross-breeding
+    + generations of selfing (or sibs)
+- increased meiotic events
+    + fine mapping to small region
+    + SNP level in one generation
+
+<span style="font-size: 75%">Laura Vanderploeg, Jackson Labs</span>
+
+## dataset used in this talk
+
+- Tom Osborn _Brassica napus_ intercross (F2)
+- Edgar Spalding _Arabidopsis thaliana_ advanced intercrosses
+- _Mus musculus_ Diversity Outbred (DO)
+    + Elissa Chesler & collaborators (Recla et al. 2014)
+    + Alan Attie & collaborators (in progress)
+    
+## Osborn _Brassica napus_ intercross
+
+- 104 doubled haploid (DH) lines
+- 300 markers on 19 chromosomes
+    + originally scattered linkage groups
+- 9 phenotypes (flowering time & seedling survival)
+
+<span style="font-size: 75%">Ferreira, Satagopan, Yandell, Williams, Osborn (1995) TAG</span>  
+<span style="font-size: 75%">Satagopan, Yandell, Newton, Osborn (1996) Genetics</span>
+
+## Moore/Spalding _A. thaliana_ NIL & RILs
+
+- _Arabidopsis thaliana_ Ler x Cvi population
+    + 92 near-isogenic lines (NIL); 2525 seedlings
+    + 162 RILs; 2132 (RIL1) or 2325 (RIL2) seedlings
+- genotypes: 102 (NIL) or 234 (RILs) markers on 5 chr
+- phenotypes: 241 root tip angles, every 2 min
+- automated image acquisition & analysis
+    + images: 7000 lines x 241 time points
+    + genome scans across all time points
+- botany / computer science / biostatistics collaboration
+
+<span style="font-size: 75%">Moore, Johnson, Kwak, Livny, Broman, Spalding (2013)</span>
+
+## Diversity Outbred example
+
+<img src="../Figs/DO_laura_vanderploeg.jpg" 
+  alt="DO" 
+  style="width: 300px; float:right"/>
+
+- 283 mice (generations 4 & 5)
+- 320 (of 7851) SNP markers
+- phenotype = `OF_immobile_pct` (of 1000s)
+- <span style="font-size: 75%">Data: <https://github.com/rqtl/qtl2data/></span>  
+- <a href="http://dx.doi.org/10.1007/s00335-014-9508-0"><span style="font-size: 75%">Recla, Robledo, Gatti, Bult, Churchill, Chesler (2014)</span></a>
+
+## Attie/Jax DO population
+
+<img src="../Figs/ccmice.png" 
+  alt="ccmice" 
+  style="width: 300px; float:right"/>
+
+- 8 CC founder strains (generation 19-22)
+- 500 mice in 5 waves
+- multiple traits measured
+    + 150K SNP GIGA-MUGA chip imputed to 40M SNPs
+    + 100s clinical traits (insulin secretion)
+    + 30K RNA-Seq expression traits
+    + 2K proteomic, 200 metabolomic, 200 lipidomic
+    + microbiome: 2K of 16s; 1M of sequencing
+

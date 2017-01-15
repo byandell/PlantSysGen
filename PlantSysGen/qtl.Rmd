@@ -1,5 +1,5 @@
 ---
-title: "Statistical Models"
+title: "Quantitative Trait Loci"
 author: "Brian S. Yandell, UW-Madison"
 date: "January 2017"
 output:
@@ -10,89 +10,7 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## does genotype influence phenotype?
-
-Goals for genetic architecture
-
-- Identify quantitative trait loci (QTL)
-    + (and interactions among QTL)
-- Interval estimates of QTL location
-- Estimated QTL effects
-
-Goals for genome-wide selection
-
-- Predict breeding value of individuals
-- Select best individuals
-
-## PHE = GEN + ENV
-
-phenotype = genotype + environment
-
-- GEN = QTL + GWA
-    + genotype = local + genome-wide genetic effects
-
-- ENV = design + predictors + error
-    + design factors (blocks, locations, ...)
-    + predictor variables (heat, light, soil additives, ...)
-    + measurement error (independent)
-    
-<span style="font-size: 75%">Falconer & Mackay (1960--1996)</span>
-
-## GEN = QTL + GWA
-
-- QTL: quantitative trait loci
-    + local to an identified genomic region
-    + large Mendelian effects on mean
-- GWA: genome-wide association
-    + depends on population structure (kinship)
-    + measures relationships away from QTL
-    + average of many small effects
-
-## PHE = QTL + GWA + ENV example
-
-![](../Figs/phe_qtl.jpg)
-
-## PHE = QTL + GWA + ENV example
-
-![](../Figs/phe_gwa.jpg)
-
-## PHE = QTL + GWA + ENV example
-
-![](../Figs/phe_qtl_gwa.jpg)
-
-## PHE = GWA + QTL * ENV example
-
-![](../Figs/phe_qxe.jpg)
-
-## PHE = QTL + GWA * ENV example
-
-![](../Figs/phe_gxe.jpg)
-
-## Pareto chart: from QTL to GWA
-
-<img src="../Figs/pareto.jpg" alt="Pareto Diagram" style="width: 800px"/>
-
-## Phenotype data: flowering time 
-
-![](../Figs/Bnapus_pheno.jpg)
-
-<span style="font-size: 75%">Satagopan JM, Yandell BS, Newton MA, Osborn TC (1996) Genetics</span>
-
-## Genotype data
-
-Genetic map for Osborn's _Brassica napus_ study
-
-![](../Figs/Bnapus_map.jpg)
-
-## Genotypes on chr N2
-
-![](../Figs/Bnapus_genotype.jpg)
-
-## Genotypes reordered by `flower4`
-
-![](../Figs/Bnapus_genotype4.jpg)
-
-## Evolution of QTL models
+## evolution of QTL models
 
 original ideas focused on rare & costly markers  
 models & methods refined as technology advanced
@@ -106,7 +24,7 @@ models & methods refined as technology advanced
     + capture "missing heritability"
 - multi-parent populations (MPP)
 
-## Strategy for QTL mapping
+## strategy for QTL mapping
 
 - Want to figure out what is going on
     + preliminary search: find important story
@@ -118,7 +36,27 @@ models & methods refined as technology advanced
     + organize methods as you go
     + document steps (so you can redo)
 
-## Marker regression (BC or DH)
+## phenotype data: flowering time 
+
+![](../Figs/Bnapus_pheno.jpg)
+
+<span style="font-size: 75%">Satagopan JM, Yandell BS, Newton MA, Osborn TC (1996) Genetics</span>
+
+## genotype data
+
+Genetic map for Osborn's _Brassica napus_ study
+
+![](../Figs/Bnapus_map.jpg)
+
+## genotypes on chr N2
+
+![](../Figs/Bnapus_genotype.jpg)
+
+## genotypes reordered by `flower4`
+
+![](../Figs/Bnapus_genotype4.jpg)
+
+## marker regression (BC or DH)
 
 <img src="../Figs/Bnapus_anova.jpg" 
   alt="anova" 
@@ -133,7 +71,7 @@ models & methods refined as technology advanced
 
 <span style="font-size: 75%>Soller _et al._ (1976)</span>
 
-## Marker regression model
+## marker regression model
 
 $$ y = \mu_m + e $$
 
@@ -147,7 +85,7 @@ Marker regression:
 - fit model for each marker across genome
 - pick most significant marker
 
-## Pros & cons of marker regression
+## pros & cons of marker regression
 
 - Advantages
     + simple; no need for genetic map
@@ -160,14 +98,14 @@ Marker regression:
     + suffers in low density scans
     + only considers one QTL at a time
 
-## Statistical structure
+## statistical structure
 
 ![](../Figs/structure_bw.jpg)
 
 - missing data problem:  Markers $\longleftrightarrow$ QTL
 - model selection problem: QTL, covariates $\longrightarrow$ phenotype
 
-## Interval mapping (IM)
+## interval mapping (IM)
 
 - Assume a single QTL model.
 - posit each genome position $\lambda$, one at a time, as putative QTL
@@ -183,95 +121,95 @@ $$ \texttt{pr}(q | m): \texttt{table of proportions}$$
 
 <span style="font-size: 75%">Lander & Botstein (1989) Genetics</span>
 
-## Genotype probabilities
+## genotype probabilities
 
 <img src="../Figs/genoprob1_bw.jpg"
   style="width: 800px"/>
 
 Calculate $pr(q|m)$ assuming
 
-- No crossover interference
-- No genotyping errors
+- no crossover interference
+- no genotyping errors
 
 Or use the hidden Markov model (HMM)} technology
 
-- To allow for genotyping errors
-- To incorporate dominant markers
+- to allow for genotyping errors
+- to incorporate dominant markers
 
-## Genotype probabilities
+## genotype probabilities
 
 <img src="../Figs/genoprob2_bw.jpg"
   style="width: 800px"/>
 
 Calculate $pr(q|m)$ assuming
 
-- No crossover interference
-- No genotyping errors
+- no crossover interference
+- no genotyping errors
 
 Or use the hidden Markov model (HMM)} technology
 
-- To allow for genotyping errors
-- To incorporate dominant markers
+- to allow for genotyping errors
+- to incorporate dominant markers
 
-## Genotype probabilities
+## genotype probabilities
 
 <img src="../Figs/genoprob3_bw.jpg"
   style="width: 800px"/>
 
 Calculate $pr(q|m)$ assuming
 
-- No crossover interference
-- No genotyping errors
+- no crossover interference
+- no genotyping errors
 
 Or use the hidden Markov model (HMM)} technology
 
-- To allow for genotyping errors
-- To incorporate dominant markers
+- to allow for genotyping errors
+- to incorporate dominant markers
 
-## Genotype probabilities
+## genotype probabilities
 
 <img src="../Figs/genoprob4_bw.jpg"
   style="width: 800px"/>
 
 Calculate $pr(q|m)$ assuming
 
-- No crossover interference
-- No genotyping errors
+- no crossover interference
+- no genotyping errors
 
 Or use the hidden Markov model (HMM)} technology
 
-- To allow for genotyping errors
-- To incorporate dominant markers
+- to allow for genotyping errors
+- to incorporate dominant markers
 
-## Genotype probabilities
+## genotype probabilities
 
 <img src="../Figs/genoprob5_bw.jpg"
   style="width: 800px"/>
 
 Calculate $pr(q|m)$ assuming
 
-- No crossover interference
-- No genotyping errors
+- no crossover interference
+- no genotyping errors
 
 Or use the hidden Markov model (HMM)} technology
 
-- To allow for genotyping errors
-- To incorporate dominant markers
+- to allow for genotyping errors
+- to incorporate dominant markers
 
-## Genotype probabilities
+## genotype probabilities
 
 <img src="../Figs/genoprob6_bw.jpg"
   style="width: 800px"/>
 
 Calculate $pr(q|m)$ assuming
 
-- No crossover interference
-- No genotyping errors
+- no crossover interference
+- no genotyping errors
 
 Or use the hidden Markov model (HMM)} technology
 
-- To allow for genotyping errors
-- To incorporate dominant markers
+- to allow for genotyping errors
+- to incorporate dominant markers
 
 ## phenotype given unknown genotype
 
@@ -381,7 +319,7 @@ LOD and means by genotype scans on chr N2
 <img src="../Figs/interactive_lod_curve.png" alt="Interactive LOD curve" style="width: 650px"/>
 
 
-## Pros and Cons of IM
+## pros and cons of IM
 
 - Advantages
     + takes proper account of missing data
@@ -405,7 +343,7 @@ Derivation:
 - Simulations (Lander & Botstein 1989)
 - Permutation tests (Churchill & Doerge 1994)
 
-## Null distribution of the LOD score
+## null distribution of the LOD score
 
 <img src="../Figs/loddist_bw.jpg" 
   alt="loddist" 
@@ -433,7 +371,7 @@ repeat 10,000 times
   alt="loddist" 
   style="width: 700px"/>
 
-## [Interactive permutations](http://www.biostat.wisc.edu/~kbroman/D3/lod_random/)
+## [interactive permutations](http://www.biostat.wisc.edu/~kbroman/D3/lod_random/)
 
 <img src="../Figs/interactive_perm_test.png" 
   alt="interactive_perm_test" 
@@ -493,8 +431,9 @@ $\text{H}_a: y  =  \mu_q + \beta_x x + e$
 
 ![](../Figs/Bnapus_covar.jpg)
 
-## References
+## references
 
+- [A Guide to QTL Mapping with R/qtl: book by Karl W. Broman & Śaunak Sen](http://www.rqtl.org/book/)
 - <span style="font-size: 75%">Broman KW (2001) Review of statistical methods for QTL mapping in experimental
 crosses. Lab Animal 30:44–52. (review for non-statisticians)</span>
 - <span style="font-size: 75%">Lynch M, Walsh B (1998)

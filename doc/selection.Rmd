@@ -93,5 +93,3 @@ GS approach  $y = \mu + g + e, V(g) = \sigma_g^2K$
 
 ## GS example
 
-
-
