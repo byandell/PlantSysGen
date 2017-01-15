@@ -1,5 +1,5 @@
 ---
-title: "Multiple Traits"
+title: "Traits & Tools"
 author: "Brian S. Yandell, UW-Madison"
 date: "January 2017"
 output:
