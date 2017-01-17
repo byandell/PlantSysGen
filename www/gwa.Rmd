@@ -363,6 +363,19 @@ GS approach  $y = \mu + g + e, V(g) = \sigma_g^2K$
 - predict random effect $\hat{g}$ using BLUP
 - predict phenotype $\hat{y}=\hat{g}$
 
-## GS example
+## DO prediction
 
+<img src="../Figs/rrBLUP_DO_GWA.jpg" alt="rrBLUP DO GWA" style="width: 500px; float:right"/>
+
+- DO example
+- rrBLUP fit without QTL
+- correlation 0.79
+
+## DO prediction
+
+<img src="../Figs/rrBLUP_DO_QTL.jpg" alt="rrBLUP DO QTL" style="width: 500px; float:right"/>
+
+- DO example
+- rrBLUP fit with QTL
+- correlation 0.74
 

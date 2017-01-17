@@ -20,6 +20,8 @@ This folder contains Brian Yandell's presentation for the January 2017 **Plant B
 - [A Guide to QTL Mapping with R/qtl: book by Karl W. Broman & Śaunak Sen](http://www.rqtl.org/book/)
 - Broman KW (2001) Review of statistical methods for QTL mapping in experimental
 crosses. Lab Animal 30:44–52. (review for non-statisticians)
+- Endelman JB (2011) Ridge Regression and Other Kernels for Genomic
+Selection with R Package rrBLUP. Plant Genome 4: 250-255. doi:10.3835/plantgenome2011.08.0024 (presentation of rrBLUP ideas)
 - Lynch M, Walsh B (1998)
 Genetics and analysis of quantitative traits
 Sinauer Associates, Sunderland, MA, ch. 15. (chapter on QTL mapping)
@@ -29,3 +31,5 @@ traits using RFLP linkage maps. Genetics 121:185–199. (the seminal paper)
 mapping. Genetics 138:963–971. (LOD thresholds by permutation tests)
 - Strickberger MW (1985)
 Genetics, 3rd edition. Macmillan, New York, ch. 11. (old but excellent general genetics textbook with a very interesting discussion of epistasis)
+
+- [Yandell System Genetics References](http://www.stat.wisc.edu/~yandell/statgen/reference/)
