@@ -1,0 +1,102 @@
+---
+title: "Systems Genetics Software"
+author: "Brian S. Yandell, UW-Madison, www.stat.wisc.edu/~yandell/PlantSysGen"
+date: "January 2017"
+output:
+  ioslides_presentation: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## software setup
+
+If we were going to do a live demo ...
+
+- install [R](http://www.r-project.org/) and [RStudio](http://www.rstudio.com/)
+    + see [datacarpentry instructions](http://www.datacarpentry.org/R-ecology-lesson/)
+    + or next two slides
+- install packages qtl, rrBLUP
+- download or view <https://github.com/byandell/thailand>
+
+## install R
+
+R: powerful programming language for data exploration, visualization, and analysis
+
+- main R site: <https://cran.r-project.org/>
+- Thailand mirror: <http://mirrors.psu.ac.th/pub/cran/> (use this)
+- Want version 3.2.2 or higher
+- click on machine version to "**Download and Install R**"
+- for Windows, click on "**base**"
+- click on current version to install
+- follow instructions
+
+## install Rstudio
+
+RStudio: nice graphical interface for R projects
+
+- <https://www.rstudio.com/products/rstudio/download3/>
+- click "**Download**" under "**RStudio Desktop Personal License**"
+- click on "**Installer**" for your machine
+- follow instructions for easy install
+
+## install R packages
+
+- open up Rstudio, which opens R
+- On console, type
+
+```
+install.packages("qtl", "rrBLUP")
+```
+
+This will install the two main packages we will use.
+
+## qtl: R package help
+
+- <http://rqtl.org> (lots of useful stuff here)
+    + see [R/qtl Install steps](http://rqtl.org/tutorials/rqtltour2.pdf)
+- A brief tour of R/qtl: [[pdf](http://rqtl.org/tutorials/rqtltour.pdf) | [code](http://rqtl.org/tutorials/rqtltour.R)]
+- A shorter tour of R/qtl: [[pdf](http://rqtl.org/tutorials/rqtltour2.pdf) | [code](http://rqtl.org/tutorials/rqtltour2.R)]
+- [R/qtl sample data formats](http://rqtl.org/sampledata/)
+- [A Guide to QTL Mapping with R/qtl: book by Karl W. Broman & Śaunak Sen](http://www.rqtl.org/book/)
+
+## rrBLUP: R package help
+
+- <http://potatobreeding.cals.wisc.edu/software/>
+- [Amy Jacobson slides](http://pbgworks.org/sites/pbgworks.org/files/Introduction%20to%20Genomic%20Selection%20in%20R.pdf)
+- [Jeff Endelman Notes](https://potatobreeding.cals.wisc.edu/wp-content/uploads/sites/21/2014/01/GS_tutorial.pdf)
+
+## other useful R packages
+
+There is a very useful set of R packages that were recently developed, which are packaged together as the "Tidyverse" (<http://tidyverse.org/>). We will not use these directly, but they are worth knowing about.
+To install them type the following on the Rstudio console:
+
+```
+install.packages(tidyverse)
+```
+
+This will install a number of small packages on your system.
+
+For the advanced R/qtl2 section, there are further packages. We will discuss that later.
+
+## organizing your work
+
+Want to go further organizing your work?
+
+- [Karl Broman's initial steps to reproducible research](http://kbroman.org/steps2rr/)
+- [Karl Broman's data organization tips](http://kbroman.org/dataorg/)
+
+## communication opportunities
+
+- many online resources
+    + <http://www.stat.wisc.edu/~yandell/statgen/reference/>: Yandell Statistical Genomics References
+    + <http://datacarpentry.org>: spreadsheet to R in 2 days
+    + <https://www.lynda.com/>: online skills tutorials
+    + [Professional Skills for Data Science](http://www.stat.wisc.edu/network-skills)
+- open source tools are quite good
+    + [R](https://cran.r-project.org/) & [Rstudio](https://www.rstudio.com/) for data science
+    + [Github](https://github.com/) for version control
+- [Google Drive](https://www.google.com/drive/), [DropBox](https://www.dropbox.com/), [Box](https://www.box.com/), ...
+
+Material for this course at <https://github.com/byandell/PlantSysGen>

@@ -7,11 +7,16 @@ output: html_document
 
 This folder contains Brian Yandell's presentation for the January 2017 **Plant Breeding Network and Tools as a Driving Force for Better Economy Symposium** in Bangkok, Thailand. I will have a 3-hour block of time, which I will divide into 3 50-minute segments with 10-minute breaks for open discussion. osurce material to reproduce the talk can be found at <https://github.com/byandell/PlantSysGen>.
 
-- [Introduction](intro.pdf)
-- [Quantitative Trait Loci (QTL)](qtl.pdf)
-- [QTL Model Search](search.pdf)
-- [Genome-Wide Association (GWA)](gwa.pdf)
-- [Traits & Tools](traits.pdf)
+- [Introduction](intro.pdf) (32)
+- [Quantitative Trait Loci (QTL)](qtl.pdf) (43)
+- [Genome-Wide Association (GWA)](gwa.pdf) (39)
+- [Systems Genetics Tools](tools.pdf) (14)
+
+**Extra Material:
+
+- [QTL Model Search](search.pdf) (28)
+- [Multiple Traits](traits.pdf) (31)
+- [Systems Genetics Software](software.pdf) (10)
 
 - [Figure Citations](PlantSysGenFig.html)
 

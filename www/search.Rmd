@@ -258,6 +258,15 @@ Lessons from comparative QTL studies. In DB Wilkinson,
   (ed) 49th Ann Corn Sorghum Res Conf, pp
   252--268. Amer Seed Trade Asso, Washington, DC.</span>
 
+## PHE = GWA + QTL * ENV example
+
+![](../Figs/phe_qxe.jpg)
+
+## PHE = QTL + GWA * ENV example
+
+![](../Figs/phe_gxe.jpg)
+
+
 ## Pareto chart: from QTL to GWA
 
 <img src="../Figs/pareto.jpg" alt="Pareto Diagram" style="width: 800px"/>

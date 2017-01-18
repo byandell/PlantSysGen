@@ -1,0 +1,139 @@
+---
+title: "Systems Genetics Tools"
+author: "Brian S. Yandell, UW-Madison"
+date: "January 2017"
+output:
+  ioslides_presentation: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## appeal of new technology
+
+- Better, faster, smarter, …?
+    + but does more yield better insight?
+- How to manage data volume
+    + keep track of it all
+    + decide what is important 
+- How (or why) to use more complicated models?
+    + need to develop new analysis tools
+    + want to find new ways to visualize
+- Be involved in process of data inquiry 
+    + share with colleagues (in real time)
+    + reach beyond domain boundaries
+
+## tools & workflow: big idea
+
+<img src="../Figs/sysgen_big_pic.png" alt="sysgen_big_pic" style="width: 700px"/>
+
+## team research aims
+
+<img src="../Figs/team_research_aims.png" alt="team_research_aims" style="width: 700px"/>
+
+## tools workflow
+
+<img src="../Figs/tools_workflow.png" alt="tools_workflow" style="width: 700px"/>
+
+## technology tools and platforms
+
+- types of tools
+    + algorithms: software tools
+    + machines: hardware tools
+- Your laptop
+    + powerful for mid- to large-size projects
+    + powerful communication tool
+- Scaling up
+    + Massive data: storage, management, access, sharing
+    + Workflow steps: engine/CPU, organizing, scheduling
+    
+## data recording hardware
+
+![](../Figs/SpaldingHardware.jpeg)
+
+<span style="font-size: 75%">http://phytomorph.wisc.edu (Edgar Spalding Lab)</span>
+
+## sharing with authentication
+
+- Tools: Box, Google, GitHub
+    + data, methods, ideas, results
+- Research community
+    + [Arabidopsis](https://www.arabidopsis.org/)
+    + [Switchgrass](http://openwetware.org/wiki/Texas_Switchgrass_Collaborative)
+    + [Maize](http://www.maizegenetics.net/)
+- Cross-species systems
+    + DNA sequence (genomics)
+    + Phe-gen relationship (QTL, systems genetics)
+
+## technology considerations
+
+- Your time
+    + familiarity with tools
+    + familiarity with data
+- Comparing results
+    + model selection on one dataset
+    + several methods on one data set
+    + multiple data sites
+
+## data visualization
+
+- genotype diagnostics
+- Distribution at locus
+- Scatterplots with symbols (QTL, env)
+- Genome scans
+    + LOD profile
+    + Allele scans
+    + SNP scans (GWA Manhattan plots)
+- multiple traits
+    + over time or space (Moore)
+    + networks (small, not hair balls)
+    + box- or dot-plots over conditions
+
+## evolution of computational tools
+
+Advances in measurement, design and analysis would be academic
+without advances in computational technology. 
+
+- faster machines -> faster throughput of more stuff
+- methods translated into algorithms
+    + open source: freely distrubuted, easy to study
+- standalone programs
+- packages in language systems (R or Python or Matlab)
+- interconnectivity of algorithms and data resources
+
+## collaboration systems
+
+dangers of email-based collaboration
+
+- trading large files back and forth (slow, not secure)
+- nearly impossible to keep track of versions
+- minor updates require repeat sending
+
+modern approach: use email to notify collaborators only
+
+- [GitHub](https://github.com) to share code & ideas with version control
+- Box/DropBox & Google Drive to share documents
+- iPlant to improve data access & processing efficiency
+
+## software infrastructure
+
+
+<img src="../Figs/nrg2048-f1.jpg" alt="software infrastructure" style="width: 600px"/>
+
+<a href="http://dx.doi.org/10.1038/nrg2048"><span style="font-size: 75%">Jansen & Swertz (2007)</span></a>
+
+## emerging collaboration systems
+
+modular philosophy of layers to separate
+
+- back-end: data and compute processing layer
+- middle-ware: analysis methodology layer
+- front-end: human interaction and data visualization layer
+    
+will enable overlapping communities to
+
+- customize local use
+- share data, methods & results with other communities
+- off-load data handling & compute headaches
+
