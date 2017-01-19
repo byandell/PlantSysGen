@@ -61,11 +61,36 @@ This will install the two main packages we will use.
 - [R/qtl sample data formats](http://rqtl.org/sampledata/)
 - [A Guide to QTL Mapping with R/qtl: book by Karl W. Broman & Śaunak Sen](http://www.rqtl.org/book/)
 
+## mixed model software for QTL and GWA
+
+- [EMMA (Efficient Mixed Model Association)](http://mouse.cs.ucla.edu/emma/)
+- [EMMAX (Efficient Mixed-Model Association eXpedited)](http://genetics.cs.ucla.edu/emmax_jemdoc/)
+- Convert matrix operations to vector operations
+    + with one clever eigendecomposition
+    + 1000x faster than TASSEL/SAS implementation
+    + O(n) per iteration
+    + accurate and reliable
+- [Eleazar Eskin Lab (UCLA)](http://zarlab.cs.ucla.edu/) standalone packages
+
 ## rrBLUP: R package help
 
+- [rrBLUP](http://pbgworks.org/node/1440)
+- EMMA adapted to genotypic prediction
+    + `A.mat` to compute $K$ from markers
+    + `kin.blup` to predict phenotypes
 - <http://potatobreeding.cals.wisc.edu/software/>
 - [Amy Jacobson slides](http://pbgworks.org/sites/pbgworks.org/files/Introduction%20to%20Genomic%20Selection%20in%20R.pdf)
 - [Jeff Endelman Notes](https://potatobreeding.cals.wisc.edu/wp-content/uploads/sites/21/2014/01/GS_tutorial.pdf)
+
+## R/qtl2scan
+
+[qtl2scan](http://kbroman.org/qtl2/)
+
+- EMMA adapted to R/qtl2 package
+- leave out one chromosome method
+    + `calc_kinship` with `type="loco"` to compute $K$
+    + `scan1` with `kinship` option to fit mixed model
+- <span style="font-size: 75%">Karl Broman (UW-Madison) R package suite</span>
 
 ## other useful R packages
 

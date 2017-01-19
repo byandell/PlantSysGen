@@ -92,11 +92,11 @@ apr$map <- DOex$pmap
 Calculate kinship matrices using the `"loco"` option, which calculates kinship for each chromosome using SNPs from all but that chromosome.
 
 ```{r}
-kinship_all <- calc_kinship(apr, "overall")
+kinship <- calc_kinship(apr, "loco")
 ```
 
 ```{r}
-pheno_scan <- scan1(apr, DOex$pheno, kinship_all)
+pheno_scan <- scan1(apr, DOex$pheno, kinship)
 ```
 
 ```{r message=FALSE}
@@ -128,7 +128,7 @@ snppr <- genoprob_to_snpprob(apr[,"2"], snpinfo)
 Perform SNP association analysis.
 
 ```{r}
-out_snps <- scan1(snppr, DOex$pheno, kinship_all)
+out_snps <- scan1(snppr, DOex$pheno, kinship[[1]])
 ```
 
 ```{r}
@@ -149,7 +149,7 @@ data1 <- data.frame(y=DOex$pheno[,1],
 ```
 
 ```{r}
-rr_blup <- kin.blup(data1, K = kinship_all,
+rr_blup <- kin.blup(data1, K = kinship[[1]],
                  geno="gid", pheno="y")
 ```
 
@@ -159,15 +159,15 @@ round(cor(rr_blup$pred,data1$y),2)
 
 ```{r}
 library(ggplot2)
-dat <- data.frame(x = data1$y,
-                  y = rr_blup$pred)
-jpeg("../../Figs/rrBLUP_DO_GWA.jpg", width=600, height=600)
+dat <- data.frame(y = data1$y,
+                  x = rr_blup$pred)
+jpeg("../../Figs/rrBLUP_DO_poly.jpg", width=600, height=600)
 ggplot(dat, aes(x,y)) + 
   geom_point() +
   geom_smooth(method="lm",se=FALSE) +
   geom_abline(intercept = 0, slope = 1) +
-  ylab("rrBLUP prediction") +
-  xlab("phenotype")
+  xlab("polygene prediction") +
+  ylab("phenotype")
 dev.off()
 ```
 
@@ -191,7 +191,7 @@ data1$sdppr <- apply(geno, 1, function(x, sdp) {
 ```
 
 ```{r}
-rr_blup_cov <- kin.blup(data1, K = kinship_all,
+rr_blup_cov <- kin.blup(data1, K = kinship[[1]],
                  geno="gid", pheno="y",
                  covariate = "sdppr")
 ```
@@ -207,8 +207,8 @@ round(cor(rr_blup_cov$g,resid(fit)),2)
 
 ```{r}
 library(ggplot2)
-dat <- dplyr::arrange(data.frame(x = resid(fit),
-                  y = rr_blup_cov$g,
+dat <- dplyr::arrange(data.frame(y = data1$y,
+                  x = rr_blup_cov$pred,
                   dip = dip,
                   sdppr = data1$sdppr),
                sdppr)
@@ -217,10 +217,16 @@ ggplot(dat, aes(x,y,label=dip)) +
   geom_text(aes(col=-sdppr), size=4) +
   geom_smooth(method="lm",se=FALSE) +
   geom_abline(intercept = 0, slope = 1) +
-  xlab("residual from allele fit") +
-  ylab("rrBLUP GWA term") +
+  ylab("phenotype") +
+  xlab("polygene prediction") +
   theme(legend.position = "none")
 dev.off()
 ```
 
 Want to do on test set and training set. Also need to account for how mean and variance changed
+
+- training set: used to develop model
+- validation set: check for overfit
+- testing set: used to test final solution
+
+typically 3 sets for contest or very large problem

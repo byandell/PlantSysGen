@@ -1,0 +1,123 @@
+---
+title: "Polygenic Association"
+author: "Brian S. Yandell, UW-Madison"
+date: "January 2017"
+output:
+  ioslides_presentation: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## evolution of QTL models
+
+original ideas focused on rare & costly markers  
+models & methods refined as technology advanced
+
+- single marker regression
+- QTL (quantitative trait loci)
+    + single locus models: interval mapping for QTL
+    + QTL model search: QTLs & epistasis
+- polygenes (association mapping)
+    + adjust for population structure
+    + capture "missing heritability"
+- **genome-wide selection**
+
+## what is genomic selection?
+
+use statistical modeling to predict how a plant will perform  
+before it is field-tested
+
+- genomic selection (GS)
+    + marker assisted selection (MAS)
+    + genome-wide selection (GS)
+- other uses of word (relevent to systems genetics)
+    + natural selection: survival of the fittest
+    + model selection: search for QTLs
+    + selection bias: overestimate of QTL effects
+
+## why use genomic selection?
+
+- trait is highly polygenic (genetically variable)
+    + influenced by a few key genomic regions
+    + high heritability (low environmental variation)
+- measuring trait is costly
+    + difficult or expensive process (technology)
+    + measuring tool may be highly variable
+    + time-consuming (plant has to grow first)
+    + desire to streamline multi-year selection
+
+## what is genomic selection?
+
+- forms of genome-wide selection
+    + marker-assisted: with phenotypes
+    + marker-based: without phenotypes
+    
+- use markers to improve selection for complex traits
+    + predict phenotype from marker genotype
+    + select candidates based on best marker genotypes
+    + use training set to predict test set of individuals
+
+## old paradigm: marker prediction
+
+- 1990s & 2000s: markers were expensive
+- economic strategy:
+    + first identify significant markers (QTL analysis)
+    + use best markers to genotype selection candidates
+- estimate marker effects by multiple regression
+    + treat genetic effects as fixed and few
+    + $E(y)= \mu_q, q=(q_1,q_2,q_3)$
+
+## marker assisted selection (MAS)
+
+![](../Figs/pedigree-versus-marker-assisted-breeding.gif)
+
+
+<span style="font-size: 50%">www.21stcentech.com/heard-marker-assisted-breeding/</span>
+
+## new paradigm: use "all" markers
+
+- new paradigm with technology advances
+    + improved statistical methods and software
+    + cheap markers
+- using only significant markers to predict trait ...
+    + gives good estimates (maybe) of markers ...
+    + but does not maximize accuracy
+- simple but effective approach
+    + treat marker effects as random
+    + use all markers (away from QTL if any)
+
+## old vs new
+
+<img src="../Figs/MAS_Endelman.png" alt="old vs new GS" style="width: 750px"/>
+
+## mixed model approach
+
+MAS approach $y = \mu_q + e, V(e) = \sigma^2I$
+
+- estimate fixed QTL effects $\hat{\mu}_q$ (MLEs)
+- predict phenotype using fixed effects $\hat{y}=\hat{\mu}_q$
+
+GS approach  $y = \mu + g + e, V(g) = \sigma_g^2K$
+
+- estimate kinship $K$ from all markers $M$ as for `poly`
+- predict random effect $\hat{g}$ using BLUP
+- predict phenotype $\hat{y}=\hat{g}$
+
+## genomic prediction
+
+<img src="../Figs/rrBLUP_DO_poly.jpg" alt="rrBLUP DO poly" style="width: 500px; float:right"/>
+
+- DO example
+- rrBLUP fit without QTL
+- correlation 0.79
+
+## poly + QTL genomic prediction
+
+<img src="../Figs/rrBLUP_DO_QTL.jpg" alt="rrBLUP DO QTL" style="width: 500px; float:right"/>
+
+- DO example
+- rrBLUP fit with QTL
+- correlation 0.74
+

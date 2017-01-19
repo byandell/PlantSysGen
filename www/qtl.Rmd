@@ -19,10 +19,10 @@ models & methods refined as technology advanced
 - **QTL (quantitative trait loci)**
     + **single locus models: interval mapping for QTL**
     + QTL model search: QTLs & epistasis
-- GWA (genome-wide association mapping)
+- polygenes (association mapping)
     + adjust for population structure
     + capture "missing heritability"
-    + genome-wide selection
+- genome-wide selection
 
 ## strategy for QTL mapping
 

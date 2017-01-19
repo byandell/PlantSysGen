@@ -13,10 +13,12 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## outline
 
-- [Introduction](intro.html)
-- [QTL Gene Mapping](qtl.html)
-- [Genome-Wide Association](gwa.html)
-- [Multiple Traits](traits.html)
+- Introduction [[PDF](intro.pdf) | [HTML](intro.html)] (32 pages)
+- Quantitative Trait Loci (QTL) [[PDF](qtl.pdf) | [HTML](qtl.html)] (43)
+- Association Mapping [[PDF](poly.pdf) | [HTML](poly.html)] (24)
+- Genome-Wide Selection [[PDF](select.pdf) | [HTML](select.html)] (12)
+- Multiple Traits [[PDF](traits.pdf) | [HTML](traits.html)] (18)
+- Systems Genetics Tools [[PDF](tools.pdf) | [HTML](tools.html)] (14)
 
 <http://www.stat.wisc.edu/~yandell/talk/PlantSysGen>
 
@@ -28,7 +30,7 @@ Systems genetics is an approach to understand the flow of biological information
 
 how to relate phenotype to genotype
 
-- genetic effects (QTL & GWA)
+- genetic effects (QTL & polygenes)
 - prediction & selection (MAS, GS)
 
 with changing technology
@@ -71,8 +73,8 @@ Goals for predicting future performance
 
 phenotype = genotype + environment
 
-- GEN = QTL + GWA
-    + genotype = local + genome-wide genetic effects
+- GEN = QTL + poly
+    + genotype = local + polygenic effects
 
 - ENV = design + predictors + error
     + design factors (blocks, locations, ...)
@@ -81,27 +83,27 @@ phenotype = genotype + environment
     
 <span style="font-size: 75%">Falconer & Mackay (1960--1996)</span>
 
-## GEN = QTL + GWA
+## GEN = QTL + poly
 
 - QTL: quantitative trait loci
     + local to an identified genomic region
     + large Mendelian effects on mean
-- GWA: genome-wide association
+- poly: polygenic association across genome
     + depends on population structure (kinship)
     + measures relationships away from QTL
     + average of many small effects
 
-## PHE = QTL + GWA + ENV example
+## PHE = GEN + ENV example
 
 ![](../Figs/phe_qtl.jpg)
 
-## PHE = QTL + GWA + ENV example
+## PHE = GEN + ENV example
 
-![](../Figs/phe_gwa.jpg)
+![](../Figs/phe_poly.jpg)
 
-## PHE = QTL + GWA + ENV example
+## PHE = GEN + ENV example
 
-![](../Figs/phe_qtl_gwa.jpg)
+![](../Figs/phe_qtl_poly.jpg)
 
 ## thanks up front
 
@@ -122,7 +124,7 @@ mix of presentation style to plant-based audience
     + show big picture
 - applied: using R packages
     + [qtl](http://rqtl.org): basic gene mapping
-    + [rrBLUP](http://potatobreeding.cals.wisc.edu/software/): genome-wide prediction & GWAS
+    + [rrBLUP](http://potatobreeding.cals.wisc.edu/software/): genome-wide prediction & polygenes
     + [qtl2](http://kbroman.org/qtl2/): high throughput gene mapping
 - source: <https://github.com/byandell/PlantSysGen>
 - slides: <http://www.stat.wisc.edu/~yandell/talk/PlantSysGen>
@@ -180,7 +182,7 @@ trait information (phenotype)
     + multi-parent populations (MPP)
 - model selection: how phenotypes relate to genotypes
     + single marker regressions & interval mapping (QTL)
-    + association mapping (including GWA)
+    + association mapping (including polygenes)
 - estimation and prediction
     + genetic action (additive, dominance, epistasis)
     + marker assisted (MAS) & genomic selection (GS)

@@ -21,12 +21,12 @@ n <- 200
 sd <- 0
 ENV <- rnorm(n)
 QTL_num <- round(runif(n))
-GWA <- rnorm(n)
+poly <- rnorm(n)
 err <- sd * rnorm(n)
-d <- data.frame(ENV,QTL_num,GWA,err)
-d$PHE <- d$ENV + 2 * d$QTL_num + d$GWA + d$err
-d$PHE_qxe <- 2 * d$ENV * d$QTL_num + d$GWA + d$err
-d$PHE_gxe <- sqrt(2) * d$ENV * d$GWA + 2 * d$QTL_num + d$err
+d <- data.frame(ENV,QTL_num,poly,err)
+d$PHE <- d$ENV + 2 * d$QTL_num + d$poly + d$err
+d$PHE_qxe <- 2 * d$ENV * d$QTL_num + d$poly + d$err
+d$PHE_gxe <- sqrt(2) * d$ENV * d$poly + 2 * d$QTL_num + d$err
 ```
 
 ```{r}
@@ -57,49 +57,49 @@ dev.off()
 ```
 
 ```{r}
-jpeg("../../Figs/phe_gwa.jpg", width=600, height=400)
-ggplot(d, aes(ENV,PHE, fill=GWA)) +
+jpeg("../../Figs/phe_poly.jpg", width=600, height=400)
+ggplot(d, aes(ENV,PHE, fill=poly)) +
   geom_point(size=3, shape=21) +
   geom_smooth(method="lm",se=FALSE) +
   scale_fill_gradient2() +
-  ggtitle("model: PHE = GWA + ENV")
+  ggtitle("model: PHE = poly + ENV")
 dev.off()
 ```
 
 ```{r}
-jpeg("../../Figs/phe_qtl_gwa.jpg", width=600, height=400)
-ggplot(d, aes(ENV,PHE, fill=GWA)) +
+jpeg("../../Figs/phe_qtl_poly.jpg", width=600, height=400)
+ggplot(d, aes(ENV,PHE, fill=poly)) +
   geom_point(size=3,shape=21) +
   geom_smooth(method="lm",se=FALSE) +
   facet_wrap(~QTL)+
   scale_fill_gradient2() +
-  ggtitle("model: PHE = QTL + GWA + ENV")
+  ggtitle("model: PHE = QTL + poly + ENV")
 dev.off()
 ```
 
 ```{r}
-ggplot(d, aes(GWA,PHE, fill=ENV)) +
+ggplot(d, aes(poly,PHE, fill=ENV)) +
   geom_point(size=3, shape=21) +
   geom_smooth(method="lm",se=FALSE) +
   facet_wrap(~QTL)+
   scale_fill_gradient2() +
-  ggtitle("QTL & GWA")
+  ggtitle("QTL & poly")
 ```
 
 ```{r}
-ggplot(d, aes(GWA,ENV, fill=PHE)) +
+ggplot(d, aes(poly,ENV, fill=PHE)) +
   geom_point(size=3, shape=21) +
   geom_smooth(method="lm",se=FALSE) +
   facet_wrap(~QTL)+
   scale_fill_gradient2() +
-  ggtitle("QTL & GWA")
+  ggtitle("QTL & poly")
 ```
 
 ## GxE
 
 ```{r}
 jpeg("../../Figs/phe_qxe.jpg", width=600, height=400)
-ggplot(d, aes(ENV,PHE_qxe, fill=GWA)) +
+ggplot(d, aes(ENV,PHE_qxe, fill=poly)) +
   geom_point(size=3,shape=21) +
   geom_smooth(method="lm",se=FALSE) +
   facet_wrap(~QTL)+
@@ -110,29 +110,29 @@ dev.off()
 
 ```{r}
 jpeg("../../Figs/phe_gxe.jpg", width=600, height=400)
-ggplot(d, aes(ENV,PHE_gxe, fill=GWA)) +
+ggplot(d, aes(ENV,PHE_gxe, fill=poly)) +
   geom_point(size=3,shape=21) +
   geom_smooth(method="lm",se=FALSE) +
   facet_wrap(~QTL)+
   scale_fill_gradient2() +
-  ggtitle("GWA x ENV interaction")
+  ggtitle("poly x ENV interaction")
 dev.off()
 ```
 
 ```{r}
-ggplot(d, aes(GWA, ENV, fill=PHE_gxe)) +
+ggplot(d, aes(poly, ENV, fill=PHE_gxe)) +
   geom_point(size=3, shape=21) +
   geom_smooth(method="lm",se=FALSE) +
   facet_wrap(~QTL)+
   scale_fill_gradient2() +
-  ggtitle("GWA x ENV interaction")
+  ggtitle("poly x ENV interaction")
 ```
 
 ```{r}
-ggplot(d, aes(PHE_gxe,ENV*GWA, fill=GWA)) +
+ggplot(d, aes(PHE_gxe,ENV*poly, fill=poly)) +
   geom_point(size=3,shape=21) +
   geom_smooth(method="lm",se=FALSE) +
   facet_wrap(~QTL)+
   scale_fill_gradient2() +
-  ggtitle("GWA x ENV interaction")
+  ggtitle("poly x ENV interaction")
 ```
