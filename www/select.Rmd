@@ -1,5 +1,5 @@
 ---
-title: "Polygenic Association"
+title: "Genome-Wide Selection"
 author: "Brian S. Yandell, UW-Madison"
 date: "January 2017"
 output:
