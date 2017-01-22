@@ -115,6 +115,55 @@ phenotype = genotype + environment
 - [Alan Attie, UW-Madison](https://biochem.wisc.edu/faculty/attie)
 - UW-Madison sabbatical program
 
+## UW-Madison collaboration
+
+- Plant Breeding & Plant Genetics Program
+    + Statistical Genetics & Genomics Focus
+- Biometry Program
+- Biostatistics & Medical Informatics Department (BMI)
+- Statistics Department
+- Laboratory of Genetics
+- Animal Breeding & Genetics
+
+## UW-Madison Biometry Program
+
+- joint faculty with Statistics
+    + Cecile Ane (Botany)
+    + Murray Clayton (Plant Pathology)
+    + Brian Yandell (Horticulture)
+    + Jun Zhu (Entomology)
+- collaborative research & consulting
+- teaching courses at all levels
+    + introductory data science methods
+    + Bayesian methods, spatial statistics
+- Biometry Masters program
+
+## UW-Madison Biostat & Med Info (BMI)
+
+- faculy expertise in variety of research areas
+- collaborations large in human health
+    + but extended across campus
+- statistical genetics & genomics
+    + Newton, Kendziorski, Keles, Dewey, Broman, Wang
+- bioinformatics
+    + Shavlik, Page, Craven, Dewey, Coen, Roy, Gitter
+- image analysis
+    + Dyer, Chung, Singh
+- affiliate faculty
+    + Gianola, Rosa, Yandell
+    
+## UW-Madison community
+
+- plants (Endelman, de Leon Gatti, Guttierez)
+- animals (Rosa, Gianola, Kirkpatrick)
+- genetics (Payseur, Doebley)
+- microbes (Gasch, Rey, ...)
+- evolution & phylogenetics (Ane, Larget, Baum, Spooner)
+- high throughput methods
+    + computers: Livny, Negrut, Wilson
+    + chemistry: Coon, Pagliarini
+    + botany: Spalding
+
 ## approach in these talks
 
 mix of presentation style to plant-based audience
