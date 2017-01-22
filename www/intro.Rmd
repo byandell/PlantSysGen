@@ -107,6 +107,8 @@ phenotype = genotype + environment
 
 ## thanks up front
 
+<img src="../Figs/Thai_pavilion_roof_paint01.jpg" alt="Thai Pavilion" style="width: 300px; float:right"/>
+
 - [Karl Broman, UW-Madison](http://kbroman.org)
 - [Jeff Endelman, UW-Madison](http://potatobreeding.cals.wisc.edu/people/)
 - [Guilherme Rosa, UW-Madison](http://www.ansci.wisc.edu/Facultypages/rosa.html)
@@ -114,6 +116,10 @@ phenotype = genotype + environment
 - [Gary Churchill, Jackson Labs](https://www.jax.org/research-and-faculty/faculty/gary-churchill)
 - [Alan Attie, UW-Madison](https://biochem.wisc.edu/faculty/attie)
 - UW-Madison sabbatical program
+- Kasetsart Univeristy, Thailand <br>
+(Piya Kittipadakul & Janejira Duangjit)
+
+<a href="http://www.olbrich.org/gardens/thai.cfm"><span style="font-size: 75%">Olbrich Botanical Garden, Madison, WI</span></a>
 
 ## UW-Madison collaboration
 
@@ -137,6 +143,19 @@ phenotype = genotype + environment
     + introductory data science methods
     + Bayesian methods, spatial statistics
 - Biometry Masters program
+
+## UW Biometry Consulting model
+
+- faculty & staff time paid by UW (CALS)
+    + no visit cost
+    + builds long-term collaboration
+    + not limited by program/project size
+- mentoring of research enterprise
+    + gradaute student training
+    + faculty & staff relationship building
+    + encourage research teams for grants
+- campus-level vision of data & research
+    + and human capital
 
 ## UW-Madison Biostat & Med Info (BMI)
 
@@ -358,6 +377,17 @@ without advances in computational technology.
     + SNP level in one generation
 
 <span style="font-size: 75%">Laura Vanderploeg, Jackson Labs</span>
+
+## natural populations?
+
+- are genetic markers location on map?
+    + marker analysis only?
+    + local linkage disequilibrium
+    + benefits of linkage analysis
+- do rare alleles affect phenotype?
+    + power depend on rare allele frequency
+    + uneven inoformation across markers
+- multi-parent populations capture useful diversity
 
 ## dataset used in this talk
 

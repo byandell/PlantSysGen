@@ -124,3 +124,4 @@ Adapted directly from Broman.
 - [pedigree-versus-marker-assisted-breeding.gif](http://www.21stcentech.com/heard-marker-assisted-breeding/)
 - [physiolgenomics.jpg](http://dx.doi.org/10.1152/physiolgenomics.00127.2013)
 - [plantcellbio.gif](http://plantcellbiology.masters.grkraj.org/html/Plant_Cell_Genetics2-Genetics_files/image029.gif)
+- [Thai_pavilion_roof_paint01.jpg](http://news.wisc.edu/archive/pavilion/building.html)

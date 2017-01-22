@@ -32,10 +32,6 @@ knitr::opts_chunk$set(echo = FALSE)
 
 <img src="../Figs/team_research_aims.png" alt="team_research_aims" style="width: 700px"/>
 
-## tools workflow
-
-<img src="../Figs/tools_workflow.png" alt="tools_workflow" style="width: 700px"/>
-
 ## technology tools and platforms
 
 - types of tools
@@ -116,13 +112,6 @@ modern approach: use email to notify collaborators only
 - Box/DropBox & Google Drive to share documents
 - iPlant to improve data access & processing efficiency
 
-## software infrastructure
-
-
-<img src="../Figs/nrg2048-f1.jpg" alt="software infrastructure" style="width: 600px"/>
-
-<a href="http://dx.doi.org/10.1038/nrg2048"><span style="font-size: 75%">Jansen & Swertz (2007)</span></a>
-
 ## emerging collaboration systems
 
 modular philosophy of layers to separate
@@ -136,4 +125,14 @@ will enable overlapping communities to
 - customize local use
 - share data, methods & results with other communities
 - off-load data handling & compute headaches
+
+## software infrastructure
+
+<img src="../Figs/nrg2048-f1.jpg" alt="software infrastructure" style="width: 600px"/>
+
+<a href="http://dx.doi.org/10.1038/nrg2048"><span style="font-size: 75%">Jansen & Swertz (2007)</span></a>
+
+## tools workflow
+
+<img src="../Figs/tools_workflow.png" alt="tools_workflow" style="width: 700px"/>
 
