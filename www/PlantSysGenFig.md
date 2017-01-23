@@ -109,7 +109,7 @@ Adapted directly from Broman.
 - [pareto.jpg](http://www.stat.wisc.edu/~yandell/talk/sisg/seattle2008/bsyoverview.ppt)
 - [sysgen_big_pic.png](http://www.stat.wisc.edu/~yandell/talk/stat/Yandell_CHTC.pptx)
 - [team_research_aims.png](http://www.stat.wisc.edu/~yandell/talk/stat/Yandell_CHTC.pptx)
-- [tools_workflow.png](http://www.stat.wisc.edu/~yandell/talk/stat/Yandell_CHTC.pptx)
+- [tools_workflow.png](http://www.stat.wisc.edu/~yandell/talk/stat/qtl2_gn_jax.pptx)
 
 - [causal models](http://www.stat.wisc.edu/~yandell/talk/2013AnGen.ppt)
 

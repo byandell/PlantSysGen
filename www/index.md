@@ -21,6 +21,7 @@ This folder contains Brian Yandell's presentation for the January 2017 **Plant B
 
 - [Data used in these talks](https://github.com/byandell/PlantSysGen/tree/master/data)
 - [Figure Citations](PlantSysGenFig.html)
+- [Data Training](data_training.html)
 
 ## references
 

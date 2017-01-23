@@ -157,6 +157,12 @@ phenotype = genotype + environment
 - campus-level vision of data & research
     + and human capital
 
+## RA Fisher (1948) defined biometry
+
+Biometry is “the active pursuit of biological knowledge by quantitative methods ... [through] constant experience in analysing and interpreting observational data of the most diverse types.... [W]e come to think of ourselves … in terms of the community of our interests with those doing similar work in other departments."
+
+at inaugural meeting of the Biometric Society 
+
 ## UW-Madison Biostat & Med Info (BMI)
 
 - faculy expertise in variety of research areas
